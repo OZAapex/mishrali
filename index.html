@@ -1,0 +1,856 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#0B1730">
+  <meta name="description" content="FURSA V5.1 — منصة وظائف بثلاث لغات مع وضع محلي وربط اختياري آمن بقاعدة بيانات Supabase.">
+  <title>FURSA V5.1 | وظائف بثلاث لغات</title>
+  <style>
+:root{--navy:#0b1730;--deep:#071120;--navy2:#11284a;--gold:#c9a24a;--gold-light:#e0c06f;--gold-soft:#f8edd0;--ink:#15243c;--muted:#758094;--line:#e5e8eb;--bg:#f7f8fa;--white:#fff;--shadow:0 12px 40px rgba(10,23,44,.07)}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:#fff;color:var(--ink);font-family:Tahoma,"Segoe UI",Arial,sans-serif;line-height:1.65}body:has(dialog[open]){overflow:hidden}button,input,select,textarea{font:inherit}button{cursor:pointer}a{color:inherit;text-decoration:none}h1,h2,h3,p{margin-top:0}svg.icon{width:19px;height:19px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;flex-shrink:0}.symbols{position:absolute;width:0;height:0;overflow:hidden}.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}[hidden]{display:none!important}.container{width:min(1200px,calc(100% - 48px));margin-inline:auto}:focus-visible{outline:3px solid #c6a04c;outline-offset:3px}
+.demo-strip{display:flex;align-items:center;justify-content:center;gap:10px;background:#071121;color:#e6e8ec;min-height:31px;padding:5px 14px;font-size:11px;letter-spacing:.1px}.demo-strip b{color:var(--gold-light);font-family:Arial,sans-serif;letter-spacing:.8px}.strip-dot{width:6px;height:6px;border-radius:50%;background:var(--gold-light);box-shadow:0 0 10px #c9a24a}.strip-divider{height:13px;border-inline-start:1px solid #41516a}
+.site-header{background:#fff;position:sticky;top:0;z-index:20;box-shadow:0 5px 20px #0b17300a;border-bottom:1px solid #edf0f1}.nav-wrap{min-height:80px;display:flex;align-items:center;justify-content:space-between;gap:25px}.brand{display:flex;direction:ltr;align-items:center;gap:8px;white-space:nowrap}.brand-symbol{display:grid;place-items:center;width:34px;height:38px;font-size:34px;color:var(--gold);text-shadow:0 0 12px #c9a24a20}.brand-name{font:900 29px/1 Arial,sans-serif;letter-spacing:-1.4px;color:var(--navy)}.brand-name span{color:var(--gold)}.brand-version{font:700 10px/1 Arial,sans-serif;color:#b28b39;border:1px solid #eee0b8;border-radius:4px;padding:4px 5px;margin-left:3px;align-self:flex-start}.nav-links,.nav-actions{display:flex;align-items:center;gap:29px}.nav-actions{gap:16px}.nav-link{position:relative;background:none;border:0;padding:28px 0;color:#637086;font-size:13px;font-weight:800;white-space:nowrap}.nav-link.current,.nav-link:hover{color:var(--navy)}.nav-link.current:after{content:"";height:2px;position:absolute;bottom:0;right:0;left:0;background:var(--gold)}.nav-count{display:inline-block;border-radius:99px;background:#f8edcc;color:#856320;padding:0 7px;min-width:19px;font-size:11px;margin-right:4px}.local-label{display:flex;align-items:center;gap:6px;font-size:11px;color:#8a93a3;white-space:nowrap}.local-label svg{width:15px;height:15px}.btn{display:inline-flex;gap:10px;align-items:center;justify-content:center;border:1px solid transparent;border-radius:10px;padding:12px 17px;font-size:13px;font-weight:800;transition:transform .2s,background .2s,box-shadow .2s;white-space:nowrap}.btn:hover:not(:disabled){transform:translateY(-2px)}.btn-nav,.btn-dark{background:var(--navy);color:white}.btn-nav{padding:11px 15px}.btn-nav .icon{width:16px;height:16px}.btn-gold{background:linear-gradient(130deg,#c59b3d,#e6c876);color:#111d31;box-shadow:0 9px 23px #c9a24a2b}.btn-soft{background:#f8efd7;color:#8e6b2e;border-color:#ebddb9}.btn-outline-dark{border-color:#d8dde5;color:var(--navy);background:#fff}.btn-plain{background:white;border-color:#dfe4ea;color:#31405a}.btn-danger-soft{color:#a53e3e;border-color:#fae3e1;background:#fff5f4}.btn-disabled{background:#e6e8ec;color:#8a9099;cursor:not-allowed;white-space:normal}.icon-btn{display:grid;place-items:center;border:1px solid #e3e8ee;background:#fff;border-radius:10px;width:39px;height:39px;color:#637086;transition:.2s}.icon-btn:hover{border-color:#d7c184;color:var(--navy)}.mobile-menu{display:none}
+.hero{min-height:550px;background:radial-gradient(circle at 20% 44%,#28426750,transparent 40%),linear-gradient(115deg,#091426 0%,#0b1a34 60%,#0d2444 100%);position:relative;overflow:hidden;color:white}.hero-grid{position:absolute;inset:0;opacity:.2;background-image:linear-gradient(#9cabbe12 1px,transparent 1px),linear-gradient(90deg,#9cabbe12 1px,transparent 1px);background-size:54px 54px;mask-image:linear-gradient(90deg,#0008,transparent 90%)}.hero-glow{position:absolute;border-radius:50%;width:650px;height:650px;background:radial-gradient(circle,#b88c3331 0,transparent 64%);right:-300px;top:-360px}.hero-inner{position:relative;display:grid;grid-template-columns:1.25fr .85fr;min-height:550px;align-items:center;gap:15px;padding-block:68px}.hero-copy{position:relative;z-index:2}.eyebrow{display:inline-flex;align-items:center;gap:11px;color:#d2dfec;font-size:12px;letter-spacing:.2px;border:1px solid #ddc48542;background:#ffffff0a;padding:7px 14px;border-radius:30px}.eyebrow-star{color:var(--gold-light);font-size:17px}.eyebrow-line{width:18px;height:1px;background:#c9a24a66}.hero h1{font-weight:900;font-size:clamp(42px,5vw,67px);line-height:1.33;letter-spacing:-2.6px;margin:22px 0 16px}.hero h1 em{font-style:normal;color:var(--gold-light)}.hero h1 em span{color:white}.hero-desc{max-width:590px;color:#cad3df;font-size:15px;line-height:2;margin-bottom:31px}.hero-search{width:min(650px,100%);display:flex;align-items:center;gap:12px;background:#101f39;border:1px solid #d7b86771;border-radius:14px;padding:8px 11px;box-shadow:0 20px 40px #02091654}.hero-search .search-glyph{color:var(--gold-light);margin-right:8px}.hero-search input{background:transparent;border:0;outline:0;color:#fff;flex:1;min-width:0;padding:13px 2px;font-size:14px}.hero-search input::placeholder{color:#e3e8ef;opacity:1}.hero-search .btn{min-height:47px}.hero-search .btn .icon{width:15px;height:15px}.hero-tags{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-top:19px;color:#aebcd0;font-size:12px}.hero-tags button{border:1px solid #a2b5c938;border-radius:30px;background:#ffffff12;color:#dce5ed;padding:4px 12px;font-size:11px}.hero-tags button:hover{border-color:var(--gold-light);color:var(--gold-light)}.hero-scene{height:400px;position:relative;display:grid;place-items:center}.scene-orbit{position:absolute;border:1px solid #c9a24a24;border-radius:50%;height:350px;width:350px}.scene-orbit-two{width:270px;height:270px;border-style:dashed;transform:rotate(20deg)}.hero-monogram{font-family:Georgia,serif;font-size:243px;color:#e0c06f;line-height:1;text-shadow:4px 14px 2px #081429,0 0 45px #c9a24a21;transform:skew(-8deg);filter:drop-shadow(0 20px 45px #0008);position:relative}.hero-monogram span{position:absolute;font-size:44px;right:0;top:17px;color:#f3d48a}.scene-card{position:absolute;z-index:2;display:flex;align-items:center;gap:12px;padding:12px 14px;border:1px solid #ebdbb04d;background:linear-gradient(115deg,#1e304d,#182944);border-radius:12px;box-shadow:0 16px 30px #050d1b91;min-width:209px;backdrop-filter:blur(9px)}.scene-card strong{display:block;font-size:12px;color:white}.scene-card span:not(.mini-icon):not(.mini-heart){display:block;font-size:10px;color:#bdc8d8}.scene-card-top{top:55px;left:-25px;transform:rotate(-5deg)}.scene-card-bottom{bottom:63px;right:-16px;transform:rotate(4deg)}.mini-check{width:34px;height:34px;display:grid;place-items:center;border-radius:10px;background:#e1c579;color:#11203a;font-weight:900}.mini-icon{font-size:30px;color:var(--gold-light)}.mini-heart{font-size:25px;color:#f4d583;margin-right:auto}.scene-spark{position:absolute;color:var(--gold-light);font-size:21px}.scene-spark-one{right:10%;top:14%}.scene-spark-two{left:14%;bottom:12%;font-size:34px}.hero-edge{height:4px;position:absolute;bottom:0;width:100%;background:linear-gradient(90deg,transparent,#caab56 50%,transparent)}
+.stats-bar{background:#fff;border-bottom:1px solid #edf0f2}.stats-inner{display:grid;grid-template-columns:repeat(4,1fr);padding-block:24px}.stat{display:flex;align-items:center;justify-content:center;gap:16px;border-left:1px solid #edf0f2}.stat-last{border:0}.stat-icon{color:var(--gold);display:grid;place-items:center;width:43px;height:43px;border:1px solid #efe3be;border-radius:12px;background:#fcf8ef;font-family:Georgia,serif;font-size:23px}.stat strong{font:900 26px/1.2 Arial,Tahoma,sans-serif;color:var(--navy);display:block}.stat small{font-size:11px;color:#8a94a3}
+.jobs-section{padding-block:86px 100px;scroll-margin-top:100px}.section-header{display:flex;align-items:end;justify-content:space-between;margin-bottom:29px;gap:15px}.kicker{color:#a37e32;font-size:12px;font-weight:900}.kicker>span{margin-left:5px}.section-header h2,.admin-heading h1{font-size:clamp(28px,3.5vw,43px);line-height:1.35;letter-spacing:-1.5px;margin:8px 0 9px;color:var(--navy)}.section-header h2 span,.admin-heading h1 span{color:#ad8737}.section-header p{color:var(--muted);font-size:13px;margin:0}.section-header .btn{display:none}.job-layout{display:grid;grid-template-columns:265px minmax(0,1fr);gap:28px;align-items:start}.filters-panel{border:1px solid #e8e4da;border-radius:17px;background:linear-gradient(180deg,#fff,#fdfcf9);box-shadow:var(--shadow);padding:20px;position:sticky;top:107px}.filter-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:20px}.filter-top h3{display:flex;align-items:center;gap:9px;color:var(--navy);font-size:15px;margin:0}.filter-top h3 .icon{color:#b18a38;width:17px;height:17px}.quiet-button{background:none;border:0;color:#b18a38;font-size:11px;font-weight:800}.field-group{margin:0 0 16px}.field-group>label{display:block;font-size:12px;color:#405068;font-weight:800;margin-bottom:8px}.field-group input,.field-group select{width:100%;height:42px;border-radius:9px;background:#fff;border:1px solid #e0e5ea;color:#31415c;font-size:12px;padding:0 12px;outline:0}.field-group input:focus,.field-group select:focus,.form-grid :is(input,select):focus,.full-label textarea:focus{border-color:var(--gold);box-shadow:0 0 0 3px #c9a24a20}.input-icon{position:relative}.input-icon .icon{position:absolute;right:11px;top:12px;color:#9aa4b1;width:17px;height:17px}.input-icon input{padding-right:37px}.field-hint{color:#9aa3b0;font-size:10px;margin:6px 0 0}.toggles{padding-top:4px;border-top:1px solid #eee}.toggle-row{display:flex;gap:10px;align-items:center;cursor:pointer;color:#4e5d75;font-weight:700;font-size:11px;margin:15px 0}.toggle-row input{position:absolute;opacity:0}.fake-switch{position:relative;width:31px;height:18px;border-radius:20px;background:#dfe4e9;flex-shrink:0;transition:.2s}.fake-switch:after{content:"";position:absolute;width:12px;height:12px;top:3px;right:3px;background:white;border-radius:50%;box-shadow:0 1px 3px #0002;transition:.2s}.toggle-row input:checked+.fake-switch{background:#ba9345}.toggle-row input:checked+.fake-switch:after{right:16px}.toggle-row input:focus-visible+.fake-switch{outline:2px solid #b58c3d;outline-offset:3px}.filter-tip{display:flex;align-items:start;gap:8px;margin-top:20px;background:#faf5e7;color:#8b713d;border-radius:10px;padding:12px;font-size:11px;line-height:1.8}.filter-tip span{color:#c7a04e}.jobs-main{min-width:0}.jobs-toolbar{display:flex;justify-content:space-between;align-items:center;gap:15px;margin-bottom:23px}.view-tabs{display:flex;gap:5px;padding:5px;background:#f2f4f6;border-radius:11px}.view-tabs button{display:flex;align-items:center;gap:7px;border:0;border-radius:8px;background:none;color:#7b8696;padding:9px 13px;font-weight:800;font-size:12px}.view-tabs button.active{color:var(--navy);background:white;box-shadow:0 2px 9px #0b173016}.view-tabs button .icon{width:15px;height:15px}.view-tabs button span{color:#9d782f;font-size:10px;background:#fbefcf;border-radius:20px;padding:1px 7px}.sort-control{display:flex;align-items:center;gap:7px;color:#8791a1;font-size:12px}.sort-control select{background:white;border:1px solid #e2e6ec;color:#273950;padding:9px;border-radius:8px;font-size:12px}.results-line{display:flex;align-items:center;justify-content:space-between;gap:12px;margin:0 0 16px;color:#627089;font-size:12px}.demo-pill{font-size:10px;color:#987535;background:#f9f2e3;border:1px solid #ead9b4;padding:5px 11px;border-radius:40px;white-space:nowrap}.job-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}.job-card{border:1px solid #e5e7eb;border-radius:16px;background:#fff;padding:21px 21px 17px;min-width:0;transition:box-shadow .2s,transform .2s,border-color .2s}.job-card:hover{border-color:#e2d1a9;transform:translateY(-3px);box-shadow:0 18px 40px #0b173013}.job-card-top{display:flex;justify-content:space-between;align-items:start;gap:8px}.company-logo{height:48px;width:48px;display:grid;place-items:center;flex-shrink:0;background:linear-gradient(140deg,#101f3c,#243b5b);color:var(--gold-light);border:1px solid #e2cb8e42;border-radius:12px;font:bold 24px Georgia,serif}.job-top-actions{display:flex;align-items:center;gap:7px}.demo-tag{border-radius:40px;background:#f9f1df;color:#93702b;border:1px solid #f0e5c8;font-size:10px;font-weight:800;padding:4px 9px}.heart-button{display:grid;place-items:center;background:#fff;border:1px solid #e6eaf0;border-radius:9px;color:#919bab;width:36px;height:36px}.heart-button:hover{color:#a47d2c;border-color:#e8d5a3}.heart-button.saved{background:#fff7e5;color:#bf9440;border-color:#f0dba9}.heart-button.saved .icon{fill:#edcc80}.job-card h3{font-size:16px;color:var(--navy);line-height:1.5;margin:17px 0 3px}.job-company{margin:0;color:#8792a2;font-size:11px}.job-card-tags{display:flex;gap:7px;flex-wrap:wrap;margin:20px 0 18px}.job-card-tags span{border-radius:6px;background:#f5f7f9;color:#667489;font-size:10px;padding:5px 9px}.salary-row{display:flex;align-items:center;justify-content:space-between;gap:7px;margin-bottom:17px}.salary-row strong{font:800 15px Tahoma,Arial,sans-serif;color:#9a752e}.salary-row span{color:#9ca4b0;font-size:10px}.card-footer{border-top:1px solid #eef0f2;padding-top:15px;display:flex;align-items:center;justify-content:space-between;gap:7px}.card-footer>span{color:#9ba3af;font-size:10px}.card-footer button{display:flex;align-items:center;gap:5px;background:none;border:0;padding:4px 0;color:#a47d2b;font-size:12px;font-weight:800}.card-footer button .icon{width:15px;height:15px}.empty-state{text-align:center;border:1px dashed #d9c58b;border-radius:15px;padding:42px 15px;background:#fffdfa}.empty-symbol{color:#b38f44;font-size:70px;line-height:1.2}.empty-state h3{color:var(--navy);margin:9px 0}.empty-state p{color:#8590a1;font-size:13px}.list-footnote{display:flex;align-items:center;gap:7px;margin-top:23px;color:#a0a8b3;font-size:11px}.list-footnote .icon{width:16px;height:16px;flex-shrink:0}
+.how-section{background:#f7f8fa;padding:85px 0;border-block:1px solid #eef0f2;scroll-margin-top:95px}.center-heading{text-align:center}.center-heading h2{color:var(--navy);font-size:clamp(26px,3vw,36px);margin:8px 0}.how-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:22px;margin-top:37px}.how-grid article{position:relative;background:#fff;border:1px solid #e9edf1;border-radius:15px;padding:28px 26px;box-shadow:0 12px 30px #0b173006}.step-number{position:absolute;left:22px;top:12px;font:bold 36px Arial,sans-serif;color:#e8ebef}.step-icon{display:grid;place-items:center;width:50px;height:50px;background:#f9f1dd;border-radius:13px;color:#a78135}.step-icon .icon{width:24px;height:24px}.how-grid h3{font-size:17px;color:var(--navy);margin:18px 0 6px}.how-grid p{font-size:13px;color:#8992a1;margin:0;line-height:1.9}.employer-section{padding-block:80px}.employer-banner{display:flex;align-items:center;justify-content:space-between;background:radial-gradient(circle at 18% 70%,#c9a24a22,transparent 35%),linear-gradient(115deg,#0b1730,#132b50);border:1px solid #c5a25966;border-radius:22px;color:white;overflow:hidden;padding:46px 56px;min-height:320px}.banner-kicker{color:var(--gold-light);font-size:12px;font-weight:800}.employer-banner h2{font-size:37px;line-height:1.3;margin:15px 0}.employer-banner h2 em{font-style:normal;color:var(--gold-light)}.employer-banner p{color:#bfccdc;font-size:13px;max-width:520px;margin:0 0 22px}.banner-art{position:relative;width:250px;height:240px;display:grid;place-items:center;flex-shrink:0}.banner-ring{position:absolute;width:245px;height:245px;border:1px solid #d9b76550;border-radius:50%;box-shadow:0 0 0 35px #eac98208,0 0 0 70px #eac98205}.banner-art>span{font:200px/.9 Georgia,serif;color:#d6b76c;text-shadow:0 17px 30px #0007;transform:skew(-8deg)}.banner-art>i{position:absolute;top:16px;right:46px;font-size:32px;color:#f0d485;font-style:normal}
+.site-footer{background:#071120;color:#94a4b7;padding-block:28px}.footer-content{display:flex;justify-content:space-between;align-items:center;gap:20px;font-size:11px}.brand-footer .brand-name{color:#f4f6f8;font-size:23px}.brand-footer .brand-symbol{width:24px;height:29px;font-size:24px}.footer-brand p{margin:8px 0 0;color:#899caf}.footer-note{line-height:2}
+.admin-section{padding-top:65px;padding-bottom:110px;min-height:65vh}.admin-heading{display:flex;justify-content:space-between;align-items:center;gap:20px;margin-bottom:23px}.admin-heading p{color:#8a94a2;font-size:13px;margin:0}.admin-notice{display:flex;gap:12px;align-items:start;background:#fffbf0;border:1px solid #e8d7aa;border-radius:13px;padding:15px 18px;color:#8d6a31;margin-bottom:23px}.admin-notice .icon{margin-top:3px}.admin-notice p{font-size:12px;margin:0}.admin-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:17px;margin-bottom:26px}.admin-stats>div{border:1px solid #e5e9ef;background:#fff;border-radius:14px;padding:18px 24px;box-shadow:0 9px 23px #0b173007}.admin-stats span{display:block;font-size:12px;color:#8090a0}.admin-stats strong{display:block;font:bold 32px Arial,Tahoma,sans-serif;color:var(--navy);margin:7px 0}.admin-stats small{font-size:11px;color:#9ca6b1}.admin-board{background:#fff;border:1px solid #e5e9ee;border-radius:16px;box-shadow:var(--shadow);overflow:hidden}.admin-bar{padding:23px 24px;display:flex;align-items:center;justify-content:space-between;gap:20px;border-bottom:1px solid #edf0f2}.admin-bar h2{font-size:19px;margin:0 0 5px;color:var(--navy)}.admin-bar p{font-size:12px;color:#909ba9;margin:0}.admin-tools{padding:16px 24px;display:flex;gap:10px;flex-wrap:wrap;border-bottom:1px solid #edf0f2}.admin-tools .btn{font-size:11px;padding:10px 12px}.admin-search{display:flex;align-items:center;gap:7px;flex:1;min-width:180px;border:1px solid #e1e5eb;border-radius:9px;padding:0 12px;color:#9aa4b1}.admin-search .icon{width:16px;height:16px}.admin-search input{min-height:39px;background:transparent;border:0;outline:0;width:100%;font-size:12px}.upload-button{cursor:pointer}.table-scroll{overflow-x:auto}.admin-table{border-collapse:collapse;width:100%;min-width:680px}.admin-table th{text-align:right;font-size:11px;color:#788699;background:#f8f9fb;font-weight:800;padding:15px 20px;white-space:nowrap}.admin-table td{border-top:1px solid #eef0f3;padding:15px 20px;font-size:12px;color:#69758a}.table-job{display:flex;align-items:center;gap:10px}.table-job-icon{width:37px;height:37px;flex-shrink:0;display:grid;place-items:center;border-radius:10px;background:#f7edce;color:#9b762e}.table-job strong{display:block;font-size:12px;color:var(--navy)}.table-job small{display:block;font-size:10px;color:#9ba5b1}.row-actions{display:flex;gap:7px}.row-actions button{border-radius:8px;border:1px solid #e5e9ef;background:#fff;color:#53657d;width:34px;height:34px;display:grid;place-items:center}.row-actions .del{color:#b45a56;background:#fff8f7;border-color:#f5e1df}.row-actions .icon{width:16px;height:16px}.admin-empty{text-align:center;padding:28px;color:#8894a1;font-size:13px}.admin-bottom{border-top:1px solid #edf0f2;padding:20px 24px;display:flex;justify-content:space-between;align-items:center;gap:14px}.admin-bottom strong{font-size:13px;color:var(--navy)}.admin-bottom p{color:#8c98a6;font-size:11px;margin:4px 0 0}.test-output{margin:0 24px 24px;border:1px solid #d6e9d7;border-radius:11px;padding:15px;background:#f5fff6;color:#326940;font-size:12px}.test-output.has-fail{border-color:#e6c1bb;background:#fff8f7;color:#ae4b41}.test-output ul{padding-right:22px;margin:9px 0 0;display:grid;grid-template-columns:1fr 1fr;gap:5px}.test-output strong{display:block;font-size:13px}
+.dialog{border:1px solid #e8d9b7;background:#fff;border-radius:18px;box-shadow:0 30px 100px #030a17a0;color:var(--ink);width:min(590px,calc(100% - 28px));max-height:min(90vh,860px);overflow:auto;padding:27px 30px}.dialog::backdrop{background:#061021c4;backdrop-filter:blur(5px)}.dialog-head{display:flex;justify-content:space-between;align-items:start;gap:15px;margin-bottom:20px}.micro-label{color:#a7802e;font-weight:900;font-size:11px}.dialog-close{width:33px;height:33px}.dialog-close .icon{width:17px;height:17px}.details-company{display:flex;gap:15px;align-items:center;margin-bottom:17px}.details-company-icon{display:grid;place-items:center;width:55px;height:55px;border-radius:12px;background:var(--navy);color:var(--gold-light);font-size:26px}.details-company h2{font-size:23px;color:var(--navy);line-height:1.3;margin:0 0 5px}.details-company p{color:#7a8596;font-size:12px;margin:0}.details-meta{display:flex;flex-wrap:wrap;gap:9px;margin:0 0 25px}.details-meta span{background:#f4f6f8;border-radius:7px;padding:6px 10px;color:#6a7a8d;font-size:11px}.detail-block{margin-top:20px;border-top:1px solid #edf0f2;padding-top:18px}.detail-block h3{font-size:14px;color:var(--navy);margin-bottom:8px}.detail-block p{font-size:13px;color:#67768b;white-space:pre-line;line-height:2}.detail-salary{font-size:18px;color:#99742d;font-weight:900}.detail-disclaimer{background:#fff9ed;color:#8f7139;border:1px solid #f2e3bf;border-radius:9px;padding:12px;font-size:11px;line-height:1.8;margin-block:19px}.detail-footer{display:flex;flex-wrap:wrap;gap:10px;margin-top:23px}.detail-footer .btn{flex:1}.editor-dialog{width:min(730px,calc(100% - 28px))}.editor-dialog h2{font-size:22px;color:var(--navy);margin:5px 0 0}.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}.form-grid label,.full-label{display:flex;flex-direction:column;gap:7px;font-size:12px;font-weight:800;color:#405068}.form-grid label span,.full-label span{color:#b97357}.form-grid label small{font-size:10px;color:#9ca5ae}.form-grid input,.form-grid select,.full-label textarea{width:100%;min-width:0;border-radius:9px;border:1px solid #e0e5ea;outline:0;padding:10px 12px;background:#fff;color:#2b3b54;font-size:13px}.form-grid input,.form-grid select{height:44px}.full-label{margin-top:16px}.full-label textarea{resize:vertical;min-height:95px}.checkbox-line{display:flex;align-items:center;gap:8px;font-size:12px;font-weight:800;color:#4e5f77;margin-top:17px}.checkbox-line input{accent-color:#bd9549;width:17px;height:17px}.form-note{color:#9a875f;font-size:11px;background:#fffbf2;padding:10px;border-radius:8px;margin:18px 0}.form-actions{display:flex;justify-content:flex-end;gap:10px}.toast{position:fixed;bottom:24px;left:24px;max-width:min(390px,calc(100% - 40px));background:#0b1730;color:white;padding:12px 18px;border-radius:10px;box-shadow:0 15px 50px #0004;font-size:13px;z-index:100;opacity:0;pointer-events:none;transform:translateY(15px);transition:.25s}.toast.show{opacity:1;transform:translateY(0)}
+@media(max-width:1080px){.local-label{display:none}.nav-links,.nav-actions{gap:16px}.hero-inner{grid-template-columns:1.2fr .7fr}.hero-scene{transform:scale(.86);transform-origin:center left}.job-layout{grid-template-columns:235px minmax(0,1fr);gap:18px}.job-grid{gap:12px}.job-card{padding:17px}.filters-panel{padding:16px}}
+@media(max-width:880px){.hero-inner{grid-template-columns:1fr}.hero-copy{max-width:710px}.hero-scene{display:none}.hero{min-height:470px}.hero-inner{min-height:470px}.job-layout{grid-template-columns:1fr}.filters-panel{position:static;display:grid;grid-template-columns:repeat(2,1fr);gap:0 15px}.filter-top{grid-column:1/-1}.toggles,.filter-tip{grid-column:1/-1}.job-grid{grid-template-columns:repeat(2,1fr)}.nav-links{gap:15px}.nav-wrap{min-height:72px}.nav-link{font-size:12px;padding-block:23px}.stats-inner{gap:12px}}
+@media(max-width:640px){.container{width:min(100% - 32px,1200px)}.demo-strip{font-size:9px;gap:6px;line-height:1.6;text-align:center}.demo-strip .strip-divider{display:none}.nav-wrap{min-height:67px;gap:9px}.brand-name{font-size:25px}.brand-symbol{font-size:26px;width:29px}.brand-version{font-size:8px}.nav-links{position:absolute;right:16px;left:16px;top:calc(100% + 6px);background:#fff;border-radius:14px;border:1px solid #e6e8eb;box-shadow:0 16px 30px #0818311c;display:none;flex-direction:column;align-items:stretch;padding:7px 15px;gap:0}.nav-links.open{display:flex}.nav-link{padding:13px 7px;text-align:right}.nav-link.current:after{display:none}.mobile-menu{display:grid;width:36px;height:36px}.nav-actions{gap:7px}.btn-nav{font-size:0;gap:0;padding:9px 10px}.btn-nav .icon{width:20px;height:20px}.hero{min-height:0}.hero-inner{min-height:0;padding-block:65px 72px}.eyebrow{font-size:10px;gap:6px;padding:7px 10px}.hero h1{font-size:clamp(36px,9vw,49px);line-height:1.45;letter-spacing:-1.4px}.hero-desc{font-size:13px;line-height:1.9}.hero-search{padding:7px;gap:6px}.hero-search input{font-size:12px;padding:12px 0}.hero-search .search-glyph{margin-right:4px;width:16px}.hero-search .btn{font-size:11px;padding:12px 10px;min-height:43px}.hero-search .btn .icon{display:none}.hero-tags{font-size:10px}.stats-inner{grid-template-columns:1fr 1fr;gap:0;padding-block:10px}.stat{justify-content:start;padding:13px 6px;border-bottom:1px solid #f1f2f4;gap:10px}.stat:nth-child(2){border-left:0}.stat:nth-child(n+3){border-bottom:0}.stat-icon{width:36px;height:36px;font-size:18px}.stat strong{font-size:20px}.stat small{font-size:10px}.jobs-section{padding-block:61px}.section-header{align-items:center}.section-header h2{font-size:27px}.section-header p{font-size:11px}.section-header .btn{display:inline-flex;font-size:0;padding:10px}.section-header .btn .icon{width:20px}.filters-panel{display:none;grid-template-columns:1fr 1fr}.filters-panel.open{display:grid}.jobs-toolbar{gap:9px;flex-wrap:wrap}.view-tabs button{padding:8px 9px;font-size:11px}.sort-control{font-size:11px}.sort-control select{padding:7px}.job-grid{grid-template-columns:1fr}.job-card{padding:20px}.results-line{font-size:11px}.how-section{padding-block:63px}.how-grid{grid-template-columns:1fr;gap:13px}.how-grid article{padding:22px}.center-heading h2{font-size:25px}.employer-section{padding-block:54px}.employer-banner{padding:31px 26px;min-height:auto}.employer-banner h2{font-size:31px}.banner-art{display:none}.footer-content{align-items:flex-start;flex-wrap:wrap}.footer-note{order:3;width:100%}.admin-section{padding-block:46px}.admin-heading{align-items:start;flex-direction:column}.admin-heading h1{font-size:30px}.admin-stats{grid-template-columns:repeat(3,1fr);gap:7px}.admin-stats>div{padding:14px 12px}.admin-stats strong{font-size:24px}.admin-stats span,.admin-stats small{font-size:10px}.admin-bar,.admin-bottom{align-items:start;flex-direction:column}.admin-tools{padding:14px}.admin-tools .btn{flex:1}.admin-search{min-width:100%;height:41px}.admin-board{border-radius:12px}.test-output ul{grid-template-columns:1fr}.dialog{padding:20px}.form-grid{grid-template-columns:1fr;gap:12px}.details-company h2{font-size:20px}.detail-footer{flex-direction:column}.toast{left:15px;bottom:15px}}
+@media(prefers-reduced-motion:reduce){*,*:before,*:after{scroll-behavior:auto!important;transition:none!important;animation:none!important}}
+
+
+/* FURSA V5: OZA APEX cloud status + accessible account modal */
+.v5-account-btn{background:#0b1730;color:#e0c06f;border:1px solid #c9a24a;border-radius:999px;padding:9px 12px;font-weight:800;font-size:12px;white-space:nowrap;max-width:195px;overflow:hidden;text-overflow:ellipsis}
+.v5-account-btn:hover{background:#142a4d}#v5Refresh{max-width:42px;padding:8px 12px;font-size:18px}.v5-admin-note{border:1px solid #dfc88b;background:#fff7e2;color:#704c0c;border-radius:13px;padding:12px 18px;margin:15px 0;font-size:13px}.v5-auth-dialog{width:min(470px,calc(100vw - 30px));border:1px solid #dbc17e;box-shadow:0 24px 75px #030b1b60}.v5-auth-caption{font-size:14px;color:#42536f;background:#f8f5eb;border:1px solid #ebdfc1;padding:14px;border-radius:12px;margin:16px 0}.v5-auth-fields{display:grid;gap:14px}.v5-auth-fields label{font-size:13px;font-weight:700;color:#10243b;display:grid;gap:7px}.v5-auth-fields input,.v5-auth-fields select{width:100%;padding:12px;border:1px solid #d6dee7;border-radius:10px;background:white;color:#142640}.v5-auth-actions{display:flex;gap:10px;flex-wrap:wrap;align-items:center;justify-content:space-between}.v5-error{min-height:20px;font-size:13px;color:#a63c26}.v5-auth-foot{font-size:12px;color:#758094;margin:9px 0 0}.v5-signed{padding:15px;border-radius:12px;background:#f8f5eb}.v5-signed p{overflow-wrap:anywhere}.v5-status-badge{display:inline-block;padding:2px 9px;background:#ecf1f7;border:1px solid #dce3ec;border-radius:100px;font-size:11px;color:#254365}.v5-review-actions{display:flex;gap:5px;flex-wrap:wrap;margin-top:5px}.v5-review-actions button{padding:3px 9px;border-radius:8px;border:1px solid #ccb87f;background:#fff9e9;color:#664911;font-weight:700;font-size:11px}.v5-review-actions button.reject{background:#fff0ed;border-color:#f0c2b9;color:#9a3024}
+@media(max-width:700px){.nav-actions{gap:6px}.v5-account-btn{max-width:104px;font-size:10px;padding:7px 5px}.v5-auth-dialog{padding:20px}}
+#navAdmin[hidden],#v5AuthForm[hidden],#v5SignedBlock[hidden],#v5AdminNote[hidden]{display:none!important}
+</style>
+  <style>
+/* FURSA V4 — OZA APEX-inspired navy and gold refinements */
+:root{--navy:#0b1730;--deep:#071120;--gold:#c9a24a;--gold-bright:#e0c06f}
+body{background:#f9fafc}
+.hero{background:radial-gradient(ellipse at 78% 32%,rgba(208,167,73,.13) 0,transparent 50%),linear-gradient(120deg,#070f21 0%,#0b1932 54%,#162c4d 100%)}
+.hero-search{border:1px solid rgba(224,192,111,.37);box-shadow:0 25px 60px rgba(0,0,0,.29)}
+.hero-search input,.hero-search input::placeholder{color:#fff!important;opacity:1!important}
+.hero-search input{background:transparent!important}
+.nav-links button .icon{width:15px;height:15px;vertical-align:middle}
+.language-control{display:flex;align-items:center;max-width:115px}
+.language-control select{background:rgba(11,23,48,.045);border:1px solid #e5ddcb;color:#142342;border-radius:11px;padding:9px;max-width:110px;font:700 12px Tahoma,Arial,sans-serif;cursor:pointer}
+.nav-actions{gap:10px!important}
+.card-action-group{display:flex;align-items:center;gap:8px}
+.card-action-group button{white-space:nowrap}
+.card-action-group .job-share{background:#f7f3e7;border:1px solid #e8d9b5;border-radius:9px;width:36px;height:36px;display:grid;place-items:center;padding:0;color:#9c7535}
+.job-share .icon{width:17px;height:17px}
+.job-share:hover{background:#f0e2bb;color:#0b1730}
+.cv-callout{margin-top:44px;margin-bottom:70px;min-height:200px;border:1px solid #e5d5a4;border-radius:23px;background:linear-gradient(100deg,#101e39,#15294a);color:white;display:flex;align-items:center;gap:32px;padding-top:30px;padding-bottom:30px;box-shadow:0 24px 40px rgba(10,23,47,.12)}
+.cv-callout-art{font:bold 33px Arial,sans-serif;color:#edca80;border:2px solid rgba(232,190,107,.4);background:rgba(255,255,255,.05);padding:28px 18px;border-radius:19px;white-space:nowrap}
+.cv-callout .kicker{color:#e5c883}.cv-callout h2{margin:4px 0 8px;font-size:clamp(22px,3vw,32px)}.cv-callout p{color:#d1dae6;margin:0;line-height:1.75;max-width:630px}.cv-callout .btn{margin-inline-start:auto;white-space:nowrap}
+.cv-view{padding-top:54px;padding-bottom:90px}.cv-title-area{display:flex;justify-content:space-between;align-items:center;gap:20px;margin-bottom:25px}.cv-title-area h1{font-size:clamp(32px,4vw,49px);margin:5px 0;color:#0b1730}.cv-title-area h1 span{color:#b99448}.cv-title-area p{margin:0;color:#637083;max-width:720px}.cv-privacy{display:flex;align-items:flex-start;gap:10px;padding:15px 20px;background:#fff8e7;border:1px solid #eadcb8;border-radius:12px;color:#735b2b;line-height:1.7;margin-bottom:25px;font-size:13px}.cv-privacy .icon{flex-shrink:0;margin-top:3px}
+.cv-layout{display:grid;grid-template-columns:minmax(0,1.04fr) minmax(0,.96fr);gap:24px;align-items:start}.cv-editor-panel,.cv-preview-panel{background:white;border:1px solid #e2e7ee;border-radius:20px;overflow:hidden;box-shadow:0 15px 38px rgba(11,23,48,.05)}.cv-editor-panel{padding:27px}.cv-editor-heading,.cv-preview-toolbar{display:flex;justify-content:space-between;align-items:center;gap:10px}.cv-editor-heading{padding-bottom:19px;border-bottom:1px solid #e9edf1;margin-bottom:23px}.cv-editor-heading h2{margin:0;font-size:19px}.cv-editor-heading>span{font-size:12px;font-weight:700;color:#b58d3e}
+.cv-form{display:grid;gap:16px}.cv-two{display:grid;grid-template-columns:1fr 1fr;gap:14px}.cv-form label{display:flex;flex-direction:column;gap:7px;font-size:12px;font-weight:800;color:#37475b}.cv-form input,.cv-form textarea,.cv-form select{min-width:0;width:100%;border:1px solid #dfe5ed;background:#f9fafc;border-radius:10px;padding:12px 13px;font:400 14px Tahoma,Arial,sans-serif;color:#0b1730;outline:0;resize:vertical}.cv-form input:focus,.cv-form textarea:focus,.cv-form select:focus{border-color:#c9a24a;background:white;box-shadow:0 0 0 3px rgba(201,162,74,.13)}.cv-actions{display:flex;gap:9px;flex-wrap:wrap;margin-top:5px}.cv-local-note{font-size:12px;color:#758197;margin:0}.cv-notice{background:#eaf7ef;color:#18623b;border:1px solid #bee6cb;padding:10px 13px;border-radius:9px;font-size:13px;margin:0}
+.cv-preview-toolbar{padding:17px 19px;background:linear-gradient(125deg,#0b1730,#152b4b);color:white}.cv-preview-toolbar>div{display:flex;gap:8px;align-items:center}.cv-preview-dot{width:8px;height:8px;border-radius:50%;background:#d6b15f}.cv-preview-toolbar .btn{padding:10px 13px;font-size:12px}.cv-print-tip{font-size:12px;color:#708096;margin:13px 20px 22px;line-height:1.75}
+.cv-paper{width:calc(100% - 36px);margin:22px auto 0;background:white;border:1px solid #e5e8ed;min-height:570px;box-shadow:0 9px 30px rgba(11,23,48,.08);font-family:Arial,Tahoma,sans-serif;overflow-wrap:anywhere}.cv-paper-header{background:#0b1730;color:#fff;padding:35px 35px 28px;position:relative;border-top:5px solid #c9a24a}.cv-paper-logo{color:#e0c06f;font-weight:800;font-size:10px;letter-spacing:2px;margin-bottom:22px}.cv-paper-header h1{font-size:clamp(22px,2.5vw,33px);margin:0;line-height:1.35}.cv-paper-header p{margin:5px 0 0;color:#e1c17c;font-size:15px}.cv-contact{display:flex;flex-wrap:wrap;gap:9px;align-items:center;font-size:10px;color:#e6eaf1;margin-top:19px}.cv-contact-separator{color:#ba9652}.cv-paper-body{padding:20px 34px 35px}.cv-paper-section{padding:13px 0;break-inside:avoid}.cv-paper-section h3{margin:0 0 10px;border-bottom:1px solid #d9bf81;padding-bottom:8px;color:#162641;font-size:12px;letter-spacing:.8px}.cv-paper-text{font-size:11px;color:#334257;line-height:1.85;white-space:normal}.cv-chips{display:flex;gap:7px;flex-wrap:wrap}.cv-chip{font-size:10px;background:#f6f1e6;padding:5px 9px;border:1px solid #e6dac1;color:#334257;border-radius:5px}.cv-paper-placeholder{padding:105px 0;text-align:center;color:#d0d6df;font-size:25px;font-weight:700}
+/* Input direction mirrors the interface, but email/phone remain LTR. */
+html[dir=ltr] .site-header,html[dir=ltr] .cv-view{direction:ltr}
+html[dir=ltr] .hero,html[dir=ltr] .jobs-section,html[dir=ltr] .cv-callout{direction:ltr}
+html[dir=ltr] .cv-paper[dir=rtl]{direction:rtl}
+html[dir=rtl] .cv-paper[dir=ltr]{direction:ltr}
+@media(max-width:1100px){.cv-layout{grid-template-columns:1fr}.cv-preview-panel{max-width:760px;width:100%;margin:0 auto}.cv-paper{max-width:680px;min-height:630px}}
+@media(max-width:800px){.cv-callout{flex-wrap:wrap;gap:15px}.cv-callout .btn{margin-inline-start:0}.language-control select{max-width:94px;padding:7px 4px}.nav-actions{gap:5px!important}}
+@media(max-width:610px){.cv-view{padding-top:30px}.cv-title-area{align-items:flex-start;flex-direction:column}.cv-callout{margin-top:25px;margin-bottom:40px;padding:23px}.cv-callout-art{font-size:20px;padding:12px}.cv-callout .btn{width:100%}.cv-editor-panel{padding:18px}.cv-two{grid-template-columns:1fr}.cv-preview-toolbar{flex-wrap:wrap}.cv-paper{width:calc(100% - 20px);min-height:480px}.cv-paper-header{padding:22px}.cv-paper-body{padding:18px}.cv-contact{gap:5px}.cv-title-area h1{font-size:34px}.language-control select{max-width:86px;font-size:11px}.card-action-group{gap:2px}}
+@media print{
+  @page{size:A4;margin:10mm}
+  html,body{background:#fff!important;margin:0!important;padding:0!important}
+  body.print-cv>*:not(#cvView){display:none!important}
+  body.print-cv #cvView{display:block!important;max-width:none!important;width:100%!important;margin:0!important;padding:0!important}
+  body.print-cv #cvView>*:not(.cv-layout){display:none!important}
+  body.print-cv .cv-layout{display:block!important;margin:0!important;padding:0!important}
+  body.print-cv .cv-editor-panel,body.print-cv .cv-preview-toolbar,body.print-cv .cv-print-tip{display:none!important}
+  body.print-cv .cv-preview-panel{border:0!important;box-shadow:none!important;margin:0!important;max-width:none!important;width:100%!important;display:block!important}
+  body.print-cv .cv-paper{width:100%!important;max-width:none!important;margin:0!important;border:0!important;box-shadow:none!important;min-height:auto!important;print-color-adjust:exact;-webkit-print-color-adjust:exact}
+  body.print-cv .cv-paper-header{padding:24px 25px!important}.cv-paper-body{padding:10px 25px!important}.cv-paper-section{break-inside:avoid!important}
+}
+
+/* FURSA V4.1 multilingual job editor */
+.translation-studio{margin:24px 0 6px;padding:22px;border:1px solid #e4d6b2;background:linear-gradient(145deg,#fffdf7,#f7f4eb);border-radius:16px;box-shadow:0 12px 27px #0b17300a}
+.translation-studio-header h3{font-size:19px;color:#0b1730;margin:4px 0}
+.translation-studio-header p{font-size:12px;color:#64718a;line-height:1.8;margin:6px 0 15px}
+.translation-source-row{display:flex;justify-content:space-between;align-items:flex-end;gap:14px;flex-wrap:wrap}
+.translation-source-row label{color:#34455f;font-size:12px;font-weight:800;display:flex;align-items:center;gap:9px;flex-wrap:wrap}
+.translation-source-row select{border-radius:9px;border:1px solid #e0d5bd;padding:9px;background:#fff;color:#10233d}
+.translation-source-row button{padding:9px 16px;font-size:12px}
+.translation-status{margin:12px 0 15px;padding:11px 13px;border:1px solid #e5d8b6;background:#fff8e7;border-radius:10px;font-size:12px;color:#775d27;line-height:1.7}
+.translation-status.ok{background:#e8f7ee;border-color:#bce4c8;color:#175d38}
+.translation-status.warn{background:#fff2e9;border-color:#ebc5ad;color:#8d492d}
+.translation-languages{display:grid;gap:12px}
+.translation-language{min-width:0;margin:0;padding:16px;border:1px solid #e8dfce;border-radius:12px;background:#fff}
+.translation-language[hidden]{display:none!important}
+.translation-language legend{font-weight:900;font-size:14px;color:#0b1730;padding-inline:8px}
+.translation-language legend span{color:#b18b3d;font-size:10px}
+.translation-fields{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.translation-fields label{display:flex;flex-direction:column;gap:6px;font-size:11px;font-weight:800;color:#435068;min-width:0}
+.translation-fields input,.translation-fields textarea{font:13px Tahoma,Arial,sans-serif;line-height:1.6;width:100%;min-width:0;border:1px solid #dfe4eb;border-radius:9px;color:#172640;background:#fbfcfe;padding:9px 11px;resize:vertical}
+.translation-fields :is(input,textarea):focus{outline:2px solid #e2c47f;outline-offset:1px}
+.translation-fields .translation-wide{grid-column:1/-1}
+.translation-note{font-size:11px;color:#8a7757;line-height:1.7}
+@media(max-width:640px){.translation-studio{padding:14px}.translation-fields{grid-template-columns:1fr}.translation-source-row{align-items:stretch}.translation-source-row button{width:100%}}
+
+</style>
+<style>
+@media(max-width:640px){
+  .nav-wrap>.brand{font-size:19px;min-width:0;gap:2px}
+  .nav-wrap>.brand .brand-version{display:none}
+  .nav-actions{gap:5px!important}
+  .nav-actions .language-control select{max-width:66px;padding:6px;font-size:11px}
+  .nav-actions #v5AuthBtn{max-width:74px;font-size:9px;padding:6px 5px}
+  .nav-actions #v5Refresh{max-width:28px;padding:5px;font-size:13px}
+  .nav-actions .btn-nav{width:34px;padding:6px}
+  .nav-actions .mobile-menu{width:30px;min-width:30px;padding:5px}
+}
+</style>
+</head>
+<body>
+  <svg class="symbols" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <symbol id="i-search" viewBox="0 0 24 24"><circle cx="10.8" cy="10.8" r="7.1"/><path d="m16.2 16.2 4.3 4.3"/></symbol>
+    <symbol id="i-heart" viewBox="0 0 24 24"><path d="M20.8 8.6c0 4.7-8.8 10.8-8.8 10.8S3.2 13.3 3.2 8.6a4.8 4.8 0 0 1 8.8-2.3 4.8 4.8 0 0 1 8.8 2.3Z"/></symbol>
+    <symbol id="i-location" viewBox="0 0 24 24"><path d="M19 10c0 5.3-7 11-7 11S5 15.3 5 10a7 7 0 0 1 14 0Z"/><circle cx="12" cy="10" r="2.3"/></symbol>
+    <symbol id="i-briefcase" viewBox="0 0 24 24"><rect x="3" y="7" width="18" height="14" rx="2"/><path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2M3 13c5.5 3 12.5 3 18 0"/></symbol>
+    <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 6v6l4 2"/></symbol>
+    <symbol id="i-sliders" viewBox="0 0 24 24"><path d="M4 7h16M4 17h16"/><circle cx="9" cy="7" r="2" fill="currentColor" stroke="none"/><circle cx="15" cy="17" r="2" fill="currentColor" stroke="none"/></symbol>
+    <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M19 12H5m7-7-7 7 7 7"/></symbol>
+    <symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 4v16M4 12h16"/></symbol>
+    <symbol id="i-edit" viewBox="0 0 24 24"><path d="m4 16-1 5 5-1 12-12-4-4L4 16Zm10-10 4 4"/></symbol>
+    <symbol id="i-trash" viewBox="0 0 24 24"><path d="M4 7h16M9 7V4h6v3M6 7l1 14h10l1-14M10 11v6m4-6v6"/></symbol>
+    <symbol id="i-download" viewBox="0 0 24 24"><path d="M12 3v12m-5-5 5 5 5-5M4 17v4h16v-4"/></symbol>
+    <symbol id="i-upload" viewBox="0 0 24 24"><path d="M12 17V5m-5 5 5-5 5 5M4 17v4h16v-4"/></symbol>
+    <symbol id="i-shield" viewBox="0 0 24 24"><path d="m12 2 9 4v6c0 5-4 8.5-9 10-5-1.5-9-5-9-10V6l9-4Z"/><path d="m8 12 2.5 2.5L16 9"/></symbol>
+    <symbol id="i-check" viewBox="0 0 24 24"><path d="m4 12 5 5L20 6"/></symbol>
+    <symbol id="i-close" viewBox="0 0 24 24"><path d="m5 5 14 14M19 5 5 19"/></symbol>
+    <symbol id="i-share" viewBox="0 0 24 24"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="m9 11 6-4m-6 6 6 4"/></symbol>
+    <symbol id="i-file" viewBox="0 0 24 24"><rect x="4" y="2" width="16" height="20" rx="2"/><path d="M8 7h8M8 12h8M8 17h5"/></symbol>
+    <symbol id="i-menu" viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h16"/></symbol>
+    <symbol id="i-spark" viewBox="0 0 24 24"><path d="m12 2 2.5 7.5L22 12l-7.5 2.5L12 22l-2.5-7.5L2 12l7.5-2.5L12 2Z"/></symbol>
+  </svg>
+
+  <div class="demo-strip" id="v5ModeStrip"><span class="strip-dot"></span> <b>FURSA V5.1</b> <span class="strip-divider"></span> نسخة تجريبية · الوظائف والشركات غير حقيقية · البيانات محفوظة على جهازك فقط</div>
+  <header class="site-header">
+    <div class="container nav-wrap">
+      <a class="brand" href="#home" aria-label="الصفحة الرئيسية" data-action="home"><span class="brand-symbol">✦</span><span class="brand-name">FURSA<span>.</span></span><span class="brand-version">V5.1</span></a>
+      <nav class="nav-links" id="navLinks" aria-label="التنقل الرئيسي">
+        <a href="#jobs" data-action="jobs" class="nav-link current">الوظائف</a>
+        <button type="button" id="navFavorites" class="nav-link">المفضلة <span id="navFavCount" class="nav-count">0</span></button>
+        <button type="button" class="nav-link" id="navCV"><svg class="icon"><use href="#i-file"/></svg> <span>صانع CV</span></button><a href="#how" class="nav-link" data-action="home">كيف بنشتغل؟</a>
+      </nav>
+      <div class="nav-actions">
+        <label class="language-control" for="languageSelect"><span class="sr-only">لغة الموقع / Site language</span><select id="languageSelect" aria-label="لغة الموقع"><option value="ar">العربية</option><option value="he">עברית</option><option value="en">English</option></select></label><button class="v5-account-btn" id="v5Refresh" type="button" hidden aria-label="تحديث الوظائف">↻</button>
+      <button class="v5-account-btn" id="v5AuthBtn" type="button">◈ تجربة محلية</button>
+      <span class="local-label"><svg class="icon"><use href="#i-shield"/></svg> نسخة محلية</span>
+        <button type="button" class="btn btn-nav" id="navAdmin" hidden><svg class="icon"><use href="#i-sliders"/></svg> لوحة الإدارة</button>
+        <button type="button" class="icon-btn mobile-menu" id="mobileMenu" aria-label="فتح القائمة" aria-expanded="false"><svg class="icon"><use href="#i-menu"/></svg></button>
+      </div>
+    </div>
+  </header>
+
+  <main id="publicView">
+    <section class="hero" id="home">
+      <div class="hero-grid" aria-hidden="true"></div>
+      <div class="hero-glow" aria-hidden="true"></div>
+      <div class="container hero-inner">
+        <div class="hero-copy">
+          <div class="eyebrow"><span class="eyebrow-star">✦</span> جيل جديد من البحث عن عمل <span class="eyebrow-line"></span> FURSA 05.1</div>
+          <h1>الفرصة الجايّة<br>ممكن تكون <em>فرصتك<span>.</span></em></h1>
+          <p class="hero-desc">اكتشف مجالات جديدة، فلتر الفرص بالطريقة اللي بتناسبك، واحفظ اللي بيعجبك — كل هذا بتجربة بسيطة وأنيقة.</p>
+          <form id="heroSearch" class="hero-search" role="search">
+            <svg class="icon search-glyph"><use href="#i-search"/></svg>
+            <label for="heroQuery" class="sr-only">ابحث عن وظيفة</label>
+            <input id="heroQuery" type="search" placeholder="ابحث عن وظيفة أو شركة أو مهارة..." maxlength="100" autocomplete="off">
+            <button type="submit" class="btn btn-gold">ابدأ البحث <svg class="icon"><use href="#i-arrow"/></svg></button>
+          </form>
+          <div class="hero-tags"><span>الأكثر بحثًا:</span><button type="button" data-quick="محاسب">محاسبة</button><button type="button" data-quick="بيانات">تحليل بيانات</button><button type="button" data-quick="إدارة">إدارة</button></div>
+        </div>
+        <div class="hero-scene" aria-hidden="true">
+          <div class="scene-orbit scene-orbit-one"></div><div class="scene-orbit scene-orbit-two"></div>
+          <div class="hero-monogram">F<span>✦</span></div>
+          <div class="scene-card scene-card-top"><div class="mini-check">✓</div><div><strong>وظيفة جديدة</strong><span>فرص بتناسب مهاراتك</span></div></div>
+          <div class="scene-card scene-card-bottom"><span class="mini-icon">✦</span><div><strong>احفظ الفرص اللي بتحبها</strong><span>وخلّيها دائمًا قريبة منك</span></div><span class="mini-heart">♡</span></div>
+          <span class="scene-spark scene-spark-one">✦</span><span class="scene-spark scene-spark-two">✧</span>
+        </div>
+      </div>
+      <div class="hero-edge" aria-hidden="true"></div>
+    </section>
+
+    <section class="stats-bar"><div class="container stats-inner">
+      <div class="stat"><span class="stat-icon">✦</span><div><strong id="statJobs">0</strong><small>وظيفة تجريبية</small></div></div>
+      <div class="stat"><span class="stat-icon">⌖</span><div><strong id="statCities">0</strong><small>مناطق مختلفة</small></div></div>
+      <div class="stat"><span class="stat-icon">♡</span><div><strong id="statFavorites">0</strong><small>بالمفضلة</small></div></div>
+      <div class="stat stat-last"><span class="stat-icon">₪</span><div><strong>مجاني</strong><small>تجربة البحث</small></div></div>
+    </div></section>
+
+    <section id="jobs" class="jobs-section container">
+      <div class="section-header"><div><span class="kicker"><span>✦</span> استكشف الفرص</span><h2>فرص العمل <span>قدّامك.</span></h2><p>كل البطاقات الحالية لأغراض التجربة فقط، وليست وظائف متاحة للتقديم.</p></div><button type="button" class="btn btn-soft" id="openFiltersMobile"><svg class="icon"><use href="#i-sliders"/></svg> الفلاتر المتقدمة</button></div>
+      <div class="job-layout">
+        <aside class="filters-panel" id="filterPanel" aria-label="فلاتر البحث">
+          <div class="filter-top"><h3><svg class="icon"><use href="#i-sliders"/></svg> صفّي نتائجك</h3><button type="button" class="quiet-button" id="clearFilters">مسح الكل</button></div>
+          <div class="field-group"><label for="listQuery">الكلمة المفتاحية</label><div class="input-icon"><svg class="icon"><use href="#i-search"/></svg><input id="listQuery" type="search" placeholder="مسمى الوظيفة، الشركة..." maxlength="100"></div></div>
+          <div class="field-group"><label for="filterCity">المدينة</label><select id="filterCity"><option value="">كل المدن</option></select></div>
+          <div class="field-group"><label for="filterField">المجال</label><select id="filterField"><option value="">كل المجالات</option></select></div>
+          <div class="field-group"><label for="filterType">نوع الدوام</label><select id="filterType"><option value="">كل الأنواع</option></select></div>
+          <div class="field-group"><label for="filterExperience">مستوى الخبرة</label><select id="filterExperience"><option value="">كل المستويات</option></select></div>
+          <div class="field-group"><label for="filterSalary">الراتب الشهري الأدنى (₪)</label><select id="filterSalary"><option value="">بدون حد أدنى</option><option value="5000">₪5,000+</option><option value="7000">₪7,000+</option><option value="9000">₪9,000+</option><option value="11000">₪11,000+</option><option value="14000">₪14,000+</option></select><p class="field-hint">فلتر على الحد الأعلى المعلن بالبطاقة، والأرقام تجريبية</p></div>
+          <div class="toggles"><label class="toggle-row"><input type="checkbox" id="filterStudent"><span class="fake-switch"></span><span>وظائف مناسبة للطلاب والمبتدئين</span></label><label class="toggle-row"><input type="checkbox" id="filterRemote"><span class="fake-switch"></span><span>يشمل العمل عن بُعد فقط</span></label><label class="toggle-row"><input type="checkbox" id="filterSalaryOnly"><span class="fake-switch"></span><span>الراتب مذكور</span></label></div>
+          <div class="filter-tip"><span>✦</span> نصيحة: تقدر تجمع أكثر من فلتر لتحصل على نتائج أدق.</div>
+        </aside>
+        <div class="jobs-main">
+          <div class="jobs-toolbar"><div class="view-tabs" role="group" aria-label="عرض الوظائف"><button type="button" class="active" id="tabAll" aria-pressed="true">كل الوظائف <span id="tabAllCount">0</span></button><button type="button" id="tabFav" aria-pressed="false"><svg class="icon"><use href="#i-heart"/></svg> المفضلة <span id="tabFavCount">0</span></button></div><label class="sort-control" for="sortJobs">ترتيب <select id="sortJobs"><option value="newest">الأحدث</option><option value="salaryHigh">الأعلى راتبًا</option><option value="salaryLow">الأقل راتبًا</option><option value="title">أبجديًا</option></select></label></div>
+          <div class="results-line"><span id="resultsInfo" role="status" aria-live="polite">جارٍ تحميل الوظائف...</span><span class="demo-pill">● بيانات توضيحية</span></div>
+          <div class="job-grid" id="jobGrid"></div>
+          <div id="emptyState" class="empty-state" hidden><div class="empty-symbol">⌕</div><h3>ما لقينا فرص مطابقة</h3><p>جرّب تغيير كلمات البحث أو إلغاء بعض الفلاتر.</p><button class="btn btn-dark" id="emptyReset" type="button">عرض كل الوظائف</button></div>
+          <div class="list-footnote"><svg class="icon"><use href="#i-shield"/></svg> جميع الشركات والرواتب والوظائف بالنسخة الحالية بيانات خيالية للتجربة. لا يوجد تقديم حقيقي.</div>
+        </div>
+      </div>
+    </section>
+    <section class="cv-callout container"><div class="cv-callout-art">✦ CV</div><div><span class="kicker">✦ FURSA CV STUDIO</span><h2>خلي سيرتك الذاتية تحكي عنك.</h2><p>صمّم سيرة ذاتية مرتبة خلال دقائق، واطبعها أو احفظها PDF من المتصفح — مجانًا.</p></div><button type="button" id="cvCalloutBtn" class="btn btn-gold">إنشاء سيرتي الذاتية <svg class="icon"><use href="#i-arrow"/></svg></button></section>
+    <section class="how-section" id="how"><div class="container"><div class="center-heading"><span class="kicker">تجربة أبسط وأسرع</span><h2>طريقك للفرصة بثلاث خطوات</h2></div><div class="how-grid"><article><span class="step-number">01</span><div class="step-icon"><svg class="icon"><use href="#i-search"/></svg></div><h3>ابحث بذكاء</h3><p>استخدم البحث المتقدم لتحدد المدينة، نوع العمل، المجال والراتب.</p></article><article><span class="step-number">02</span><div class="step-icon"><svg class="icon"><use href="#i-heart"/></svg></div><h3>احفظ المفضلة</h3><p>اجمع الوظائف اللي بتهمك بقائمة خاصة وتابعها بسهولة.</p></article><article><span class="step-number">03</span><div class="step-icon"><svg class="icon"><use href="#i-briefcase"/></svg></div><h3>استعد للتقديم</h3><p>لما ننشر فرصًا موثّقة بالمستقبل، رح نضيف طريقة تقديم مناسبة وآمنة.</p></article></div></div></section>
+    <section class="employer-section container"><div class="employer-banner"><div><span class="banner-kicker">✦ للشركات وأصحاب الأعمال</span><h2>مواهب جديدة.<br><em>فرص أكبر.</em></h2><p>المنصة حاليًا في وضع التجربة. قريبًا رح نفتح النشر للشركات بعد التحقق والتجهيز القانوني والتقني.</p><button type="button" class="btn btn-gold" id="employerAdmin">جرّب لوحة الإدارة <svg class="icon"><use href="#i-arrow"/></svg></button></div><div class="banner-art" aria-hidden="true"><div class="banner-ring"></div><span>F</span><i>✦</i></div></div></section>
+  </main>
+
+  <main id="cvView" class="container cv-view" hidden>
+    <div class="cv-title-area"><div><span class="kicker">✦ FURSA CV STUDIO / V4</span><h1>صمّم سيرتك <span>بثقة.</span></h1><p>اكتب معلوماتك وشوف النتيجة مباشرة. اختار لغة السيرة واستعمل زر «حفظ PDF» للطباعة من المتصفح.</p></div><button type="button" class="btn btn-outline-dark" id="cvBack"><svg class="icon"><use href="#i-arrow"/></svg> العودة للوظائف</button></div>
+    <div class="cv-privacy"><svg class="icon"><use href="#i-shield"/></svg><span><b>خصوصيتك أولًا:</b> بيانات السيرة تبقى في هذا المتصفح فقط، ولا تُرسل لأي جهة. الحفظ على الجهاز اختياري؛ لا تستعمل معلومات حساسة على جهاز مشترك.</span></div>
+    <div class="cv-layout"><section class="cv-editor-panel"><div class="cv-editor-heading"><h2>معلومات السيرة الذاتية</h2><span>✦ بدون حساب</span></div>
+      <form id="cvForm" class="cv-form" autocomplete="on">
+      <div class="cv-two"><label>الاسم الكامل *<input id="cvName" name="name" maxlength="90" required placeholder="الاسم الكامل"></label><label>المسمى المهني<input id="cvRole" name="title" maxlength="95" placeholder="مثلاً: محلل بيانات"></label></div>
+      <div class="cv-two"><label>البريد الإلكتروني<input id="cvEmail" name="email" type="email" maxlength="110" placeholder="name@example.com" dir="ltr"></label><label>رقم الهاتف<input id="cvPhone" name="tel" type="tel" maxlength="40" placeholder="05X-XXXXXXX" dir="ltr"></label></div>
+      <div class="cv-two"><label>المدينة<input id="cvCity" maxlength="85" placeholder="المدينة"></label><label>لغة السيرة<select id="cvResumeLang"><option value="ar">العربية</option><option value="he">עברית</option><option value="en">English</option></select></label></div>
+      <label>نبذة عنك<textarea id="cvSummary" maxlength="900" rows="3" placeholder="عرّف عن مهاراتك وخبراتك في سطور قصيرة..."></textarea></label>
+      <label>الخبرة العملية<textarea id="cvExperience" maxlength="1600" rows="5" placeholder="كل سطر: المسمى — الشركة — الفترة، ثم أبرز الإنجازات"></textarea></label>
+      <label>التعليم<textarea id="cvEducation" maxlength="1100" rows="3" placeholder="كل سطر: المؤهل — المؤسسة — السنة"></textarea></label>
+      <label>المهارات<textarea id="cvSkills" maxlength="600" rows="2" placeholder="Excel، إدارة المشاريع، SQL... افصل بفاصلة"></textarea></label>
+      <label>اللغات<textarea id="cvLanguages" maxlength="400" rows="2" placeholder="العربية — ممتاز، العبرية — جيد..."></textarea></label>
+      <div class="cv-actions"><button type="button" id="cvSave" class="btn btn-dark">حفظ على جهازي</button><button type="button" id="cvClear" class="btn btn-plain">مسح السيرة</button></div>
+      <p class="cv-local-note">الحفظ محلي على جهازك فقط، والطباعة لا تتطلب إنترنت. للأمان، امسح بياناتك عند استخدام جهاز مشترك.</p>
+      </form></section>
+      <aside class="cv-preview-panel"><div class="cv-preview-toolbar"><div><span class="cv-preview-dot"></span><b>معاينة مباشرة</b></div><button type="button" id="cvPrint" class="btn btn-gold"><svg class="icon"><use href="#i-download"/></svg> طباعة / حفظ PDF</button></div>
+      <div id="cvPaper" class="cv-paper" dir="rtl" aria-label="معاينة السيرة الذاتية"></div>
+      <p class="cv-print-tip">لإنشاء PDF: اضغط الزر، وبعدها اختار «Save as PDF» أو «حفظ كـ PDF» من نافذة الطباعة.</p></aside>
+    </div>
+  </main>
+
+  <main id="adminView" class="admin-section container" hidden>
+    <div class="v5-admin-note" id="v5AdminNote" hidden>وضع متصل — حساب المدير فقط يستطيع إضافة الوظائف ونشرها وتعديلها أو حذفها.</div>
+    <div class="admin-heading"><div><span class="kicker"><span>✦</span> FURSA / إدارة تجريبية</span><h1>مركز التحكم <span>بالوظائف.</span></h1><p>أضف، عدّل، واحذف الوظائف من متصفحك. كل التغييرات بتبقى على هذا الجهاز فقط.</p></div><button type="button" class="btn btn-outline-dark" id="backToSite"><svg class="icon"><use href="#i-arrow"/></svg> العودة للموقع</button></div>
+    <div class="admin-notice"><svg class="icon"><use href="#i-shield"/></svg><p><strong>تنبيه:</strong> هذه لوحة إدارة تجريبية بدون تسجيل دخول أو خادم آمن. أي شخص يفتح النسخة يستطيع تعديل نسخته المحلية فقط. لا تستعملها لنشر وظائف حقيقية أو جمع بيانات شخصية.</p></div>
+    <div class="admin-stats"><div><span>عدد الوظائف</span><strong id="adminCount">0</strong><small>وظائف عرض محلية</small></div><div><span>عدد المناطق</span><strong id="adminCityCount">0</strong><small>مناطق في القائمة</small></div><div><span>المفضلة</span><strong id="adminFavCount">0</strong><small>وظائف محفوظة</small></div></div>
+    <section class="admin-board"><div class="admin-bar"><div><h2>إدارة الوظائف</h2><p>كل التعديلات تظهر فورًا في واجهة الزوار على جهازك.</p></div><button type="button" class="btn btn-gold" id="addJob"><svg class="icon"><use href="#i-plus"/></svg> إضافة وظيفة</button></div>
+      <div class="admin-tools"><label class="admin-search"><svg class="icon"><use href="#i-search"/></svg><input id="adminQuery" type="search" placeholder="ابحث داخل الوظائف..." aria-label="بحث لوحة الإدارة"></label><button type="button" class="btn btn-plain" id="exportJobs"><svg class="icon"><use href="#i-download"/></svg> تصدير JSON</button><label class="btn btn-plain upload-button" for="importJobs"><svg class="icon"><use href="#i-upload"/></svg> استيراد JSON</label><input type="file" id="importJobs" accept=".json,application/json" hidden><button type="button" class="btn btn-danger-soft" id="resetDemo">إعادة البيانات التجريبية</button></div>
+      <div class="table-scroll"><table class="admin-table"><thead><tr><th>الوظيفة / الشركة</th><th>المدينة</th><th>الراتب</th><th>الدوام</th><th>إجراءات</th></tr></thead><tbody id="adminRows"></tbody></table></div><div id="adminEmpty" class="admin-empty" hidden>ما في وظائف مطابقة للبحث.</div>
+      <div class="admin-bottom"><div><strong>مختبر FURSA V5.1 (الواجهة المحلية)</strong><p>فحص تلقائي لمنطق البحث والتصفية والفرز وسلامة البيانات — بدون تعديل وظائفك.</p></div><button type="button" id="runTests" class="btn btn-outline-dark">تشغيل الفحص <svg class="icon"><use href="#i-check"/></svg></button></div><div id="testsOutput" class="test-output" hidden aria-live="polite"></div>
+    </section>
+  </main>
+
+  <footer class="site-footer"><div class="container footer-content"><div class="footer-brand"><div class="brand brand-footer"><span class="brand-symbol">✦</span><span class="brand-name">FURSA<span>.</span></span></div><p>فرصتك أقرب مما بتتخيّل.</p></div><div class="footer-note">FURSA V5.1 · تصميم كحلي وذهبي<br>تجربة محلية غير مخصصة للتوظيف الفعلي</div><span>© <span id="year"></span> FURSA</span></div></footer>
+
+  <dialog id="detailsDialog" class="dialog details-dialog" aria-labelledby="detailTitle"><div class="dialog-head"><span class="micro-label">✦ تفاصيل الوظيفة</span><button type="button" class="icon-btn dialog-close" data-close="detailsDialog" aria-label="إغلاق"><svg class="icon"><use href="#i-close"/></svg></button></div><div id="detailContent"></div><div class="detail-footer"><button type="button" class="btn btn-outline-dark" id="detailFavorite"><svg class="icon"><use href="#i-heart"/></svg> احفظ للمفضلة</button><button type="button" class="btn btn-outline-dark" id="detailShare"><svg class="icon"><use href="#i-share"/></svg> مشاركة</button><button class="btn btn-disabled" type="button" disabled>التقديم غير متاح في النسخة التجريبية</button></div></dialog>
+
+  <dialog id="editorDialog" class="dialog editor-dialog" aria-labelledby="editorTitle"><div class="dialog-head"><div><span class="micro-label">✦ إدارة FURSA المحلية</span><h2 id="editorTitle">إضافة وظيفة تجريبية</h2></div><button type="button" class="icon-btn dialog-close" data-close="editorDialog" aria-label="إغلاق"><svg class="icon"><use href="#i-close"/></svg></button></div><form id="jobForm"><input type="hidden" id="editId"><div class="form-grid"><label>المسمى الوظيفي <span>*</span><input id="jobTitle" required maxlength="100" placeholder="مثلاً: محلل بيانات"></label><label>اسم الشركة التجريبية <span>*</span><input id="jobCompany" required maxlength="100" placeholder="مثلاً: شركة تجريبية أ"></label><label>المدينة <span>*</span><input id="jobCity" required maxlength="60" placeholder="مثلاً: الناصرة"></label><label>المجال <span>*</span><select id="jobField" required><option value="">اختر المجال</option><option value="تكنولوجيا">تكنولوجيا</option><option value="مال ومحاسبة">مال ومحاسبة</option><option value="إدارة">إدارة</option><option value="تسويق">تسويق</option><option value="تعليم">تعليم</option><option value="صحة">صحة</option><option value="صناعة ولوجستيات">صناعة ولوجستيات</option><option value="أخرى">أخرى</option></select></label><label>نوع الدوام <span>*</span><select id="jobType" required><option value="دوام كامل">دوام كامل</option><option value="دوام جزئي">دوام جزئي</option><option value="تدريب / طالب">تدريب / طالب</option><option value="عمل مرن">عمل مرن</option></select></label><label>مستوى الخبرة <span>*</span><select id="jobExperience" required><option value="بدون خبرة">بدون خبرة</option><option value="مبتدئ">مبتدئ</option><option value="متوسط">متوسط</option><option value="خبير">خبير</option></select></label><label>راتب شهري أدنى (₪) <small>اختياري</small><input id="jobSalaryMin" type="number" min="0" max="1000000" step="100" placeholder="مثلاً: 7000"></label><label>راتب شهري أعلى (₪) <small>اختياري</small><input id="jobSalaryMax" type="number" min="0" max="1000000" step="100" placeholder="مثلاً: 9500"></label></div><label class="full-label">وصف الوظيفة <span>*</span><textarea id="jobDescription" required rows="4" maxlength="1500" placeholder="اكتب تفاصيل توضيحية للوظيفة..."></textarea></label><section class="translation-studio" aria-labelledby="translationStudioTitle">
+  <div class="translation-studio-header"><div><span class="micro-label">✦ FURSA MULTILINGUAL</span><h3 id="translationStudioTitle">ترجمة الإعلان إلى 3 لغات</h3><p>اكتب الإعلان بلغته الأصلية أعلاه، واختار لغته. ترجم تلقائيًا عند دعم المتصفح، أو اكتب الترجمات بنفسك.</p></div></div>
+  <div class="translation-source-row"><label for="jobSourceLang">اللغة الأصلية للإعلان <select id="jobSourceLang"><option value="ar">العربية</option><option value="he">עברית</option><option value="en">English</option></select></label><button type="button" class="btn btn-outline-dark" id="autoTranslateJob">✦ ترجم اللغات الناقصة</button></div>
+  <p id="translationStatus" class="translation-status" role="status" aria-live="polite">الترجمة الآلية متاحة فقط عند دعم المتصفح. يمكنك دائمًا تعديل الترجمات يدويًا.</p>
+  <div class="translation-languages">
+    <fieldset class="translation-language" data-language-panel="ar"><legend>العربية <span>AR</span></legend><div class="translation-fields"><label>المسمى الوظيفي<input data-trans="ar" data-part="title" maxlength="100" dir="rtl" placeholder="عنوان الوظيفة بالعربية"></label><label>اسم الشركة<input data-trans="ar" data-part="company" maxlength="100" dir="rtl" placeholder="اسم الشركة بالعربية"></label><label>المدينة<input data-trans="ar" data-part="city" maxlength="60" dir="rtl" placeholder="المدينة بالعربية"></label><label class="translation-wide">وصف الوظيفة<textarea data-trans="ar" data-part="description" rows="3" maxlength="1500" dir="rtl" placeholder="وصف الوظيفة بالعربية"></textarea></label></div></fieldset>
+    <fieldset class="translation-language" data-language-panel="he"><legend>עברית <span>HE</span></legend><div class="translation-fields"><label>שם המשרה<input data-trans="he" data-part="title" maxlength="100" dir="rtl" placeholder="תפקיד בעברית"></label><label>שם החברה<input data-trans="he" data-part="company" maxlength="100" dir="rtl"></label><label>עיר<input data-trans="he" data-part="city" maxlength="60" dir="rtl"></label><label class="translation-wide">תיאור המשרה<textarea data-trans="he" data-part="description" rows="3" maxlength="1500" dir="rtl" placeholder="תיאור משרה בעברית"></textarea></label></div></fieldset>
+    <fieldset class="translation-language" data-language-panel="en"><legend>English <span>EN</span></legend><div class="translation-fields"><label>Job title<input data-trans="en" data-part="title" maxlength="100" dir="ltr" placeholder="Job title in English"></label><label>Company<input data-trans="en" data-part="company" maxlength="100" dir="ltr"></label><label>City<input data-trans="en" data-part="city" maxlength="60" dir="ltr"></label><label class="translation-wide">Job description<textarea data-trans="en" data-part="description" rows="3" maxlength="1500" dir="ltr" placeholder="Job description in English"></textarea></label></div></fieldset>
+  </div>
+  <label class="checkbox-line"><input type="checkbox" id="translateOnSave" checked> حاول إكمال الترجمات تلقائيًا عند الحفظ (إذا كانت الخدمة متاحة)</label>
+  <p class="translation-note">إذا تعذّرت الترجمة الآلية، يُحفظ النص الأصلي وتظهر الحقول المترجمة التي كتبتها فقط. راجع المعنى قبل استخدام الترجمات.</p>
+</section>
+<label class="checkbox-line"><input type="checkbox" id="jobRemote"> يشمل إمكانية العمل عن بُعد</label><p class="form-note">الوظيفة ستظل موسومة بأنها تجريبية، ولن يُفعّل التقديم الحقيقي.</p><div class="form-actions"><button class="btn btn-outline-dark" type="button" data-close="editorDialog">إلغاء</button><button class="btn btn-gold" type="submit"><svg class="icon"><use href="#i-check"/></svg> حفظ الوظيفة</button></div></form></dialog>
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+  <script>
+'use strict';
+/* Trilingual interface layer: original user-entered vacancy text is never machine-translated. */
+(() => {
+  const UI = {
+    'نسخة تجريبية · الوظائف والشركات غير حقيقية · البيانات محفوظة على جهازك فقط':['Demo only · fictional vacancies and companies · data stays on this device','הדגמה בלבד · משרות וחברות בדיוניות · הנתונים נשמרים במכשיר זה'],
+    'الوظائف':['Jobs','משרות'],'المفضلة':['Saved','מועדפים'],'كيف بنشتغل؟':['How it works','איך זה עובד?'],'صانع CV':['CV Builder','יצירת קורות חיים'],
+    'نسخة محلية':['Local demo','הדגמה מקומית'],'لوحة الإدارة':['Admin panel','לוח ניהול'],'جيل جديد من البحث عن عمل':['A new way to find work','דרך חדשה למצוא עבודה'],
+    'الفرصة الجايّة':['Your next opportunity','ההזדמנות הבאה'],'ممكن تكون':['could be','יכולה להיות'],'فرصتك':['yours','שלך'],'اكتشف مجالات جديدة، فلتر الفرص بالطريقة اللي بتناسبك، واحفظ اللي بيعجبك — كل هذا بتجربة بسيطة وأنيقة.':['Explore careers, filter jobs and save your favorites in one elegant experience.','גלו תחומים, סננו משרות ושמרו מועדפים בחוויה פשוטה ואלגנטית.'],
+    'ابدأ البحث':['Search now','חיפוש'],'الأكثر بحثًا:':['Popular searches:','חיפושים פופולריים:'],'محاسبة':['Accounting','הנהלת חשבונות'],'تحليل بيانات':['Data analysis','ניתוח נתונים'],
+    'إدارة':['Management','ניהול'],'وظيفة تجريبية':['demo jobs','משרות לדוגמה'],'مناطق مختلفة':['locations','יישובים שונים'],'بالمفضلة':['saved','מועדפים'],'مجاني':['Free','חינם'],'تجربة البحث':['Job browsing','חיפוש משרות'],
+    'استكشف الفرص':['Explore jobs','גלו משרות'],'فرص العمل':['Job opportunities','הזדמנויות עבודה'],'قدّامك.':['for you.','מולכם.'],'كل البطاقات الحالية لأغراض التجربة فقط، وليست وظائف متاحة للتقديم.':['All current listings are fictional demo examples, not open positions.','כל המשרות כאן הן דוגמאות בדיוניות ולא ניתן להגיש מועמדות.'],
+    'الفلاتر المتقدمة':['Advanced filters','סינון מתקדם'],'صفّي نتائجك':['Refine results','סינון תוצאות'],'مسح الكل':['Clear all','ניקוי הכול'],'الكلمة المفتاحية':['Keyword','מילת מפתח'],'المدينة':['City','עיר'],'المجال':['Field','תחום'],'نوع الدوام':['Work type','היקף משרה'],'مستوى الخبرة':['Experience level','רמת ניסיון'],
+    'الراتب الشهري الأدنى (₪)':['Minimum salary filter (₪)','סף שכר חודשי (₪)'],'فلتر على الحد الأعلى المعلن بالبطاقة، والأرقام تجريبية':['Filter by listed maximum salary · fictional amounts','סינון לפי השכר המרבי · סכומים לדוגמה'],
+    'وظائف مناسبة للطلاب والمبتدئين':['Student & entry-level jobs','משרות לסטודנטים ולמתחילים'],'يشمل العمل عن بُعد فقط':['Remote work available','אפשרות לעבודה מרחוק'],'الراتب مذكور':['Salary listed','שכר מצוין'],
+    'نصيحة: تقدر تجمع أكثر من فلتر لتحصل على نتائج أدق.':['Tip: combine filters for more precise results.','טיפ: אפשר לשלב כמה מסננים לתוצאות מדויקות.'],
+    'كل الوظائف':['All jobs','כל המשרות'],'ترتيب':['Sort','מיון'],'الأحدث':['Newest','החדשות ביותר'],'الأعلى راتبًا':['Highest salary','שכר גבוה תחילה'],'الأقل راتبًا':['Lowest salary','שכר נמוך תחילה'],'أبجديًا':['Alphabetical','לפי א-ב'],
+    'بيانات توضيحية':['Demo data','נתוני הדגמה'],'ما لقينا فرص مطابقة':['No matching jobs','לא נמצאו משרות'],'جرّب تغيير كلمات البحث أو إلغاء بعض الفلاتر.':['Try another keyword or remove some filters.','נסו מילת חיפוש אחרת או הסירו מסננים.'],'عرض كل الوظائف':['See all jobs','הצגת כל המשרות'],
+    'جميع الشركات والرواتب والوظائف بالنسخة الحالية بيانات خيالية للتجربة. لا يوجد تقديم حقيقي.':['All jobs, employers and salaries are fictional. Applications are disabled.','כל המשרות, החברות והמשכורות בדיוניות. לא ניתן להגיש מועמדות.'],
+    'خلي سيرتك الذاتية تحكي عنك.':['Make your CV stand out.','תנו לקורות החיים שלכם לדבר.'],'صمّم سيرة ذاتية مرتبة خلال دقائق، واطبعها أو احفظها PDF من المتصفح — مجانًا.':['Create a beautiful CV in minutes and print or save it as a PDF — free.','צרו קורות חיים מעוצבים בתוך דקות והדפיסו או שמרו PDF — בחינם.'],'إنشاء سيرتي الذاتية':['Create my CV','יצירת קורות חיים'],
+    'تجربة أبسط وأسرع':['Simpler and faster','פשוט ומהיר יותר'],'طريقك للفرصة بثلاث خطوات':['Three steps to your next opportunity','שלושה שלבים להזדמנות הבאה'],'ابحث بذكاء':['Search smarter','חיפוש חכם'],'احفظ المفضلة':['Save favorites','שמירת מועדפים'],'استعد للتقديم':['Get ready to apply','התכוננו להגשת מועמדות'],
+    'استخدم البحث المتقدم لتحدد المدينة، نوع العمل، المجال والراتب.':['Filter by city, job type, field and salary.','סננו לפי עיר, היקף משרה, תחום ושכר.'],'اجمع الوظائف اللي بتهمك بقائمة خاصة وتابعها بسهولة.':['Keep interesting jobs in your saved list.','שמרו משרות מעניינות ברשימה אישית.'],'لما ننشر فرصًا موثّقة بالمستقبل، رح نضيف طريقة تقديم مناسبة وآمنة.':['Verified job applications will be added in a future version.','הגשת מועמדות מאובטחת תתווסף בעתיד.'],
+    'للشركات وأصحاب الأعمال':['For employers','למעסיקים'],'مواهب جديدة.':['New talent.','כישרונות חדשים.'],'فرص أكبر.':['Bigger opportunities.','הזדמנויות גדולות.'],'المنصة حاليًا في وضع التجربة. قريبًا رح نفتح النشر للشركات بعد التحقق والتجهيز القانوني والتقني.':['The platform is currently a demo; employer posting requires proper verification and setup.','המערכת בשלב הדגמה; פרסום אמיתי מחייב אימות והיערכות מתאימה.'],'جرّب لوحة الإدارة':['Try the admin panel','נסו את לוח הניהול'],
+    'صمّم سيرتك':['Build your CV','עצבו קורות חיים'],'بثقة.':['with confidence.','בביטחון.'],'اكتب معلوماتك وشوف النتيجة مباشرة. اختار لغة السيرة واستعمل زر «حفظ PDF» للطباعة من المتصفح.':['Fill in the fields and see a live preview. Choose the resume language, then print or save as PDF.','מלאו פרטים וצפו בתצוגה חיה. בחרו שפה והדפיסו או שמרו כ-PDF.'],'العودة للوظائف':['Back to jobs','חזרה למשרות'],
+    'خصوصيتك أولًا:':['Privacy first:','קודם פרטיות:'],'بيانات السيرة تبقى في هذا المتصفح فقط، ولا تُرسل لأي جهة. الحفظ على الجهاز اختياري؛ لا تستعمل معلومات حساسة على جهاز مشترك.':['Your CV data stays in this browser and is never uploaded. Saving locally is optional; avoid sensitive details on a shared device.','נתוני הקו״ח נשארים בדפדפן ואינם נשלחים. השמירה מקומית ואופציונלית; הימנעו ממידע רגיש במחשב משותף.'],
+    'معلومات السيرة الذاتية':['CV information','פרטי קורות חיים'],'بدون حساب':['No account','ללא חשבון'],'الاسم الكامل *':['Full name *','שם מלא *'],'المسمى المهني':['Professional title','תפקיד מקצועי'],'البريد الإلكتروني':['Email address','דוא״ל'],'رقم الهاتف':['Phone number','מספר טלפון'],'لغة السيرة':['Resume language','שפת קורות החיים'],'نبذة عنك':['Profile summary','תקציר אישי'],'الخبرة العملية':['Work experience','ניסיון תעסוקתי'],'التعليم':['Education','השכלה'],'المهارات':['Skills','מיומנויות'],'اللغات':['Languages','שפות'],'حفظ على جهازي':['Save on this device','שמירה במכשיר'],'مسح السيرة':['Clear CV','מחיקת קו״ח'],'معاينة مباشرة':['Live preview','תצוגה מקדימה'],'طباعة / حفظ PDF':['Print / Save PDF','הדפסה / שמירה כ-PDF'],
+    'الحفظ محلي على جهازك فقط، والطباعة لا تتطلب إنترنت. للأمان، امسح بياناتك عند استخدام جهاز مشترك.':['Saving is local; printing works offline. Clear data on shared devices.','השמירה מקומית והדפסה עובדת ללא אינטרנט. במחשב משותף מומלץ למחוק נתונים.'],
+    'لإنشاء PDF: اضغط الزر، وبعدها اختار «Save as PDF» أو «حفظ كـ PDF» من نافذة الطباعة.':['To create a PDF, click the button and select “Save as PDF” in the print dialog.','ליצירת PDF, לחצו על הכפתור ובחרו "שמירה כ-PDF" בחלון ההדפסה.'],
+    'إدارة تجريبية':['Demo administration','ניהול לדוגמה'],'مركز التحكم':['Manage your','מרכז ניהול'],'بالوظائف.':['job listings.','המשרות.'],'أضف، عدّل، واحذف الوظائف من متصفحك. كل التغييرات بتبقى على هذا الجهاز فقط.':['Add, edit and delete demo listings locally in this browser.','הוסיפו, ערכו ומחקו משרות הדגמה בדפדפן בלבד.'],'العودة للموقع':['Back to site','חזרה לאתר'],
+    'إدارة الوظائف':['Manage jobs','ניהול משרות'],'إضافة وظيفة':['Add job','הוספת משרה'],'إضافة وظيفة تجريبية':['Add demo job','הוספת משרת הדגמה'],'تصدير JSON':['Export JSON','ייצוא JSON'],'استيراد JSON':['Import JSON','ייבוא JSON'],'إعادة البيانات التجريبية':['Reset demo data','איפוס נתוני הדגמה'],'تشغيل الفحص':['Run tests','הרצת בדיקות'],
+    'تعديل الوظيفة':['Edit job','עריכת משרה'],'حذف الوظيفة':['Delete job','מחיקת משרה'],'حفظ الوظيفة':['Save job','שמירת משרה'],'إلغاء':['Cancel','ביטול'],'إغلاق':['Close','סגירה'],'حفظ للمفضلة':['Save','שמירה'],'مشاركة':['Share','שיתוף'],
+    'تفاصيل الوظيفة':['Job details','פרטי המשרה'],'الراتب الشهري التجريبي':['Fictional monthly salary','שכר חודשי לדוגמה'],'وصف الوظيفة':['Job description','תיאור משרה'],'التقديم غير متاح في النسخة التجريبية':['Applications unavailable in demo','לא ניתן להגיש מועמדות בהדגמה'],
+    'الاسم الكامل':['Full name','שם מלא'],'المسمى الوظيفي':['Job title','שם התפקיד'],'اسم الشركة التجريبية':['Demo company','חברה לדוגמה'],'اختر المجال':['Choose field','בחרו תחום'],
+    'كل المدن':['All cities','כל הערים'],'كل المجالات':['All fields','כל התחומים'],'كل الأنواع':['All types','כל הסוגים'],'كل المستويات':['All levels','כל הרמות'],'بدون حد أدنى':['No minimum','ללא מינימום'],
+    'دوام كامل':['Full-time','משרה מלאה'],'دوام جزئي':['Part-time','משרה חלקית'],'تدريب / طالب':['Internship / student','התמחות / סטודנט'],'عمل مرن':['Flexible','עבודה גמישה'],
+    'بدون خبرة':['No experience','ללא ניסיון'],'مبتدئ':['Junior','מתחיל'],'متوسط':['Mid-level','בינוני'],'خبير':['Senior','בכיר'],
+    'تكنولوجيا':['Technology','טכנולוגיה'],'مال ومحاسبة':['Finance & accounting','כספים וחשבונאות'],'تسويق':['Marketing','שיווק'],'تعليم':['Education','חינוך'],'صحة':['Healthcare','בריאות'],'صناعة ولوجستيات':['Industry & logistics','תעשייה ולוגיסטיקה'],'أخرى':['Other','אחר'],
+    'تجريبي':['Demo','הדגמה'],'عن بُعد':['Remote','מרחוק'],'عرض التفاصيل':['View details','פרטי המשרה'],'غير مذكور':['Not listed','לא צוין'],'اليوم':['Today','היום'],
+    'بحث داخل الوظائف...':['Search listings...','חיפוש משרות...'],'مسمى الوظيفة، الشركة...':['Title, employer...','תפקיד, חברה...'],'ابحث عن وظيفة أو شركة أو مهارة...':['Job, company or skill...','תפקיד, חברה או מיומנות...'],
+    'الاسم الكامل':['Full name','שם מלא'],'المدينة':['City','עיר'],
+    'فرصتك أقرب مما بتتخيّل.':['Your next opportunity is closer than you think.','ההזדמנות הבאה קרובה יותר ממה שחשבתם.'],
+    'تجربة محلية غير مخصصة للتوظيف الفعلي':['Local demo only · not real hiring','הדגמה מקומית בלבד · ללא גיוס בפועל'],
+    'كل التعديلات تظهر فورًا في واجهة الزوار على جهازك.':['Changes immediately appear in this browser’s public view.','השינויים מופיעים מיד בתצוגה המקומית.'],
+    'عدد الوظائف':['Jobs count','מספר משרות'],'عدد المناطق':['Locations','יישובים'],'وظائف عرض محلية':['Local demo jobs','משרות הדגמה מקומיות'],
+    'مناطق في القائمة':['Locations in listings','יישובים ברשימה'],'وظائف محفوظة':['Saved jobs','משרות שמורות'],
+    'اكتب معلوماتك وشوف النتيجة مباشرة.':['Enter details and see the result instantly.','מלאו פרטים וצפו בתוצאה מיד.'],
+    'مثلاً: محلل بيانات':['e.g. Data Analyst','למשל אנליסט/ית נתונים'],'مثلاً: الناصرة':['e.g. Nazareth','למשל נצרת'],
+    'عرّف عن مهاراتك وخبراتك في سطور قصيرة...':['Summarize your skills and experience...','תארו בקצרה את הניסיון והמיומנויות...'],
+    'كل سطر: المسمى — الشركة — الفترة، ثم أبرز الإنجازات':['Each line: role — company — dates, then highlights','בכל שורה: תפקיד — חברה — שנים והישגים'],
+    'كل سطر: المؤهل — المؤسسة — السنة':['Each line: degree — institution — year','בכל שורה: תואר — מוסד — שנה'],
+    'Excel، إدارة المشاريع، SQL... افصل بفاصلة':['Excel, project management, SQL... separate with commas','Excel, ניהול פרויקטים, SQL... הפרידו בפסיקים'],
+    'العربية — ممتاز، العبرية — جيد...':['Arabic — native, English — fluent...','ערבית — שפת אם, עברית — טובה...'],
+    'فحص تلقائي لمنطق البحث والتصفية والفرز وسلامة البيانات — بدون تعديل وظائفك.':['Checks search, filters, sorting and data integrity without changing your jobs.','בדיקות חיפוש, סינון ומיון ללא שינוי במשרות.'],
+    'هذا إعلان توضيحي وليس فرصة عمل متاحة.':['Fictional demo job — not an open vacancy.','משרת הדגמה בדיונית — לא משרה פתוחה.'],
+    'ترجمة الإعلان إلى 3 لغات':['Translate the listing into 3 languages','תרגום המשרה לשלוש שפות'],
+    'اللغة الأصلية للإعلان':['Original listing language','שפת המקור של המשרה'],
+    'ترجم اللغات الناقصة':['Translate missing languages','תרגום שפות חסרות'],
+    'المسمى الوظيفي':['Job title','שם התפקיד'],
+    'اسم الشركة':['Company name','שם החברה'],
+    'وصف الوظيفة':['Job description','תיאור המשרה'],
+    'حاول إكمال الترجمات تلقائيًا عند الحفظ (إذا كانت الخدمة متاحة)':['Try auto-translating when saving (if available)','נסה לתרגם אוטומטית בעת שמירה (אם זמין)'],
+    'إذا تعذّرت الترجمة الآلية، يُحفظ النص الأصلي وتظهر الحقول المترجمة التي كتبتها فقط. راجع المعنى قبل استخدام الترجمات.':['If auto-translation is unavailable, your original and manually entered translations are kept. Review translations before use.','אם תרגום אוטומטי אינו זמין, המקור והתרגומים שהוזנו ידנית יישמרו. יש לבדוק את התרגום.']
+  };
+  const normalized=s=>String(s||'').trim().replace(/\s+/g,' ');
+  const stored = new WeakMap();
+  const attrs = new WeakMap();
+  let language='ar';
+  try {let x=localStorage.getItem('fursa_v4_lang');if(['ar','en','he'].includes(x))language=x} catch {}
+  const t=(ar)=>{const entry=UI[normalized(ar)];return language==='ar'?ar:entry?.[language==='en'?0:1]??ar};
+  function apply(){
+    document.documentElement.lang=language;
+    document.documentElement.dir=language==='en'?'ltr':'rtl';
+    const walker=document.createTreeWalker(document.body,NodeFilter.SHOW_TEXT);
+    let node;
+    while((node=walker.nextNode())){
+      const parent=node.parentElement;
+      if(!parent || parent.closest('script,style,#cvPaper') || parent.closest('[data-no-i18n]'))continue;
+      if(!stored.has(node))stored.set(node,node.nodeValue);
+      const original=stored.get(node);
+      const leading=original.match(/^\s*/)?.[0]??'',trailing=original.match(/\s*$/)?.[0]??'';
+      let trans=t(normalized(original));
+      if(trans===normalized(original) && /^✦\s+/.test(normalized(original))){
+        const label=normalized(original).replace(/^✦\s+/, '');
+        const piece=t(label);
+        if(piece!==label)trans='✦ '+piece;
+      }
+      if(trans===normalized(original)&&language!=='ar'){
+        const m=normalized(original).match(/^عرض (\d+) من (\d+) (وظيفة محفوظة|وظيفة تجريبية)$/);
+        if(m)trans=language==='en'?`Showing ${m[1]} of ${m[2]} ${m[3]==='وظيفة محفوظة'?'saved':'demo'} jobs`:`מוצגות ${m[1]} מתוך ${m[2]} ${m[3]==='وظيفة محفوظة'?'משרות שמורות':'משרות לדוגמה'}`;
+      }
+      const target=leading+trans+trailing;
+      if(node.nodeValue!==target)node.nodeValue=target;
+    }
+    for(const el of document.querySelectorAll('input[placeholder],textarea[placeholder],button[aria-label],input[aria-label]')){
+      if(el.closest('#cvPaper'))continue;
+      if(!attrs.has(el))attrs.set(el,{placeholder:el.getAttribute('placeholder'),label:el.getAttribute('aria-label')});
+      const original=attrs.get(el);
+      for(const [attribute,key] of [['placeholder','placeholder'],['aria-label','label']])if(original[key]!=null){const translated=t(original[key]);if(el.getAttribute(attribute)!==translated)el.setAttribute(attribute,translated)}
+    }
+    const selector=document.getElementById('languageSelect');if(selector&&selector.value!==language)selector.value=language;
+  }
+  let pending=false;
+  const schedule=()=>{if(pending)return;pending=true;requestAnimationFrame(()=>{pending=false;apply()})};
+  function setLang(value){if(!['ar','he','en'].includes(value))return;language=value;try{localStorage.setItem('fursa_v4_lang',value)}catch{}apply();window.dispatchEvent(new CustomEvent('fursa-language-change',{detail:value}))}
+  window.FursaL10n={t,apply,schedule,setLang,get language(){return language}};
+  document.addEventListener('DOMContentLoaded',()=>{
+    const select=document.getElementById('languageSelect');if(select)select.addEventListener('change',e=>setLang(e.target.value));
+    apply();new MutationObserver(schedule).observe(document.body,{childList:true,subtree:true});
+  });
+})();
+
+</script>
+  <script>
+'use strict';
+/* FURSA V4: a strictly local demonstration. No server, login, applications or real postings. */
+(() => {
+  const $ = id => document.getElementById(id);
+  const STORAGE_JOBS = 'fursa_v3_jobs_local';
+  const STORAGE_FAVS = 'fursa_v3_favorites_local';
+  const FIELD_OPTIONS = ['تكنولوجيا','مال ومحاسبة','إدارة','تسويق','تعليم','صحة','صناعة ولوجستيات','أخرى'];
+  const TYPE_OPTIONS = ['دوام كامل','دوام جزئي','تدريب / طالب','عمل مرن'];
+  const EXPERIENCE_OPTIONS = ['بدون خبرة','مبتدئ','متوسط','خبير'];
+  const daysAgo = n => new Date(Date.now() - n * 86400000).toISOString();
+  const demoJobs = [
+    {id:'demo-01',title:'محلل/ة بيانات مبتدئ/ة',company:'شركة تجريبية ألف',city:'الناصرة',field:'تكنولوجيا',type:'دوام كامل',experience:'مبتدئ',salaryMin:8500,salaryMax:11500,remote:true,description:'وظيفة خيالية لأغراض الاختبار. تحليل بيانات Excel، إعداد لوحات معلومات ومتابعة مؤشرات الأداء.',createdAt:daysAgo(1)},
+    {id:'demo-02',title:'مساعد/ة محاسب',company:'شركة تجريبية باء',city:'سخنين',field:'مال ومحاسبة',type:'دوام كامل',experience:'بدون خبرة',salaryMin:7000,salaryMax:9000,remote:false,description:'وظيفة خيالية: متابعة الفواتير، البيانات المالية والمطابقات الأساسية.',createdAt:daysAgo(2)},
+    {id:'demo-03',title:'منسق/ة مشتريات',company:'شركة تجريبية جيم',city:'كرمئيل',field:'صناعة ولوجستيات',type:'دوام جزئي',experience:'متوسط',salaryMin:6500,salaryMax:8500,remote:false,description:'وظيفة خيالية: متابعة الموردين والطلبات وجدولة التسليم.',createdAt:daysAgo(3)},
+    {id:'demo-04',title:'مدير/ة مكتب',company:'شركة تجريبية دال',city:'عرابة',field:'إدارة',type:'دوام كامل',experience:'متوسط',salaryMin:8500,salaryMax:10500,remote:false,description:'وظيفة خيالية: تنظيم الاجتماعات والملفات والعمليات اليومية.',createdAt:daysAgo(4)},
+    {id:'demo-05',title:'مطور/ة واجهات ويب',company:'شركة تجريبية هاء',city:'حيفا',field:'تكنولوجيا',type:'عمل مرن',experience:'متوسط',salaryMin:12500,salaryMax:17500,remote:true,description:'وظيفة خيالية: بناء واجهات HTML وCSS وJavaScript مع تحسين تجربة الاستخدام.',createdAt:daysAgo(5)},
+    {id:'demo-06',title:'مساعد/ة بحث اقتصادي',company:'شركة تجريبية واو',city:'كريات شمونة',field:'مال ومحاسبة',type:'تدريب / طالب',experience:'بدون خبرة',salaryMin:5500,salaryMax:7000,remote:true,description:'وظيفة خيالية: جمع بيانات وتنظيفها وإعداد تقارير إحصائية.',createdAt:daysAgo(6)},
+    {id:'demo-07',title:'أخصائي/ة تسويق رقمي',company:'شركة تجريبية زاي',city:'الناصرة',field:'تسويق',type:'دوام كامل',experience:'مبتدئ',salaryMin:8000,salaryMax:11000,remote:true,description:'وظيفة خيالية: إدارة حملات رقمية وقياس نتائجها وتحسين المحتوى.',createdAt:daysAgo(7)},
+    {id:'demo-08',title:'منسق/ة موارد بشرية',company:'شركة تجريبية حاء',city:'طمرة',field:'إدارة',type:'دوام جزئي',experience:'مبتدئ',salaryMin:6500,salaryMax:8500,remote:false,description:'وظيفة خيالية: تنظيم مقابلات العمل وجداول المرشحين والملفات.',createdAt:daysAgo(8)},
+    {id:'demo-09',title:'مدرب/ة حاسوب',company:'شركة تجريبية طاء',city:'شفاعمرو',field:'تعليم',type:'تدريب / طالب',experience:'بدون خبرة',salaryMin:null,salaryMax:null,remote:false,description:'وظيفة خيالية: مساعدة المشاركين على تعلم الحاسوب والتطبيقات المكتبية.',createdAt:daysAgo(9)},
+    {id:'demo-10',title:'مساعد/ة إدارة عيادة',company:'شركة تجريبية ياء',city:'سخنين',field:'صحة',type:'دوام كامل',experience:'مبتدئ',salaryMin:7600,salaryMax:9900,remote:false,description:'وظيفة خيالية: تنسيق المواعيد والعمليات الإدارية، دون صلاحيات طبية.',createdAt:daysAgo(10)},
+    {id:'demo-11',title:'محلل/ة أعمال',company:'شركة تجريبية كاف',city:'حيفا',field:'تكنولوجيا',type:'دوام كامل',experience:'خبير',salaryMin:16000,salaryMax:22000,remote:true,description:'وظيفة خيالية: تحليل المتطلبات وإعداد تقارير الأداء واقتراح تحسينات الأعمال.',createdAt:daysAgo(11)},
+    {id:'demo-12',title:'مساعد/ة مدير مشاريع',company:'شركة تجريبية لام',city:'عرابة',field:'إدارة',type:'دوام جزئي',experience:'بدون خبرة',salaryMin:6800,salaryMax:8800,remote:false,description:'وظيفة خيالية: متابعة تقدم المهام والمواعيد وإعداد ملخصات المشاريع.',createdAt:daysAgo(12)}
+  ];
+  const clone = object => JSON.parse(JSON.stringify(object));
+  const money = n => n.toLocaleString('en-US');
+  const escapeHTML = v => String(v ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+  const icon = name => `<svg class="icon" aria-hidden="true"><use href="#i-${name}"></use></svg>`;
+  const read = key => { try {return localStorage.getItem(key)} catch {return null} };
+  const write = (key,value) => {try {localStorage.setItem(key,value);return true} catch {toast('التخزين المحلي غير متاح؛ التغييرات قد تضيع بعد إغلاق الصفحة.');return false}};
+  const generateId = () => 'local-' + Date.now().toString(36) + '-' + Math.random().toString(36).slice(2,9);
+  function validJob(j){
+    return !!j && typeof j==='object' && typeof j.id==='string' && j.id.length<100 && typeof j.title==='string' && j.title.trim().length>0 && j.title.length<=100 && typeof j.company==='string' && j.company.trim().length>0 && j.company.length<=100 && typeof j.city==='string' && j.city.trim().length>0 && j.city.length<=60 && FIELD_OPTIONS.includes(j.field) && TYPE_OPTIONS.includes(j.type) && EXPERIENCE_OPTIONS.includes(j.experience) && typeof j.description==='string' && j.description.trim().length>0 && j.description.length<=1500 && typeof j.remote==='boolean' && (j.salaryMin===null||(Number.isInteger(j.salaryMin)&&j.salaryMin>=0&&j.salaryMin<=1000000)) && (j.salaryMax===null||(Number.isInteger(j.salaryMax)&&j.salaryMax>=0&&j.salaryMax<=1000000)) && (j.salaryMin===null&&j.salaryMax===null || j.salaryMin!==null&&j.salaryMax!==null&&j.salaryMin<=j.salaryMax) && typeof j.createdAt==='string' && !Number.isNaN(Date.parse(j.createdAt));
+  }
+  const LOCALES=['ar','he','en'];
+  const PARTS=['title','company','city','description'];
+  function validTranslations(j){
+    if(j.sourceLang!==undefined&&!LOCALES.includes(j.sourceLang))return false;
+    if(j.translations===undefined)return true;
+    if(!j.translations||typeof j.translations!=='object'||Array.isArray(j.translations))return false;
+    const limits={title:100,company:100,city:60,description:1500};
+    return Object.entries(j.translations).every(([lang,fields])=>LOCALES.includes(lang)&&fields&&typeof fields==='object'&&!Array.isArray(fields)&&Object.entries(fields).every(([part,value])=>PARTS.includes(part)&&typeof value==='string'&&value.length<=limits[part]));
+  }
+  function parseJobArray(raw){
+    if(!Array.isArray(raw)||raw.length>500||!raw.every(j=>validJob(j)&&validTranslations(j)))return null;
+    if(new Set(raw.map(j=>j.id)).size!==raw.length)return null;
+    return raw;
+  }
+  function loadJobs(){
+    const raw=read(STORAGE_JOBS);
+    if(raw===null)return clone(demoJobs);
+    try{return parseJobArray(JSON.parse(raw))??clone(demoJobs)}catch{return clone(demoJobs)}
+  }
+  function loadFavs(){try{const a=JSON.parse(read(STORAGE_FAVS)||'[]');return new Set(Array.isArray(a)?a.filter(x=>typeof x==='string'):[])}catch{return new Set()}}
+  let jobs=loadJobs();
+  let favorites=loadFavs();
+  let cloudMode=false;
+  let managedJobs=[];
+  let currentView='all';
+  let currentPage='public';
+  let selectedJobId=null;
+  let toastTimer;
+  const searchFields=['listQuery','filterCity','filterField','filterType','filterExperience','filterSalary','filterRemote','filterSalaryOnly','filterStudent'];
+  const sel={q:$('listQuery'),city:$('filterCity'),field:$('filterField'),type:$('filterType'),experience:$('filterExperience'),salary:$('filterSalary'),remote:$('filterRemote'),salaryOnly:$('filterSalaryOnly'),student:$('filterStudent'),sort:$('sortJobs')};
+  function toast(msg){
+    const el=$('toast');el.textContent=msg;el.classList.add('show');clearTimeout(toastTimer);
+    toastTimer=setTimeout(()=>el.classList.remove('show'),3500);
+  }
+  function persistJobs(){if(!cloudMode)write(STORAGE_JOBS,JSON.stringify(jobs))}
+  function persistFavs(){write(STORAGE_FAVS,JSON.stringify([...favorites]))}
+  function salaryText(job){return job.salaryMin===null?'غير مذكور':`₪${money(job.salaryMin)} – ₪${money(job.salaryMax)}`}
+  function ageText(iso){const days=Math.max(0,Math.floor((Date.now()-new Date(iso).getTime())/86400000));return days===0?'اليوم':days===1?'من يوم':'من '+days+' أيام'}
+  function populateFilters(){
+    const oldCity=sel.city.value,oldField=sel.field.value;
+    function options(select,vals,first){select.replaceChildren(new Option(first,''));[...new Set(vals)].sort((a,b)=>a.localeCompare(b,'ar')).forEach(v=>select.add(new Option(v,v)))}
+    options(sel.city,jobs.map(j=>j.city),'كل المدن');
+    options(sel.field,jobs.map(j=>j.field),'كل المجالات');
+    sel.city.value=oldCity;sel.field.value=oldField;
+  }
+  function getFilterState(){return {q:sel.q.value,city:sel.city.value,field:sel.field.value,type:sel.type.value,experience:sel.experience.value,salary:sel.salary.value,remote:sel.remote.checked,salaryOnly:sel.salaryOnly.checked,student:sel.student.checked}}
+  // Search accepts Arabic spelling variants and common English/Hebrew job terms.
+  const normalizeSearch = s => String(s||'').toLowerCase().normalize('NFKD').replace(/[\u064b-\u065f\u0670]/g,'').replace(/[أإآٱ]/g,'ا').replace(/ى/g,'ي').replace(/ة/g,'ه').replace(/[ـ\u200e\u200f]/g,'').replace(/[^\p{L}\p{N}]+/gu,' ').trim();
+  const DEMO_TRANSLATIONS = {
+    'demo-01':['Junior Data Analyst','אנליסט/ית נתונים מתחיל/ה'],
+    'demo-02':['Assistant Accountant','עוזר/ת מנהל/ת חשבונות'],
+    'demo-03':['Purchasing Coordinator','מתאם/ת רכש'],
+    'demo-04':['Office Manager','מנהל/ת משרד'],
+    'demo-05':['Frontend Web Developer','מפתח/ת ממשקי אינטרנט'],
+    'demo-06':['Economic Research Assistant','עוזר/ת מחקר כלכלי'],
+    'demo-07':['Digital Marketing Specialist','מומחה/ית שיווק דיגיטלי'],
+    'demo-08':['HR Coordinator','מתאם/ת משאבי אנוש'],
+    'demo-09':['Computer Instructor','מדריך/ת מחשבים'],
+    'demo-10':['Clinic Administration Assistant','עוזר/ת ניהול מרפאה'],
+    'demo-11':['Business Analyst','אנליסט/ית עסקי/ת'],
+    'demo-12':['Assistant Project Manager','עוזר/ת מנהל פרויקטים']
+  };
+  const CITY_TRANSLATIONS={'الناصرة':['Nazareth','נצרת'],'سخنين':['Sakhnin','סח׳נין'],'عرابة':['Arraba','עראבה'],'كرمئيل':['Karmiel','כרמיאל'],'حيفا':['Haifa','חיפה'],'كريات شمونة':['Kiryat Shmona','קריית שמונה'],'طمرة':['Tamra','טמרה'],'شفاعمرو':['Shefa-Amr','שפרעם']};
+  const QUERY_ALIASES={
+    'accounting':'محاسب','accountant':'محاسب','finance':'مالي','data':'بيانات','analyst':'محلل','manager':'مدير','management':'إدارة','admin':'إدارة','office':'مكتب','marketing':'تسويق','developer':'مطور','web':'ويب','student':'طالب','internship':'تدريب','nurse':'عيادة','project':'مشاريع','hr':'موارد','purchasing':'مشتريات','computer':'حاسوب','economics':'اقتصادي',
+    'חשבונאות':'محاسب','חשבונות':'محاسب','רכש':'مشتريات','נתונים':'بيانات','מנהל':'مدير','ניהול':'إدارة','משרד':'مكتب','שיווק':'تسويق','פיתוח':'مطور','סטודנט':'طالب','סטודנטים':'طالب','מחשבים':'حاسوب','מחקר':'بحث','משאבי':'موارد','פרויקטים':'مشاريع'
+  };
+  function localizedJob(job){
+    const lang=window.FursaL10n?.language||'ar';
+    const source=job.sourceLang||'ar';
+    const preferred=lang===source?{}:(job.translations?.[lang]||{});
+    const idx=lang==='en'?0:1;
+    const vocab=s=>window.FursaL10n?.t(s)||s;
+    const baseCity=lang==='ar'?job.city:(CITY_TRANSLATIONS[job.city]?.[idx]||job.city);
+    return {...job,
+      title:preferred.title||((job.id.startsWith('demo-')&&lang!=='ar')?DEMO_TRANSLATIONS[job.id]?.[idx]:null)||job.title,
+      description:preferred.description||job.description,
+      company:preferred.company||job.company,
+      city:preferred.city||baseCity,
+      field:lang==='ar'?job.field:vocab(job.field),
+      type:lang==='ar'?job.type:vocab(job.type),
+      experience:lang==='ar'?job.experience:vocab(job.experience)
+    };
+  }
+  function searchMatch(job, query){
+    if(!query.trim())return true;
+    const localized=localizedJob(job);
+    const alternate=DEMO_TRANSLATIONS[job.id]||[];
+    const cityAlt=CITY_TRANSLATIONS[job.city]||[];
+    const fields=[job.title,job.company,job.city,job.field,job.description,job.type,job.experience,localized.title,localized.description,localized.company,localized.field,localized.city,...alternate,...cityAlt,...Object.values(job.translations||{}).flatMap(x=>PARTS.map(part=>x?.[part]||''))].map(normalizeSearch);
+    const tokens=normalizeSearch(query).split(' ').filter(Boolean);
+    // For multi-word searches, require terms within the same field to avoid unrelated matches.
+    return fields.some(hay=>tokens.every(token=>hay.includes(token)||(QUERY_ALIASES[token]&&hay.includes(normalizeSearch(QUERY_ALIASES[token])))));
+  }
+  function filterJobs(source, f, favoriteSet=null){
+    const needle=String(f.q||'').trim();
+    const limit=Number(f.salary)||0;
+    return source.filter(j=>{
+      if(favoriteSet && !favoriteSet.has(j.id))return false;
+      if(needle&&!searchMatch(j,needle))return false;
+      if(f.city&&j.city!==f.city || f.field&&j.field!==f.field || f.type&&j.type!==f.type || f.experience&&j.experience!==f.experience)return false;
+      if(f.remote&&!j.remote || f.salaryOnly&&j.salaryMax===null || f.student&&!(j.type==='تدريب / طالب'||j.experience==='بدون خبرة'))return false;
+      if(limit&&(!Number.isFinite(j.salaryMax)||j.salaryMax<limit))return false;
+      return true;
+    });
+  }
+  function sortJobs(items,sort){return [...items].sort((a,b)=>{
+    if(sort==='salaryHigh')return (b.salaryMax??-1)-(a.salaryMax??-1)||new Date(b.createdAt)-new Date(a.createdAt);
+    if(sort==='salaryLow')return (a.salaryMin??Infinity)-(b.salaryMin??Infinity)||new Date(b.createdAt)-new Date(a.createdAt);
+    if(sort==='title')return a.title.localeCompare(b.title,'ar');
+    return new Date(b.createdAt)-new Date(a.createdAt);
+  })}
+  function cleanFavs(){if(cloudMode)return;const valid=new Set(jobs.map(j=>j.id));let changed=false;for(const id of favorites){if(!valid.has(id)){favorites.delete(id);changed=true}}if(changed)persistFavs()}
+  function updateStats(){
+    const count=jobs.length, cityCount=new Set(jobs.map(j=>j.city)).size, favCount=favorites.size;
+    $('statJobs').textContent=count;$('statCities').textContent=cityCount;$('statFavorites').textContent=favCount;
+    $('navFavCount').textContent=favCount;$('tabAllCount').textContent=count;$('tabFavCount').textContent=favCount;
+    $('adminCount').textContent=cloudMode?managedJobs.length:count;$('adminCityCount').textContent=cloudMode?new Set(managedJobs.map(j=>j.city)).size:cityCount;$('adminFavCount').textContent=favCount;
+  }
+  function renderJobCard(job){
+    const saved=favorites.has(job.id);
+    const shown=localizedJob(job);
+    const card=document.createElement('article');card.className='job-card';
+    card.innerHTML=`<div class="job-card-top"><div class="company-logo" aria-hidden="true">✦</div><div class="job-top-actions"><span class="demo-tag">${cloudMode?'منشور':'تجريبي'}</span><button type="button" class="heart-button ${saved?'saved':''}" aria-label="${saved?'إزالة من':'أضف إلى'} المفضلة: ${escapeHTML(shown.title)}" aria-pressed="${saved}" data-favorite="${escapeHTML(job.id)}">${icon('heart')}</button></div></div><h3 data-no-i18n>${escapeHTML(shown.title)}</h3><p class="job-company" data-no-i18n>${escapeHTML(shown.company)}</p><div class="job-card-tags"><span>⌖ ${escapeHTML(shown.city)}</span><span>${escapeHTML(shown.type)}</span><span>${escapeHTML(shown.experience)}</span>${job.remote?'<span>عن بُعد</span>':''}</div><div class="salary-row"><strong>${escapeHTML(salaryText(job))}</strong><span>${job.salaryMin===null?'':(cloudMode?'شهريًا':'شهريًا · تجريبي')}</span></div><div class="card-footer"><span>${escapeHTML(ageText(job.createdAt))}</span><div class="card-action-group"><button type="button" class="job-share" data-share="${escapeHTML(job.id)}" aria-label="مشاركة الوظيفة">${icon('share')}</button><button type="button" data-details="${escapeHTML(job.id)}">عرض التفاصيل ${icon('arrow')}</button></div></div>`;
+    return card;
+  }
+  function renderJobs(){
+    const source=filterJobs(jobs,getFilterState(),currentView==='favorites'?favorites:null);
+    const visible=sortJobs(source,sel.sort.value);
+    const grid=$('jobGrid');grid.replaceChildren(...visible.map(renderJobCard));
+    $('emptyState').hidden=visible.length!==0;
+    $('resultsInfo').textContent=`عرض ${visible.length} من ${currentView==='favorites'?favorites.size:jobs.length} ${currentView==='favorites'?'وظيفة محفوظة':(cloudMode?'وظيفة منشورة':'وظيفة تجريبية')}`;
+    $('tabAll').classList.toggle('active',currentView==='all');$('tabAll').setAttribute('aria-pressed',String(currentView==='all'));
+    $('tabFav').classList.toggle('active',currentView==='favorites');$('tabFav').setAttribute('aria-pressed',String(currentView==='favorites'));
+    $('navFavorites').classList.toggle('current',currentView==='favorites');
+    document.querySelector('[data-action="jobs"]').classList.toggle('current',currentView==='all');
+  }
+  function renderAdmin(){
+    const q=$('adminQuery').value.trim().toLocaleLowerCase();
+    const filtered=(cloudMode?managedJobs:jobs).filter(j=>!q||[j.title,j.company,j.city,j.field].some(v=>v.toLocaleLowerCase().includes(q)));
+    const body=$('adminRows');body.replaceChildren();
+    for(const job of sortJobs(filtered,'newest')){
+      const tr=document.createElement('tr');
+      tr.innerHTML=`<td><div class="table-job"><span class="table-job-icon">✦</span><div><strong>${escapeHTML(job.title)}</strong><small>${escapeHTML(job.company)}${cloudMode?' · '+escapeHTML(job.status||'pending'):''}</small></div></div></td><td>${escapeHTML(job.city)}</td><td>${escapeHTML(salaryText(job))}</td><td>${escapeHTML(job.type)}</td><td><div class="row-actions"><button type="button" title="تعديل الوظيفة" aria-label="تعديل ${escapeHTML(job.title)}" data-edit="${escapeHTML(job.id)}">${icon('edit')}</button><button type="button" class="del" title="حذف الوظيفة" aria-label="حذف ${escapeHTML(job.title)}" data-delete="${escapeHTML(job.id)}">${icon('trash')}</button>${cloudMode && window.FursaV5?.isAdmin() && job.status!=='published'?`<button type="button" class="v5-review" data-approve="${escapeHTML(job.id)}">نشر ✓</button>`:''}${cloudMode && window.FursaV5?.isAdmin() && job.status==='published'?`<button type="button" class="v5-review reject" data-reject="${escapeHTML(job.id)}">إلغاء النشر</button>`:''}</div></td>`;
+      body.append(tr);
+    }
+    $('adminEmpty').hidden=filtered.length!==0;
+  }
+  function renderAll(){cleanFavs();populateFilters();updateStats();renderJobs();renderAdmin()}
+  function openPage(page){
+    if(page==='admin' && cloudMode && !window.FursaV5?.mayManage()){window.FursaV5?.promptLogin();return;}
+    currentPage=page;
+    $('publicView').hidden=page!=='public';$('adminView').hidden=page!=='admin';$('cvView').hidden=page!=='cv';
+    $('navAdmin').classList.toggle('active',page==='admin');$('navCV').classList.toggle('current',page==='cv');
+    window.scrollTo({top:0,behavior:'instant'});
+    document.getElementById('navLinks').classList.remove('open');$('mobileMenu').setAttribute('aria-expanded','false');
+  }
+  function showPublic(anchor){
+    if(currentPage!=='public')openPage('public');
+    if(anchor){requestAnimationFrame(()=>$(anchor).scrollIntoView({behavior:'smooth',block:'start'}))}
+    document.getElementById('navLinks').classList.remove('open');$('mobileMenu').setAttribute('aria-expanded','false');
+  }
+  function switchFavorites(){currentView='favorites';renderJobs();showPublic('jobs')}
+  function toggleFavorite(id){
+    if(!jobs.some(j=>j.id===id))return;
+    if(favorites.has(id))favorites.delete(id);else favorites.add(id);
+    persistFavs();updateStats();renderJobs();
+    if(selectedJobId===id&&$('detailsDialog').open)updateDetailsFavorite();
+    toast(favorites.has(id)?'انضافت الوظيفة للمفضلة ♡':'انحذفت الوظيفة من المفضلة');
+  }
+  function updateDetailsFavorite(){
+    const saved=favorites.has(selectedJobId);$('detailFavorite').innerHTML=icon('heart')+(saved?' إزالة من المفضلة':' احفظ للمفضلة');
+  }
+  function showDetailsContentForLanguage(){if(!$('detailsDialog').open||!selectedJobId)return;const id=selectedJobId;$('detailsDialog').close();showDetails(id)}
+  function showDetails(id){
+    const j=jobs.find(j=>j.id===id);if(!j)return;selectedJobId=id;const shown=localizedJob(j);
+    $('detailContent').innerHTML=`<div class="details-company"><div class="details-company-icon">✦</div><div><h2 id="detailTitle" data-no-i18n>${escapeHTML(shown.title)}</h2><p data-no-i18n>${escapeHTML(shown.company)}${cloudMode?'':' · إعلان توضيحي'}</p></div></div><div class="details-meta"><span>⌖ ${escapeHTML(shown.city)}</span><span>${escapeHTML(shown.field)}</span><span>${escapeHTML(shown.type)}</span><span>${escapeHTML(shown.experience)}</span>${j.remote?'<span>يشمل العمل عن بُعد</span>':''}</div><div class="detail-block"><h3>${cloudMode?'الراتب الشهري':'الراتب الشهري التجريبي'}</h3><strong class="detail-salary">${escapeHTML(salaryText(j))}</strong></div><div class="detail-block"><h3>وصف الوظيفة</h3><p data-no-i18n>${escapeHTML(shown.description)}</p></div><div class="detail-disclaimer">${cloudMode?'هذه وظيفة منشورة من شركة على المنصة، ولكن تقديم الطلبات من خلال FURSA غير متاح حاليًا. تحقق من تفاصيل الشركة قبل التواصل.':'هذه بيانات تجريبية من متصفحك. لا توجد شركة توظيف حقيقية خلف هذا الإعلان، ولا يمكن التقديم عليه.'}</div>`;
+    updateDetailsFavorite();$('detailsDialog').showModal();
+  }
+  async function shareJob(id){
+    const job=jobs.find(j=>j.id===id);if(!job)return;
+    const shown=localizedJob(job);
+    const hosted=/^https?:$/.test(location.protocol);
+    const link=hosted?`${location.href.split('#')[0]}#job=${encodeURIComponent(id)}`:'';
+    const content=`FURSA${cloudMode?'':' — DEMO / تجريبي'}\n${shown.title} — ${shown.city}\n${shown.company}\n${link}`.trim();
+    if(navigator.share){
+      try{await navigator.share({title:`FURSA: ${shown.title}`,text:content});toast('تم فتح المشاركة');return}
+      catch(error){if(error.name==='AbortError')return}
+    }
+    try{
+      if(navigator.clipboard?.writeText){await navigator.clipboard.writeText(content);toast(hosted?'تم نسخ رابط الوظيفة التجريبية':'تم نسخ تفاصيل الوظيفة (الرابط المحلي لا يعمل عند الآخرين)');return}
+      const area=document.createElement('textarea');area.value=content;area.style.position='fixed';area.style.opacity='0';document.body.append(area);area.select();const ok=document.execCommand('copy');area.remove();if(ok){toast(hosted?'تم نسخ رابط الوظيفة':'تم نسخ تفاصيل الوظيفة التجريبية');return}
+    }catch{}
+    window.prompt('انسخ تفاصيل الوظيفة التجريبية:',content);
+  }
+  function openDeepLink(){
+    if(!location.hash.startsWith('#job='))return;
+    const id=decodeURIComponent(location.hash.slice(5));
+    if(jobs.some(j=>j.id===id)){showPublic('jobs');if(!$('detailsDialog').open)showDetails(id)}
+  }
+  function clearFilters(){
+    sel.q.value='';sel.city.value='';sel.field.value='';sel.type.value='';sel.experience.value='';sel.salary.value='';sel.remote.checked=false;sel.salaryOnly.checked=false;sel.student.checked=false;sel.sort.value='newest';$('heroQuery').value='';
+    currentView='all';renderJobs();
+  }
+  function editorTranslationValues(){
+    const translations={};
+    for(const lang of LOCALES){
+      const fields={};
+      for(const part of PARTS){const val=document.querySelector(`[data-trans="${lang}"][data-part="${part}"]`).value.trim();if(val)fields[part]=val}
+      if(Object.keys(fields).length)translations[lang]=fields;
+    }
+    return translations;
+  }
+  function refreshTranslationPanels(){
+    const source=$('jobSourceLang').value;
+    document.querySelectorAll('[data-language-panel]').forEach(panel=>{panel.hidden=panel.dataset.languagePanel===source});
+    $('jobTitle').dir=source==='en'?'ltr':'rtl';$('jobCompany').dir=source==='en'?'ltr':'rtl';$('jobCity').dir=source==='en'?'ltr':'rtl';$('jobDescription').dir=source==='en'?'ltr':'rtl';
+  }
+  function translationMessage(message,state=''){
+    const el=$('translationStatus');el.textContent=message;el.className='translation-status '+state;
+  }
+  let translationBusy=false;
+  async function autoTranslateEditor({quiet=false}={}){
+    const source=$('jobSourceLang').value;
+    const originals={title:$('jobTitle').value.trim(),company:$('jobCompany').value.trim(),city:$('jobCity').value.trim(),description:$('jobDescription').value.trim()};
+    if(!originals.title||!originals.description){if(!quiet)translationMessage('اكتب عنوان الوظيفة ووصفها أولًا.','warn');return false}
+    if(translationBusy)return false;
+    const targets=LOCALES.filter(lang=>lang!==source&&PARTS.some(part=>originals[part]&&!document.querySelector(`[data-trans="${lang}"][data-part="${part}"]`).value.trim()));
+    if(!targets.length){if(!quiet)translationMessage('الحقول المترجمة مكتملة بالفعل.','ok');return true}
+    if(!window.isSecureContext||typeof window.Translator==='undefined'||typeof window.Translator.availability!=='function'){
+      translationMessage('الترجمة التلقائية غير متوفرة في هذا المتصفح أو طريقة فتح الملف. تقدر تعبّي الترجمات يدويًا وتحفظها.','warn');return false;
+    }
+    translationBusy=true;
+    $('autoTranslateJob').disabled=true;
+    let success=0,failed=[];
+    try{
+      for(const target of targets){
+        let translator;
+        try{
+          const status=await window.Translator.availability({sourceLanguage:source,targetLanguage:target});
+          if(status==='unavailable')throw new Error('pair unavailable');
+          translationMessage(`جاري تجهيز الترجمة ${source.toUpperCase()} ← ${target.toUpperCase()}${status==='downloadable'?' (قد يحتاج تنزيل حزمة لغة أول مرة)':''}...`);
+          translator=await window.Translator.create({sourceLanguage:source,targetLanguage:target,monitor(m){m.addEventListener('downloadprogress',event=>{const percent=Math.round((event.loaded||0)*100);translationMessage(`تجهيز لغة ${target.toUpperCase()}: ${percent}%`);})}});
+          for(const part of PARTS){
+            const input=document.querySelector(`[data-trans="${target}"][data-part="${part}"]`);
+            if(!originals[part]||input.value.trim())continue;
+            const translated=String(await translator.translate(originals[part])).trim();
+            if(translated){input.value=translated.slice(0,input.maxLength>0?input.maxLength:1500);success++}
+          }
+        }catch(error){failed.push(target);console.warn('FURSA local translation unavailable',target,error)}
+        finally{try{translator?.destroy()}catch{}}
+      }
+      if(failed.length){translationMessage(`ترجمت ${success} حقول، وتعذّرت الترجمة للغات: ${failed.join('، ')}. أكملها يدويًا أو جرّب متصفح Chrome على الكمبيوتر.`, 'warn');return false}
+      translationMessage(`✓ ترجمة ${success} حقول تمت. راجع النصوص قبل الحفظ.`, 'ok');return true;
+    }finally{translationBusy=false;$('autoTranslateJob').disabled=false}
+  }
+  function openEditor(id=null){
+    $('jobForm').reset();$('editId').value='';$('editorTitle').textContent=cloudMode?'نشر وظيفة جديدة':'إضافة وظيفة تجريبية';
+    $('jobSourceLang').value='ar';
+    document.querySelectorAll('[data-trans]').forEach(input=>input.value='');
+    translationMessage('اكتب الإعلان بلغته الأصلية، وبعدين اضغط «ترجم اللغات الناقصة» أو احفظ لتجربة الترجمة تلقائيًا.');
+    if(id){
+      const j=(cloudMode?managedJobs:jobs).find(j=>j.id===id);if(!j)return;
+      $('editorTitle').textContent=cloudMode?'تعديل وظيفة منشورة':'تعديل الوظيفة التجريبية';$('editId').value=j.id;
+      $('jobSourceLang').value=j.sourceLang||'ar';
+      $('jobTitle').value=j.title;$('jobCompany').value=j.company;$('jobCity').value=j.city;$('jobField').value=j.field;$('jobType').value=j.type;$('jobExperience').value=j.experience;
+      $('jobSalaryMin').value=j.salaryMin??'';$('jobSalaryMax').value=j.salaryMax??'';$('jobDescription').value=j.description;$('jobRemote').checked=j.remote;
+      for(const lang of LOCALES)for(const part of PARTS){document.querySelector(`[data-trans="${lang}"][data-part="${part}"]`).value=j.translations?.[lang]?.[part]||''}
+    }
+    refreshTranslationPanels();$('editorDialog').showModal();setTimeout(()=>$('jobTitle').focus(),0);
+  }
+  async function saveJob(event){
+    event.preventDefault();
+    if(translationBusy)return;
+    if(!$('jobForm').reportValidity())return;
+    const minRaw=$('jobSalaryMin').value,maxRaw=$('jobSalaryMax').value;
+    if((minRaw==='')!==(maxRaw==='')){toast('اكتب الحد الأدنى والأعلى للراتب، أو اتركهما فارغين.');return}
+    const button=$('jobForm').querySelector('[type="submit"]');button.disabled=true;
+    try{
+      const translatedAutomatically=$('translateOnSave').checked?await autoTranslateEditor({quiet:true}):null;
+      const id=$('editId').value,previous=(cloudMode?managedJobs:jobs).find(j=>j.id===id);
+      const j={id:id||generateId(),title:$('jobTitle').value.trim(),company:$('jobCompany').value.trim(),city:$('jobCity').value.trim(),field:$('jobField').value,type:$('jobType').value,experience:$('jobExperience').value,salaryMin:minRaw===''?null:Number(minRaw),salaryMax:maxRaw===''?null:Number(maxRaw),description:$('jobDescription').value.trim(),remote:$('jobRemote').checked,createdAt:previous?.createdAt||new Date().toISOString(),sourceLang:$('jobSourceLang').value,translations:editorTranslationValues()};
+      if(!validJob(j)||!validTranslations(j)){toast('تحقق من بيانات الإعلان والترجمات والراتب.');return}
+      if(cloudMode){await window.FursaV5.saveJob(j,previous,translatedAutomatically);return;}
+      if(previous)jobs=jobs.map(x=>x.id===id?j:x);else jobs.unshift(j);
+      persistJobs();renderAll();$('editorDialog').close();toast(translatedAutomatically===false?'تم حفظ الوظيفة، لكن الترجمة التلقائية لم تكتمل؛ أضف الترجمات يدويًا من تعديل الوظيفة.':(previous?'تم تحديث الوظيفة التجريبية ✓':'تمت إضافة الوظيفة التجريبية ✓'));
+    }finally{button.disabled=false}
+  }
+  function deleteJob(id){
+    const j=(cloudMode?managedJobs:jobs).find(x=>x.id===id);if(!j)return;
+    if(cloudMode){window.FursaV5.deleteJob(j);return;}
+    if(!confirm(`هل تريد حذف الوظيفة التجريبية «${j.title}»؟`))return;
+    jobs=jobs.filter(x=>x.id!==id);persistJobs();renderAll();toast('تم حذف الوظيفة');
+  }
+  function downloadJobs(){
+    const blob=new Blob([JSON.stringify({app:'FURSA',version:5,exportedAt:new Date().toISOString(),jobs:cloudMode?managedJobs:jobs},null,2)],{type:'application/json;charset=utf-8'});
+    const url=URL.createObjectURL(blob);const a=document.createElement('a');a.href=url;a.download='fursa-jobs-backup.json';document.body.append(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),1000);toast('تم تجهيز نسخة JSON احتياطية');
+  }
+  async function importJobs(event){
+    if(cloudMode){toast('استيراد JSON إلى القاعدة مباشرة غير متاح. استخدم لوحة الإدارة لكل إعلان.');event.target.value='';return;}
+    const file=event.target.files?.[0];event.target.value='';if(!file)return;
+    if(file.size>2_000_000){toast('الملف أكبر من 2MB. اختر ملف JSON أصغر.');return}
+    try{
+      const data=JSON.parse(await file.text());
+      const parsed=parseJobArray(Array.isArray(data)?data:data?.jobs);
+      if(!parsed){toast('ملف غير صالح أو حقوله لا تطابق بيانات FURSA.');return}
+      if(!confirm(`استيراد ${parsed.length} وظيفة تجريبية سيستبدل القائمة المحلية الحالية. هل تريد المتابعة؟`))return;
+      jobs=clone(parsed);persistJobs();clearFilters();renderAll();toast('تم استيراد البيانات بنجاح');
+    }catch{toast('تعذّر قراءة الملف. لازم يكون JSON صالحًا.')}
+  }
+  function resetDemo(){
+    if(cloudMode){toast('لا يمكن إعادة بيانات النسخة التجريبية على قاعدة البيانات الحقيقية');return;}
+    if(!confirm('استعادة الوظائف التجريبية الـ12؟ سيتم مسح أي وظائف عدّلتها أو أضفتها على هذا الجهاز.'))return;
+    jobs=clone(demoJobs);favorites.clear();persistJobs();persistFavs();clearFilters();renderAll();$('testsOutput').hidden=true;toast('رجعنا بيانات FURSA التجريبية الأصلية');
+  }
+  function runTests(){
+    // Pure checks on copies: never mutate the user's saved jobs or favorites.
+    const f={q:'',city:'',field:'',type:'',experience:'',salary:'',remote:false,salaryOnly:false};
+    const cases=[
+      ['البيانات التجريبية سليمة',demoJobs.length===12&&demoJobs.every(validJob)],
+      ['البحث بالكلمات',filterJobs(demoJobs,{...f,q:'مساعد/ة محاسب'}).length===1],
+      ['فلتر المدينة',filterJobs(demoJobs,{...f,city:'عرابة'}).length===2],
+      ['فلتر نوع الدوام',filterJobs(demoJobs,{...f,type:'تدريب / طالب'}).length===2],
+      ['فلتر الخبرة',filterJobs(demoJobs,{...f,experience:'خبير'}).length===1],
+      ['فلتر الراتب الأدنى',filterJobs(demoJobs,{...f,salary:'14000'}).length===2],
+      ['العمل عن بُعد',filterJobs(demoJobs,{...f,remote:true}).length===5],
+      ['الراتب مذكور',filterJobs(demoJobs,{...f,salaryOnly:true}).length===11],
+      ['قائمة المفضلة',filterJobs(demoJobs,f,new Set(['demo-01','demo-11'])).length===2],
+      ['الفرز حسب الراتب',sortJobs(demoJobs,'salaryHigh')[0].id==='demo-11'],
+      ['التحقق من البيانات المدخلة',!validJob({...demoJobs[0],salaryMin:20000,salaryMax:5000})],
+      ['استيراد وتصدير JSON',parseJobArray(JSON.parse(JSON.stringify(demoJobs)))?.length===12],
+      ['ترجمات الوظائف تُحفظ في JSON',Boolean(parseJobArray([{...demoJobs[0],sourceLang:'ar',translations:{en:{title:'Analyst',description:'Analysis of data'},he:{title:'אנליסט'}}}]))],
+      ['بحث في الترجمات المخصصة',searchMatch({...demoJobs[0],translations:{en:{title:'Special financial analyst'}}},'Special financial analyst')],
+      ['رفض ترجمات غير صحيحة',!parseJobArray([{...demoJobs[0],sourceLang:'ar',translations:{en:{title:5}}}])]
+    ];
+    const passed=cases.filter(x=>x[1]).length;const output=$('testsOutput');output.hidden=false;output.classList.toggle('has-fail',passed!==cases.length);
+    output.replaceChildren();
+    const title=document.createElement('strong');title.textContent=`${passed} من ${cases.length} فحوصات ناجحة — ${passed===cases.length?'منطق النسخة التجريبية يعمل':'بعض الاختبارات تحتاج مراجعة'}`;
+    const list=document.createElement('ul');cases.forEach(([name,pass])=>{const li=document.createElement('li');li.textContent=(pass?'✓ ':'✕ ')+name;list.append(li)});output.append(title,list);
+    toast(`${passed}/${cases.length} فحوصات ناجحة`);
+  }
+  function wireEvents(){
+    $('heroSearch').addEventListener('submit',e=>{e.preventDefault();sel.q.value=$('heroQuery').value;currentView='all';renderJobs();showPublic('jobs')});
+    document.querySelectorAll('[data-quick]').forEach(b=>b.addEventListener('click',()=>{sel.q.value=b.dataset.quick;$('heroQuery').value=b.dataset.quick;currentView='all';renderJobs();showPublic('jobs')}));
+    searchFields.forEach(id=>$(id).addEventListener(id.startsWith('filterRemote')||id==='filterSalaryOnly'?'change':(id==='listQuery'?'input':'change'),renderJobs));
+    sel.sort.addEventListener('change',renderJobs);
+    $('clearFilters').addEventListener('click',clearFilters);$('emptyReset').addEventListener('click',clearFilters);
+    $('tabAll').addEventListener('click',()=>{currentView='all';renderJobs()});$('tabFav').addEventListener('click',()=>{currentView='favorites';renderJobs()});
+    $('navFavorites').addEventListener('click',switchFavorites);
+    $('navAdmin').addEventListener('click',()=>{openPage('admin');renderAll()});$('navCV').addEventListener('click',()=>openPage('cv'));$('cvCalloutBtn').addEventListener('click',()=>openPage('cv'));$('cvBack').addEventListener('click',()=>showPublic('jobs'));
+    $('employerAdmin').addEventListener('click',()=>{openPage('admin');renderAll()});
+    $('backToSite').addEventListener('click',()=>showPublic('jobs'));
+    document.querySelectorAll('[data-action]').forEach(a=>a.addEventListener('click',e=>{if(currentPage==='admin'){e.preventDefault();openPage('public');setTimeout(()=>{if(a.getAttribute('href')?.startsWith('#'))document.querySelector(a.getAttribute('href')).scrollIntoView()},0)}}));
+    $('mobileMenu').addEventListener('click',()=>{const open=$('navLinks').classList.toggle('open');$('mobileMenu').setAttribute('aria-expanded',String(open))});
+    $('openFiltersMobile').addEventListener('click',()=>{const open=$('filterPanel').classList.toggle('open');$('openFiltersMobile').setAttribute('aria-expanded',String(open));if(open)$('filterPanel').scrollIntoView({behavior:'smooth',block:'center'})});
+    $('jobGrid').addEventListener('click',e=>{const heart=e.target.closest('[data-favorite]');const details=e.target.closest('[data-details]');const share=e.target.closest('[data-share]');if(heart)toggleFavorite(heart.dataset.favorite);else if(share)shareJob(share.dataset.share);else if(details)showDetails(details.dataset.details)});
+    $('detailFavorite').addEventListener('click',()=>toggleFavorite(selectedJobId));$('detailShare').addEventListener('click',()=>shareJob(selectedJobId));
+    $('addJob').addEventListener('click',()=>openEditor());$('jobForm').addEventListener('submit',saveJob);$('jobSourceLang').addEventListener('change',refreshTranslationPanels);$('autoTranslateJob').addEventListener('click',()=>autoTranslateEditor());
+    $('adminQuery').addEventListener('input',renderAdmin);
+    $('adminRows').addEventListener('click',e=>{const edit=e.target.closest('[data-edit]');const del=e.target.closest('[data-delete]');if(edit)openEditor(edit.dataset.edit);else if(del)deleteJob(del.dataset.delete)});
+    $('exportJobs').addEventListener('click',downloadJobs);$('importJobs').addEventListener('change',importJobs);$('resetDemo').addEventListener('click',resetDemo);$('runTests').addEventListener('click',runTests);window.addEventListener('hashchange',openDeepLink);window.addEventListener('fursa-language-change',()=>{renderAll();if($('detailsDialog').open&&selectedJobId)showDetailsContentForLanguage();});
+    document.querySelectorAll('[data-close]').forEach(b=>b.addEventListener('click',()=>$(b.dataset.close).close()));
+    ['detailsDialog','editorDialog'].forEach(id=>$(id).addEventListener('click',e=>{const dlg=$(id);if(e.target!==dlg)return;const box=dlg.getBoundingClientRect();if(e.clientX<box.left||e.clientX>box.right||e.clientY<box.top||e.clientY>box.bottom)dlg.close()}));
+  }
+  $('year').textContent=new Date().getFullYear();
+  wireEvents();renderAll();if(location.hash.startsWith('#job='))setTimeout(openDeepLink,100);
+  window.FursaV4={getJobs:()=>clone(jobs),getFavorites:()=>[...favorites],getPage:()=>currentPage,goToCV:()=>openPage('cv'),shareJob,openPage,searchMatch,toast,
+    setCloudMode:()=>{cloudMode=true;jobs=[];managedJobs=[];renderAll()},
+    setCloudJobs:(publicJobs,ownJobs)=>{jobs=clone(publicJobs);managedJobs=clone(ownJobs);renderAll();openDeepLink()},
+    closeEditor:()=>{if($('editorDialog').open)$('editorDialog').close()},
+    refresh:renderAll};
+  // Expose no administrative API; all controls operate only inside this browser.
+})();
+
+</script>
+  <script>
+'use strict';
+/* FURSA CV Studio — purely local, no network, no uploads. */
+(() => {
+  const $=id=>document.getElementById(id);
+  const fields={name:'cvName',role:'cvRole',email:'cvEmail',phone:'cvPhone',city:'cvCity',summary:'cvSummary',experience:'cvExperience',education:'cvEducation',skills:'cvSkills',languages:'cvLanguages',lang:'cvResumeLang'};
+  const KEY='fursa_v4_cv_local';
+  const headings={
+    ar:{summary:'الملف الشخصي',experience:'الخبرة العملية',education:'التعليم',skills:'المهارات',languages:'اللغات',placeholder:'اسمك الكامل',role:'المسمى المهني'},
+    he:{summary:'פרופיל מקצועי',experience:'ניסיון תעסוקתי',education:'השכלה',skills:'מיומנויות',languages:'שפות',placeholder:'השם המלא שלך',role:'תפקיד מקצועי'},
+    en:{summary:'PROFILE',experience:'EXPERIENCE',education:'EDUCATION',skills:'SKILLS',languages:'LANGUAGES',placeholder:'YOUR FULL NAME',role:'Professional title'}
+  };
+  const safe=value=>String(value||'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+  const lines=value=>String(value||'').split('\n').map(x=>safe(x.trim())).filter(Boolean).join('<br>');
+  function data(){return Object.fromEntries(Object.entries(fields).map(([k,id])=>[k,$(id).value.trim()]))}
+  function render(){
+    const d=data(), words=headings[d.lang]||headings.ar;
+    const leftToRight=d.lang==='en';
+    const sheet=$('cvPaper');sheet.setAttribute('dir',leftToRight?'ltr':'rtl');sheet.lang=d.lang;
+    const contact=[d.city,d.email,d.phone].filter(Boolean).map(x=>`<span dir="auto">${safe(x)}</span>`).join('<span class="cv-contact-separator"> ◆ </span>');
+    function block(key,content){if(!content.trim())return '';return `<section class="cv-paper-section"><h3>${words[key]}</h3><div class="cv-paper-text">${lines(content)}</div></section>`}
+    const chips=d.skills.split(/[,،;\n]+/).map(t=>t.trim()).filter(Boolean).slice(0,30).map(t=>`<span class="cv-chip" dir="auto">${safe(t)}</span>`).join('');
+    sheet.innerHTML=`<header class="cv-paper-header"><div class="cv-paper-logo">✦ FURSA CV</div><h1 dir="auto">${safe(d.name||words.placeholder)}</h1><p dir="auto">${safe(d.role||words.role)}</p>${contact?`<div class="cv-contact">${contact}</div>`:''}</header><div class="cv-paper-body">${block('summary',d.summary)}${block('experience',d.experience)}${block('education',d.education)}${chips?`<section class="cv-paper-section"><h3>${words.skills}</h3><div class="cv-chips">${chips}</div></section>`:''}${block('languages',d.languages)}${!d.summary&&!d.experience&&!d.education&&!chips&&!d.languages?'<div class="cv-paper-placeholder">✦ FURSA CV</div>':''}</div>`;
+  }
+  function notice(message){const el=$('cvNotice');if(!el){alert(message);return}el.textContent=message;el.hidden=false;clearTimeout(notice.timer);notice.timer=setTimeout(()=>el.hidden=true,4200)}
+  function save(){try{localStorage.setItem(KEY,JSON.stringify(data()));notice('✓ تم حفظ السيرة على هذا الجهاز فقط')}catch{notice('تعذّر الحفظ المحلي؛ يمكن المتابعة والطباعة بدون حفظ')}}
+  function load(){try{const raw=localStorage.getItem(KEY);if(!raw)return;const obj=JSON.parse(raw);if(!obj||typeof obj!=='object')return;for(const [key,id] of Object.entries(fields)){if(typeof obj[key]==='string')$(id).value=obj[key].slice(0,1600)}}catch{}}
+  function clear(){if(!confirm('مسح كل بيانات السيرة من النموذج والتخزين المحلي؟'))return;try{localStorage.removeItem(KEY)}catch{}$('cvForm').reset();render();notice('تم مسح بيانات السيرة المحلية')}
+  function printCV(){
+    if(!$('cvName').value.trim()){notice('أدخل الاسم الكامل قبل حفظ PDF');$('cvName').focus();return}
+    if(!$('cvEmail').checkValidity()){notice('راجع صيغة البريد الإلكتروني');$('cvEmail').focus();return}
+    render();document.body.classList.add('print-cv');window.print();
+    // Clear only after the print dialog closes on browsers supporting afterprint.
+  }
+  const status=document.createElement('p');status.id='cvNotice';status.className='cv-notice';status.hidden=true;status.setAttribute('role','status');$('cvForm').append(status);
+  load();render();$('cvForm').addEventListener('input',render);$('cvResumeLang').addEventListener('change',render);
+  $('cvSave').addEventListener('click',save);$('cvClear').addEventListener('click',clear);$('cvPrint').addEventListener('click',printCV);
+  window.addEventListener('afterprint',()=>document.body.classList.remove('print-cv'));
+  window.addEventListener('fursa-language-change',render);
+  window.FursaCV={preview:render,getData:data};
+})();
+
+</script>
+
+<dialog id="v5AuthDialog" class="dialog v5-auth-dialog" aria-labelledby="v5AuthTitle">
+  <div class="dialog-head"><div><span class="micro-label">✦ FURSA / OWNER</span><h2 id="v5AuthTitle">دخول مدير الموقع</h2></div><button type="button" class="icon-btn dialog-close" id="v5AuthClose" aria-label="إغلاق">×</button></div>
+  <div class="v5-auth-caption" id="v5AuthSummary">النسخة التجريبية لا تتصل بقاعدة بيانات حتى تضيف إعدادات Supabase.</div>
+  <form id="v5AuthForm" class="v5-auth-fields" hidden>
+    <label>البريد الإلكتروني <input required name="email" type="email" autocomplete="email" placeholder="you@example.com" maxlength="254"></label>
+    <label>كلمة المرور <input required name="password" type="password" autocomplete="current-password" minlength="8" maxlength="100" placeholder="8 حروف على الأقل"></label>
+    <div class="v5-auth-actions"><button type="submit" class="btn btn-gold" id="v5AuthSubmit">دخول المدير</button></div>
+  </form>
+  <div class="v5-signed" id="v5SignedBlock" hidden><p id="v5SignedText"></p><button id="v5Logout" type="button" class="btn btn-outline-dark">تسجيل الخروج</button></div>
+  <p class="v5-error" id="v5AuthError" role="status" aria-live="polite"></p>
+  <p class="v5-auth-foot">لا يمكن لأي زائر أو شركة نشر وظيفة. المدير الوحيد يضيف وينشر الوظائف. CV والمفضلة يبقيان على جهازك.</p>
+</dialog>
+
+<script src="config.js"></script>
+<script src="v5-cloud.js"></script>
+</body>
+</html>
