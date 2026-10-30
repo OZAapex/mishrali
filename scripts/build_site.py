@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Static job pages for Mishrali GitHub Pages.
+"""Static job pages for Mishradar GitHub Pages.
 Only the public Supabase publishable key and published jobs are read.
 NEVER uses a secret/service_role key. Fails closed if the API fails.
 """
@@ -43,7 +43,7 @@ def read_published_jobs():
     url, key = get_config()
     columns = "id,title,company,city,field,type,experience,remote,description,source_lang,translations,created_at,updated_at,status,apply_method,apply_value"
     query = urlencode({"select": columns, "status": "eq.published", "order": "created_at.desc", "limit": "500"})
-    req = Request(url + "/rest/v1/jobs?" + query, headers={"apikey": key, "Accept": "application/json", "User-Agent": "MishraliPublicSiteBuilder/1.0"})
+    req = Request(url + "/rest/v1/jobs?" + query, headers={"apikey": key, "Accept": "application/json", "User-Agent": "MishradarPublicSiteBuilder/1.0"})
     with urlopen(req, timeout=25) as response:
         raw = response.read(2_000_000)
     jobs = json.loads(raw)
@@ -102,7 +102,7 @@ def layout(title, description, body, canonical, lang="he", updated=None):
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>{e(title)}</title><meta name="description" content="{e(description)}">
 <meta name="robots" content="index,follow"><link rel="canonical" href="{e(canonical)}">
-<meta property="og:type" content="website"><meta property="og:site_name" content="משרלי | Mishrali">
+<meta property="og:type" content="website"><meta property="og:site_name" content="משראדאר | Mishradar">
 <meta property="og:title" content="{e(title)}"><meta property="og:description" content="{e(description)}"><meta property="og:url" content="{e(canonical)}">
 <script type="application/ld+json">{jsonld}</script>
 <style>
@@ -113,8 +113,8 @@ a{{color:inherit}}.top{{background:linear-gradient(115deg,#071222,#12284a);color
 .meta span{{padding:6px 12px;background:#f6f0df;border-radius:10px;font-size:13px}}.desc{{white-space:pre-wrap;overflow-wrap:anywhere;line-height:2}}
 .note{{padding:16px;background:#fff7e6;border:1px solid #e9d69f;border-radius:11px;margin-top:28px;font-size:13px}}.links{{display:flex;gap:20px;flex-wrap:wrap;margin-top:20px;font-weight:700;color:#8d6b2d}}.apply{{display:inline-block;background:linear-gradient(115deg,#c9a24a,#e0c06f);border-radius:10px;padding:9px 22px;color:#0b1730;font-weight:900;text-decoration:none;margin-top:15px}}footer{{text-align:center;margin:40px auto;color:#788395;font-size:12px}}
 @media(max-width:650px){{article{{padding:20px}}.top{{padding:13px 20px}}}}
-</style></head><body><header class="top"><a href="{BASE}" class="logo" lang="he">✦ משרלי.</a><nav class="nav"><a href="{BASE}jobs/">כל המשרות · الوظائف</a></nav></header>
-<main>{body}</main><footer>משרלי · Mishrali · 2026</footer></body></html>'''
+</style></head><body><header class="top"><a href="{BASE}" class="logo" lang="he">✦ משראדאר.</a><nav class="nav"><a href="{BASE}jobs/">כל המשרות · الوظائف</a></nav></header>
+<main>{body}</main><footer>משראדאר · Mishradar · 2026</footer></body></html>'''
 
 
 def build(jobs):
@@ -142,7 +142,7 @@ def build(jobs):
             continue
         canonical = BASE + "jobs/" + jid + ".html"
         lastmod = iso_date(job.get("updated_at") or job.get("created_at"))
-        title = content["title"] + " | משרלי — Mishrali"
+        title = content["title"] + " | משראדאר — Mishradar"
         desc = (content["description"].strip().replace("\n", " ")[:140] + " · " + content["city"] + " · " + content["company"])[:205]
         # Never generate actionable links without an approved application method.
         application_data=application(job)
@@ -165,8 +165,8 @@ def build(jobs):
         entries.append((canonical, lastmod))
     cards = "".join(f'<li><a href="{e(url)}">{e(title)}</a><small> · {e(city)} · {e(company)}</small></li>' for title,company,city,url in rows)
     if not cards: cards = '<li>لا توجد وظائف منشورة حاليًا · אין משרות מפורסמות כעת</li>'
-    text = f'''<article><div class="kicker">משרלי · Mishrali</div><h1>משרות פנויות · الوظائف المنشورة</h1><p>الوظائف المتاحة للعرض العام. القائمة تُحدَّث دوريًا من قاعدة بيانات الموقع؛ قد تستغرق التغييرات عدة ساعات لتظهر هنا.</p><ul>{cards}</ul><div class="links"><a href="{BASE}">بحث وفلاتر متقدمة · חיפוש באתר</a></div></article>'''
-    (jobdir / "index.html").write_text(layout('דרושים ומשרות בישראל | משרלי', 'משרות פנויות באתר משרלי. חיפוש משרות ועבודה באזורים שונים בישראל.', text, BASE+'jobs/'),encoding='utf-8')
+    text = f'''<article><div class="kicker">משראדאר · Mishradar</div><h1>משרות פנויות · الوظائف المنشورة</h1><p>الوظائف المتاحة للعرض العام. القائمة تُحدَّث دوريًا من قاعدة بيانات الموقع؛ قد تستغرق التغييرات عدة ساعات لتظهر هنا.</p><ul>{cards}</ul><div class="links"><a href="{BASE}">بحث وفلاتر متقدمة · חיפוש באתר</a></div></article>'''
+    (jobdir / "index.html").write_text(layout('דרושים ומשרות בישראל | משראדאר', 'משרות פנויות באתר משראדאר. חיפוש משרות ועבודה באזורים שונים בישראל.', text, BASE+'jobs/'),encoding='utf-8')
     tags = []
     for loc, lastmod in entries:
         tags.append("  <url><loc>" + e(loc) + "</loc>" + ("<lastmod>" + lastmod + "</lastmod>" if lastmod else "") + "</url>")
