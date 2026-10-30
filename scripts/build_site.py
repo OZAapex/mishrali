@@ -15,6 +15,7 @@ import sys
 from urllib.parse import urlencode, quote
 from urllib.request import Request, urlopen
 import uuid
+from urllib.parse import urlsplit
 
 ROOT = Path(__file__).resolve().parents[1]
 DEST = ROOT / "site"
@@ -40,7 +41,7 @@ def get_config():
 
 def read_published_jobs():
     url, key = get_config()
-    columns = "id,title,company,city,field,type,experience,remote,description,source_lang,translations,created_at,updated_at,status"
+    columns = "id,title,company,city,field,type,experience,remote,description,source_lang,translations,created_at,updated_at,status,apply_method,apply_value"
     query = urlencode({"select": columns, "status": "eq.published", "order": "created_at.desc", "limit": "500"})
     req = Request(url + "/rest/v1/jobs?" + query, headers={"apikey": key, "Accept": "application/json", "User-Agent": "MishraliPublicSiteBuilder/1.0"})
     with urlopen(req, timeout=25) as response:
@@ -65,6 +66,23 @@ def selected_content(job):
     else:
         lang, val = source if source in ("ar", "he", "en") else "ar", job
     return lang, {part: str(val.get(part) or job.get(part) or "")[:4000] for part in ("title", "description", "company", "city")}
+
+
+def application(job):
+    """Allowlist HTTPS URLs and plausible employer emails; never emit javascript: URLs."""
+    method = job.get('apply_method')
+    value = job.get('apply_value')
+    if not isinstance(value, str) or not 0 < len(value) <= 500 or value != value.strip(): return None
+    if method == 'email':
+        if re.fullmatch(r'[A-Za-z0-9._%+\-]+@[A-Za-z0-9.\-]+\.[A-Za-z]{2,}', value) and '..' not in value:
+            return ('email', 'mailto:' + quote(value, safe='@.+-_'))
+    if method == 'url':
+        try:
+            parsed = urlsplit(value)
+            if parsed.scheme == 'https' and parsed.hostname and not parsed.username and not parsed.password and not re.search(r'\s', value):
+                return ('url', value)
+        except ValueError: pass
+    return None
 
 
 def iso_date(value):
@@ -93,7 +111,7 @@ a{{color:inherit}}.top{{background:linear-gradient(115deg,#071222,#12284a);color
 .logo{{font-size:27px;font-weight:900;text-decoration:none;color:var(--gold)}}.nav a{{color:#e5e9ef;font-size:13px}}main{{max-width:900px;margin:46px auto;padding:0 20px}}article{{background:#fff;border:1px solid #e7e7e7;border-radius:20px;padding:32px;box-shadow:0 16px 40px #0914260d}}
 .kicker{{color:#97722b;font-size:13px;font-weight:bold}}h1{{font-size:clamp(26px,5vw,41px);line-height:1.4;margin:10px 0}}.meta{{display:flex;flex-wrap:wrap;gap:9px;margin:20px 0}}
 .meta span{{padding:6px 12px;background:#f6f0df;border-radius:10px;font-size:13px}}.desc{{white-space:pre-wrap;overflow-wrap:anywhere;line-height:2}}
-.note{{padding:16px;background:#fff7e6;border:1px solid #e9d69f;border-radius:11px;margin-top:28px;font-size:13px}}.links{{display:flex;gap:20px;flex-wrap:wrap;margin-top:20px;font-weight:700;color:#8d6b2d}}footer{{text-align:center;margin:40px auto;color:#788395;font-size:12px}}
+.note{{padding:16px;background:#fff7e6;border:1px solid #e9d69f;border-radius:11px;margin-top:28px;font-size:13px}}.links{{display:flex;gap:20px;flex-wrap:wrap;margin-top:20px;font-weight:700;color:#8d6b2d}}.apply{{display:inline-block;background:linear-gradient(115deg,#c9a24a,#e0c06f);border-radius:10px;padding:9px 22px;color:#0b1730;font-weight:900;text-decoration:none;margin-top:15px}}footer{{text-align:center;margin:40px auto;color:#788395;font-size:12px}}
 @media(max-width:650px){{article{{padding:20px}}.top{{padding:13px 20px}}}}
 </style></head><body><header class="top"><a href="{BASE}" class="logo" lang="he">✦ משרלי.</a><nav class="nav"><a href="{BASE}jobs/">כל המשרות · الوظائف</a></nav></header>
 <main>{body}</main><footer>משרלי · Mishrali · 2026</footer></body></html>'''
@@ -103,7 +121,7 @@ def build(jobs):
     if DEST.exists(): shutil.rmtree(DEST)
     DEST.mkdir(parents=True)
     # Do not copy build scripts, GitHub metadata or any unexpected files into the public site.
-    for fn in ("index.html", "about.html", "privacy.html", "contact.html", "contact-settings.js", "config.js", "v5-cloud.js"):
+    for fn in ("index.html", "about.html", "privacy.html", "contact.html", "contact-settings.js", "config.js", "v5-cloud.js", "pricing.html", "billing.js"):
         p = ROOT / fn
         if not p.exists():
             raise FileNotFoundError("Missing required file: " + fn)
@@ -113,7 +131,7 @@ def build(jobs):
     jobdir = DEST / "jobs"
     jobdir.mkdir()
     rows = []
-    entries = [(BASE, None), (BASE + "about.html", None), (BASE + "contact.html", None), (BASE + "privacy.html", None), (BASE + "jobs/", None)]
+    entries = [(BASE, None), (BASE + "about.html", None), (BASE + "contact.html", None), (BASE + "privacy.html", None), (BASE + "jobs/", None), (BASE + "pricing.html", None)]
     for job in jobs:
         if not isinstance(job, dict) or job.get("status") != "published":
             continue
@@ -126,12 +144,21 @@ def build(jobs):
         lastmod = iso_date(job.get("updated_at") or job.get("created_at"))
         title = content["title"] + " | משרלי — Mishrali"
         desc = (content["description"].strip().replace("\n", " ")[:140] + " · " + content["city"] + " · " + content["company"])[:205]
+        # Never generate actionable links without an approved application method.
+        application_data=application(job)
+        apply_block = ('<a class="apply" href="' + e(application_data[1]) + '" ' +
+                       ('target="_blank" rel="noopener noreferrer" referrerpolicy="no-referrer"' if application_data[0]=='url' else '') +
+                       '>הגש מועמדות · قدّم للوظيفة · Apply</a>') if application_data else ''
+        if application_data:
+            apply_note='להגשת מועמדות ישירות למעסיק · التقديم مباشرة لصاحب العمل. האתר لا يخزن السير الذاتية أو طلبات التوظيف.'
+        else:
+            apply_note='לא פורסמה דרך הגשת מועמדות מאומתת · لم تُضف طريقة تقديم موثّقة لهذا الإعلان.'
         # Content is data, never use it as trusted HTML.
         body = f'''<article><div class="kicker">משרה מפורסמת · وظيفة منشورة</div><h1>{e(content['title'])}</h1>
 <p>{e(content['company'])} · {e(content['city'])}</p>
 <div class="meta"><span>{e(job.get('type'))}</span><span>{e(job.get('field'))}</span><span>{e(job.get('experience'))}</span>{'<span>עבודה מרחוק · عن بُعد</span>' if job.get('remote') else ''}</div>
 <h2>תיאור התפקיד · وصف الوظيفة</h2><div class="desc">{e(content['description'])}</div>
-<div class="note">אין כרגע הגשת מועמדות דרך משרלי · لا يوجد تقديم إلكتروني عبر משרלי حاليًا. تفاصيل التواصل مع صاحب العمل، إن توفرت، موجودة في نص الإعلان. تحقق من صحة الإعلان قبل مشاركة أي بيانات شخصية.</div>
+<div class="note">{apply_note}</div>{apply_block}
 <div class="links"><a href="{BASE}">العودة للموقع · חזרה לאתר</a><a href="{BASE}contact.html">יצירת קשר · تواصل</a></div></article>'''
         (jobdir / (jid + ".html")).write_text(layout(title, desc, body, canonical, lang, lastmod), encoding="utf-8")
         rows.append((content["title"], content["company"], content["city"], canonical))
