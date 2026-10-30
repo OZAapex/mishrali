@@ -1,4 +1,3 @@
-// Mishrali public contact email. This address becomes visible to all visitors.
-// Replace only the empty text below with your dedicated public support address.
-// Do NOT use your Supabase login email, passwords, or secret keys.
-window.MISHRALI_PUBLIC_EMAIL = '';
+// Public contact address for Mishrali. Visible to everyone.
+// This is intentionally separate from the Supabase administrator login.
+window.MISHRALI_PUBLIC_EMAIL = 'mishrali501@gmail.com';
