@@ -40,12 +40,12 @@
     return {id:row.id,title:row.title,company:row.company,city:row.city,field:row.field,type:row.type,experience:row.experience,
       salaryMin:row.salary_min,salaryMax:row.salary_max,remote:row.remote,description:row.description,
       sourceLang:row.source_lang||'ar',translations:row.translations||{},createdAt:row.created_at,
-      status:row.status,ownerId:row.owner_id};
+      status:row.status,ownerId:row.owner_id,applyMethod:row.apply_method||null,applyValue:row.apply_value||null};
   }
   function rowPayload(job){
     return {title:job.title,company:job.company,city:job.city,field:job.field,type:job.type,experience:job.experience,
       salary_min:job.salaryMin,salary_max:job.salaryMax,remote:job.remote,description:job.description,
-      source_lang:job.sourceLang||'ar',translations:job.translations||{},status:'published'};
+      source_lang:job.sourceLang||'ar',translations:job.translations||{},apply_method:job.applyMethod,apply_value:job.applyValue,status:'published'};
   }
   function throwIfError(result){if(result.error)throw result.error;return result.data}
   async function loadAll(){
@@ -87,6 +87,7 @@
     if(busy)return;
     busy=true;
     try{
+      if(!['url','email'].includes(job.applyMethod) || !job.applyValue){window.FursaV4.toast('أضف طريقة تقديم مؤكدة أولًا');return;}
       const row=rowPayload(job);
       // Only the unique admin may save and publish. SQL RLS also enforces this.
       let result;
@@ -143,14 +144,16 @@
       status('وضع الاتصال يحتاج صفحة HTTPS منشورة أو localhost. افتح README للتعليمات.',true);return;
     }
     window.FursaV4.setCloudMode();
-    $('v5ModeStrip').innerHTML='<b>משרלי LIVE</b><span class="strip-divider"></span> نشر الوظائف حصري لمدير الموقع · لا تقديم إلكتروني حاليًا';
+    $('v5ModeStrip').innerHTML='<b>משרלי LIVE</b><span class="strip-divider"></span> نشر الوظائف حصري لمدير الموقع · التقديم مباشرة إلى صاحب العمل';
     document.querySelector('.local-label').textContent='قاعدة مشتركة';
-    document.querySelector('#jobs .section-header p').textContent='الوظائف المنشورة هنا تأتي من قاعدة البيانات المشتركة بعد مراجعة المدير. خدمات تقديم الطلبات ستتوفر لاحقًا.';
+    document.querySelector('#jobs .section-header p').textContent='الوظائف المنشورة هنا تأتي من قاعدة البيانات المشتركة بعد مراجعة المدير. يمكن التقديم من خلال الروابط أو عناوين البريد التي يحددها صاحب العمل.';
+    document.querySelector('#editorDialog .form-note').textContent='لا يُنشر إعلان جديد بدون رابط تقديم آمن أو بريد صاحب عمل صحيح. لا تجمع المنصة بيانات المتقدمين.';
+    document.querySelector('#jobs .list-footnote').textContent='توجّه الطلبات مباشرة إلى صاحب العمل. تحقق من صحة الإعلان قبل إرسال أي بيانات شخصية.';
     document.querySelector('#statJobs')?.nextElementSibling?.replaceChildren(document.createTextNode('وظائف منشورة'));
-    document.querySelector('.footer-note').innerHTML='משרלי V5 · وظائف مشتركة<br>التقديم الإلكتروني غير متاح بعد';
+    document.querySelector('.footer-note').innerHTML='משרלי V5 · وظائف مشتركة<br>التقديم مباشرة إلى أصحاب العمل';
     document.querySelector('#adminView .admin-heading .kicker').textContent='✦ משרלי / مدير الموقع';
     document.querySelector('#adminView .admin-heading p').textContent='أنت وحدك تقدر تضيف وتعدل وتحذف الوظائف المنشورة لكل الزوار.';
-    document.querySelector('#adminView .admin-notice p').innerHTML='<strong>سياسة النشر:</strong> حساب المدير الوحيد يدير جميع الإعلانات، والصلاحيات محمية في قاعدة البيانات. لا تستقبل بيانات المتقدمين عبر هذه النسخة.';
+    document.querySelector('#adminView .admin-notice p').innerHTML='<strong>سياسة النشر:</strong> حساب المدير الوحيد يدير جميع الإعلانات، والصلاحيات محمية في قاعدة البيانات. لا تجمع هذه النسخة سيرًا ذاتية أو طلبات توظيف.';
     document.querySelector('#adminView .admin-bar p').textContent='بعد الحفظ تُنشر الوظيفة مباشرة وتظهر لكل الزوار عند تحديث الموقع.';
     document.querySelector('#adminView .admin-stats small').textContent='وظائف مدير الموقع';
     document.querySelector('#editorDialog .micro-label').textContent='✦ משרלי / نشر حصري للمدير';

@@ -139,6 +139,18 @@ html[dir=rtl] .cv-paper[dir=ltr]{direction:ltr}
   .nav-actions .mobile-menu{width:30px;min-width:30px;padding:5px}
 }
 </style>
+<style>
+/* Mishrali Apply — clear third-party application links, no candidate data collection. */
+.application-editor{margin:16px 0;padding:17px;background:#f8f6ef;border:1px solid #e6d9b6;border-radius:13px}
+.application-editor h3{margin:0 0 6px;font-size:15px;color:#102240}
+.application-editor p{margin:0 0 14px;font-size:12px;color:#627186}
+.application-editor label{display:block;font-weight:700;font-size:12px;color:#253653}
+.application-editor select,.application-editor input{display:block;margin-top:6px;margin-bottom:10px;width:100%;max-width:640px;min-height:43px;border:1px solid #d8deea;border-radius:9px;padding:9px 12px;background:white;color:#12233f}
+.application-editor .help{font-size:11px;color:#7e642a}
+.apply-method-note{margin-top:12px;padding:12px 14px;background:#edf4f1;border:1px solid #cddfd6;border-radius:10px;font-size:13px;overflow-wrap:anywhere}
+#detailApply[hidden],#detailApplyUnavailable[hidden]{display:none!important}
+@media(max-width:650px){.application-editor{padding:13px}.detail-footer #detailApply{width:100%;white-space:normal}}
+</style>
 </head>
 <body>
   <svg class="symbols" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
@@ -281,7 +293,7 @@ html[dir=rtl] .cv-paper[dir=ltr]{direction:ltr}
 
   <footer class="site-footer"><div class="container footer-content"><div class="footer-brand"><div class="brand brand-footer"><span class="brand-symbol">✦</span><span class="brand-name" lang="he" dir="rtl">משרלי<span>.</span></span></div><p>فرصتك أقرب مما بتتخيّل.</p></div><nav class="mishrali-footer-links" aria-label="معلومات الموقع"><a href="about.html" data-no-i18n>عن משרלי · אודות</a><a href="privacy.html" data-no-i18n>الخصوصية · פרטיות</a><a href="contact.html" data-no-i18n>التواصل · יצירת קשר</a><a href="jobs/" data-no-i18n>كل الوظائف · כל המשרות</a></nav><div class="footer-note">משרלי · منصة وظائف متعددة اللغات<br>التقديم الإلكتروني للوظائف غير متاح حاليًا</div><span>© <span id="year"></span> משרלי</span></div></footer>
 
-  <dialog id="detailsDialog" class="dialog details-dialog" aria-labelledby="detailTitle"><div class="dialog-head"><span class="micro-label">✦ تفاصيل الوظيفة</span><button type="button" class="icon-btn dialog-close" data-close="detailsDialog" aria-label="إغلاق"><svg class="icon"><use href="#i-close"/></svg></button></div><div id="detailContent"></div><div class="detail-footer"><button type="button" class="btn btn-outline-dark" id="detailFavorite"><svg class="icon"><use href="#i-heart"/></svg> احفظ للمفضلة</button><button type="button" class="btn btn-outline-dark" id="detailShare"><svg class="icon"><use href="#i-share"/></svg> مشاركة</button><button class="btn btn-disabled" type="button" disabled>التقديم غير متاح في النسخة التجريبية</button></div></dialog>
+  <dialog id="detailsDialog" class="dialog details-dialog" aria-labelledby="detailTitle"><div class="dialog-head"><span class="micro-label">✦ تفاصيل الوظيفة</span><button type="button" class="icon-btn dialog-close" data-close="detailsDialog" aria-label="إغلاق"><svg class="icon"><use href="#i-close"/></svg></button></div><div id="detailContent"></div><div class="detail-footer"><button type="button" class="btn btn-outline-dark" id="detailFavorite"><svg class="icon"><use href="#i-heart"/></svg> احفظ للمفضلة</button><button type="button" class="btn btn-outline-dark" id="detailShare"><svg class="icon"><use href="#i-share"/></svg> مشاركة</button><a class="btn btn-gold" id="detailApply" href="#" target="_blank" rel="noopener noreferrer" referrerpolicy="no-referrer" data-no-i18n hidden>قدّم للوظيفة</a><button id="detailApplyUnavailable" class="btn btn-disabled" type="button" disabled data-no-i18n>طريقة التقديم غير متوفرة</button></div></dialog>
 
   <dialog id="editorDialog" class="dialog editor-dialog" aria-labelledby="editorTitle"><div class="dialog-head"><div><span class="micro-label">✦ إدارة משרלי المحلية</span><h2 id="editorTitle">إضافة وظيفة تجريبية</h2></div><button type="button" class="icon-btn dialog-close" data-close="editorDialog" aria-label="إغلاق"><svg class="icon"><use href="#i-close"/></svg></button></div><form id="jobForm"><input type="hidden" id="editId"><div class="form-grid"><label>المسمى الوظيفي <span>*</span><input id="jobTitle" required maxlength="100" placeholder="مثلاً: محلل بيانات"></label><label>اسم الشركة التجريبية <span>*</span><input id="jobCompany" required maxlength="100" placeholder="مثلاً: شركة تجريبية أ"></label><label>المدينة <span>*</span><input id="jobCity" required maxlength="60" placeholder="مثلاً: الناصرة"></label><label>المجال <span>*</span><select id="jobField" required><option value="">اختر المجال</option><option value="تكنولوجيا">تكنولوجيا</option><option value="مال ومحاسبة">مال ومحاسبة</option><option value="إدارة">إدارة</option><option value="تسويق">تسويق</option><option value="تعليم">تعليم</option><option value="صحة">صحة</option><option value="صناعة ولوجستيات">صناعة ولوجستيات</option><option value="أخرى">أخرى</option></select></label><label>نوع الدوام <span>*</span><select id="jobType" required><option value="دوام كامل">دوام كامل</option><option value="دوام جزئي">دوام جزئي</option><option value="تدريب / طالب">تدريب / طالب</option><option value="عمل مرن">عمل مرن</option></select></label><label>مستوى الخبرة <span>*</span><select id="jobExperience" required><option value="بدون خبرة">بدون خبرة</option><option value="مبتدئ">مبتدئ</option><option value="متوسط">متوسط</option><option value="خبير">خبير</option></select></label><label>راتب شهري أدنى (₪) <small>اختياري</small><input id="jobSalaryMin" type="number" min="0" max="1000000" step="100" placeholder="مثلاً: 7000"></label><label>راتب شهري أعلى (₪) <small>اختياري</small><input id="jobSalaryMax" type="number" min="0" max="1000000" step="100" placeholder="مثلاً: 9500"></label></div><label class="full-label">وصف الوظيفة <span>*</span><textarea id="jobDescription" required rows="4" maxlength="1500" placeholder="اكتب تفاصيل توضيحية للوظيفة..."></textarea></label><section class="translation-studio" aria-labelledby="translationStudioTitle">
   <div class="translation-studio-header"><div><span class="micro-label">✦ משרלי MULTILINGUAL</span><h3 id="translationStudioTitle">ترجمة الإعلان إلى 3 لغات</h3><p>اكتب الإعلان بلغته الأصلية أعلاه، واختار لغته. ترجم تلقائيًا عند دعم المتصفح، أو اكتب الترجمات بنفسك.</p></div></div>
@@ -294,6 +306,15 @@ html[dir=rtl] .cv-paper[dir=ltr]{direction:ltr}
   </div>
   <label class="checkbox-line"><input type="checkbox" id="translateOnSave" checked> حاول إكمال الترجمات تلقائيًا عند الحفظ (إذا كانت الخدمة متاحة)</label>
   <p class="translation-note">إذا تعذّرت الترجمة الآلية، يُحفظ النص الأصلي وتظهر الحقول المترجمة التي كتبتها فقط. راجع المعنى قبل استخدام الترجمات.</p>
+</section>
+<section class="application-editor" aria-label="طريقة التقديم">
+<h3>✦ طريقة التقديم / אופן הגשת מועמדות</h3>
+<p>اختار طريقة واحدة مؤكدة من صاحب العمل. الطلبات تُرسل مباشرة إليه، ولا يَستقبل موقع משרלי ملفات CV.</p>
+<label for="jobApplyMethod">كيف المتقدم يبعت طلبه؟</label>
+<select id="jobApplyMethod"><option value="">— بدون طريقة تقديم (للتجربة فقط) —</option><option value="url">رابط تقديم آمن HTTPS</option><option value="email">إيميل صاحب العمل</option></select>
+<label for="jobApplyValue" id="jobApplyLabel" hidden>الرابط أو البريد الإلكتروني</label>
+<input id="jobApplyValue" type="text" autocomplete="off" maxlength="500" hidden dir="ltr" spellcheck="false" placeholder="https://...">
+<div class="help">الوظائف الحقيقية تحتاج رابط HTTPS أو إيميلًا صحيحًا. لا تضع بريد دخول مدير الموقع هنا.</div>
 </section>
 <label class="checkbox-line"><input type="checkbox" id="jobRemote"> يشمل إمكانية العمل عن بُعد</label><p class="form-note">الوظيفة ستظل موسومة بأنها تجريبية، ولن يُفعّل التقديم الحقيقي.</p><div class="form-actions"><button class="btn btn-outline-dark" type="button" data-close="editorDialog">إلغاء</button><button class="btn btn-gold" type="submit"><svg class="icon"><use href="#i-check"/></svg> حفظ الوظيفة</button></div></form></dialog>
   <div id="toast" class="toast" role="status" aria-live="polite"></div>
@@ -437,12 +458,23 @@ html[dir=rtl] .cv-paper[dir=ltr]{direction:ltr}
   const clone = object => JSON.parse(JSON.stringify(object));
   const money = n => n.toLocaleString('en-US');
   const escapeHTML = v => String(v ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+  const validApplication = (method, value) => {
+    if(!['url','email'].includes(method) || typeof value!=='string' || value.length>500 || value.trim()!==value)return false;
+    if(method==='email')return /^[A-Za-z0-9._%+\-]+@[A-Za-z0-9.\-]+\.[A-Za-z]{2,}$/.test(value) && !value.includes('..');
+    try {const u=new URL(value);return value.startsWith('https://') && u.protocol==='https:' && !!u.hostname && !u.username && !u.password && !/\s/.test(value) && u.port!== '0';}catch{return false}
+  };
+  const applicationLabels = {
+    ar:{button:'قدّم للوظيفة', email:'التقديم عبر بريد صاحب العمل', url:'التقديم عبر موقع صاحب العمل', unavailable:'لا توجد طريقة تقديم موثّقة لهذا الإعلان', notice:'سيُفتح موقع أو بريد صاحب العمل. משרלי لا يجمع طلبك أو سيرتك الذاتية.'},
+    he:{button:'הגש מועמדות',email:'הגשה באמצעות דוא״ל המעסיק',url:'הגשה דרך אתר המעסיק',unavailable:'לא הוגדרה דרך הגשת מועמדות מאומתת',notice:'תועברו לאתר או לדוא״ל המעסיק. משרלי לא אוסף קורות חיים או פרטי מועמדות.'},
+    en:{button:'Apply for this job',email:'Apply via employer email',url:'Apply on employer website',unavailable:'No verified application method is available',notice:'You will open the employer website or email. Mishrali does not collect your CV or application.'}
+  };
+  const getApplicationLabels=()=>applicationLabels[window.FursaL10n?.language]||applicationLabels.ar;
   const icon = name => `<svg class="icon" aria-hidden="true"><use href="#i-${name}"></use></svg>`;
   const read = key => { try {return localStorage.getItem(key)} catch {return null} };
   const write = (key,value) => {try {localStorage.setItem(key,value);return true} catch {toast('التخزين المحلي غير متاح؛ التغييرات قد تضيع بعد إغلاق الصفحة.');return false}};
   const generateId = () => 'local-' + Date.now().toString(36) + '-' + Math.random().toString(36).slice(2,9);
   function validJob(j){
-    return !!j && typeof j==='object' && typeof j.id==='string' && j.id.length<100 && typeof j.title==='string' && j.title.trim().length>0 && j.title.length<=100 && typeof j.company==='string' && j.company.trim().length>0 && j.company.length<=100 && typeof j.city==='string' && j.city.trim().length>0 && j.city.length<=60 && FIELD_OPTIONS.includes(j.field) && TYPE_OPTIONS.includes(j.type) && EXPERIENCE_OPTIONS.includes(j.experience) && typeof j.description==='string' && j.description.trim().length>0 && j.description.length<=1500 && typeof j.remote==='boolean' && (j.salaryMin===null||(Number.isInteger(j.salaryMin)&&j.salaryMin>=0&&j.salaryMin<=1000000)) && (j.salaryMax===null||(Number.isInteger(j.salaryMax)&&j.salaryMax>=0&&j.salaryMax<=1000000)) && (j.salaryMin===null&&j.salaryMax===null || j.salaryMin!==null&&j.salaryMax!==null&&j.salaryMin<=j.salaryMax) && typeof j.createdAt==='string' && !Number.isNaN(Date.parse(j.createdAt));
+    return !!j && typeof j==='object' && typeof j.id==='string' && j.id.length<100 && typeof j.title==='string' && j.title.trim().length>0 && j.title.length<=100 && typeof j.company==='string' && j.company.trim().length>0 && j.company.length<=100 && typeof j.city==='string' && j.city.trim().length>0 && j.city.length<=60 && FIELD_OPTIONS.includes(j.field) && TYPE_OPTIONS.includes(j.type) && EXPERIENCE_OPTIONS.includes(j.experience) && typeof j.description==='string' && j.description.trim().length>0 && j.description.length<=1500 && typeof j.remote==='boolean' && (j.salaryMin===null||(Number.isInteger(j.salaryMin)&&j.salaryMin>=0&&j.salaryMin<=1000000)) && (j.salaryMax===null||(Number.isInteger(j.salaryMax)&&j.salaryMax>=0&&j.salaryMax<=1000000)) && (j.salaryMin===null&&j.salaryMax===null || j.salaryMin!==null&&j.salaryMax!==null&&j.salaryMin<=j.salaryMax) && (j.applyMethod==null && j.applyValue==null || validApplication(j.applyMethod,j.applyValue)) && typeof j.createdAt==='string' && !Number.isNaN(Date.parse(j.createdAt));
   }
   const LOCALES=['ar','he','en'];
   const PARTS=['title','company','city','description'];
@@ -620,7 +652,23 @@ html[dir=rtl] .cv-paper[dir=ltr]{direction:ltr}
   function showDetailsContentForLanguage(){if(!$('detailsDialog').open||!selectedJobId)return;const id=selectedJobId;$('detailsDialog').close();showDetails(id)}
   function showDetails(id){
     const j=jobs.find(j=>j.id===id);if(!j)return;selectedJobId=id;const shown=localizedJob(j);
-    $('detailContent').innerHTML=`<div class="details-company"><div class="details-company-icon">✦</div><div><h2 id="detailTitle" data-no-i18n>${escapeHTML(shown.title)}</h2><p data-no-i18n>${escapeHTML(shown.company)}${cloudMode?'':' · إعلان توضيحي'}</p></div></div><div class="details-meta"><span>⌖ ${escapeHTML(shown.city)}</span><span>${escapeHTML(shown.field)}</span><span>${escapeHTML(shown.type)}</span><span>${escapeHTML(shown.experience)}</span>${j.remote?'<span>يشمل العمل عن بُعد</span>':''}</div><div class="detail-block"><h3>${cloudMode?'الراتب الشهري':'الراتب الشهري التجريبي'}</h3><strong class="detail-salary">${escapeHTML(salaryText(j))}</strong></div><div class="detail-block"><h3>وصف الوظيفة</h3><p data-no-i18n>${escapeHTML(shown.description)}</p></div><div class="detail-disclaimer">${cloudMode?'هذه وظيفة منشورة من شركة على المنصة، ولكن تقديم الطلبات من خلال משרלי غير متاح حاليًا. تحقق من تفاصيل الشركة قبل التواصل.':'هذه بيانات تجريبية من متصفحك. لا توجد شركة توظيف حقيقية خلف هذا الإعلان، ولا يمكن التقديم عليه.'}</div>`;
+    $('detailContent').innerHTML=`<div class="details-company"><div class="details-company-icon">✦</div><div><h2 id="detailTitle" data-no-i18n>${escapeHTML(shown.title)}</h2><p data-no-i18n>${escapeHTML(shown.company)}${cloudMode?'':' · إعلان توضيحي'}</p></div></div><div class="details-meta"><span>⌖ ${escapeHTML(shown.city)}</span><span>${escapeHTML(shown.field)}</span><span>${escapeHTML(shown.type)}</span><span>${escapeHTML(shown.experience)}</span>${j.remote?'<span>يشمل العمل عن بُعد</span>':''}</div><div class="detail-block"><h3>${cloudMode?'الراتب الشهري':'الراتب الشهري التجريبي'}</h3><strong class="detail-salary">${escapeHTML(salaryText(j))}</strong></div><div class="detail-block"><h3>وصف الوظيفة</h3><p data-no-i18n>${escapeHTML(shown.description)}</p></div><div class="detail-disclaimer">${cloudMode?'يتم التقديم مباشرة إلى صاحب العمل. تحقّق من صحة الإعلان قبل مشاركة أي بيانات شخصية.':'هذه بيانات تجريبية من متصفحك. لا توجد شركة توظيف حقيقية خلف هذا الإعلان، ولا يمكن التقديم عليه.'}</div>`;
+    const labels=getApplicationLabels();
+    const enabled=cloudMode && validApplication(j.applyMethod,j.applyValue);
+    const apply=$('detailApply'),unavailable=$('detailApplyUnavailable');
+    apply.hidden=!enabled;unavailable.hidden=enabled;
+    unavailable.textContent=cloudMode?labels.unavailable:'التقديم غير متاح للوظائف التجريبية';
+    if(enabled){
+      const href=j.applyMethod==='email'?`mailto:${j.applyValue}?subject=${encodeURIComponent('Application: '+shown.title)}`:j.applyValue;
+      apply.setAttribute('href',href);apply.textContent=labels.button;
+      apply.setAttribute('aria-label',labels.button+' — '+shown.company);
+      apply.setAttribute('target',j.applyMethod==='url'?'_blank':'_self');
+      const note=document.createElement('div');note.className='apply-method-note';note.setAttribute('data-no-i18n','');
+      const heading=document.createElement('strong');heading.textContent=labels[j.applyMethod]+': ';
+      const destination=document.createElement('b');destination.textContent=j.applyMethod==='email'?j.applyValue:new URL(j.applyValue).hostname;
+      const disclaimer=document.createElement('div');disclaimer.textContent=labels.notice;
+      note.append(heading,destination,disclaimer);$('detailContent').append(note);
+    }else apply.removeAttribute('href');
     updateDetailsFavorite();$('detailsDialog').showModal();
   }
   async function shareJob(id){
@@ -700,8 +748,15 @@ html[dir=rtl] .cv-paper[dir=ltr]{direction:ltr}
       translationMessage(`✓ ترجمة ${success} حقول تمت. راجع النصوص قبل الحفظ.`, 'ok');return true;
     }finally{translationBusy=false;$('autoTranslateJob').disabled=false}
   }
+  function syncApplicationFields(){
+    const method=$('jobApplyMethod').value, value=$('jobApplyValue'), label=$('jobApplyLabel');
+    const active=['email','url'].includes(method);
+    label.hidden=!active;value.hidden=!active;value.required=active;label.textContent=method==='email'?'إيميل صاحب العمل / דוא״ל המעסיק':'رابط التقديم HTTPS / קישור להגשת מועמדות';
+    value.placeholder=method==='email'?'jobs@company.example':'https://company.example/careers';
+    value.inputMode=method==='email'?'email':'url';
+  }
   function openEditor(id=null){
-    $('jobForm').reset();$('editId').value='';$('editorTitle').textContent=cloudMode?'نشر وظيفة جديدة':'إضافة وظيفة تجريبية';
+    $('jobForm').reset();$('jobApplyMethod').value='';$('jobApplyValue').value='';syncApplicationFields();$('editId').value='';$('editorTitle').textContent=cloudMode?'نشر وظيفة جديدة':'إضافة وظيفة تجريبية';
     $('jobSourceLang').value='ar';
     document.querySelectorAll('[data-trans]').forEach(input=>input.value='');
     translationMessage('اكتب الإعلان بلغته الأصلية، وبعدين اضغط «ترجم اللغات الناقصة» أو احفظ لتجربة الترجمة تلقائيًا.');
@@ -710,7 +765,7 @@ html[dir=rtl] .cv-paper[dir=ltr]{direction:ltr}
       $('editorTitle').textContent=cloudMode?'تعديل وظيفة منشورة':'تعديل الوظيفة التجريبية';$('editId').value=j.id;
       $('jobSourceLang').value=j.sourceLang||'ar';
       $('jobTitle').value=j.title;$('jobCompany').value=j.company;$('jobCity').value=j.city;$('jobField').value=j.field;$('jobType').value=j.type;$('jobExperience').value=j.experience;
-      $('jobSalaryMin').value=j.salaryMin??'';$('jobSalaryMax').value=j.salaryMax??'';$('jobDescription').value=j.description;$('jobRemote').checked=j.remote;
+      $('jobSalaryMin').value=j.salaryMin??'';$('jobSalaryMax').value=j.salaryMax??'';$('jobDescription').value=j.description;$('jobRemote').checked=j.remote;$('jobApplyMethod').value=j.applyMethod||'';$('jobApplyValue').value=j.applyValue||'';syncApplicationFields();
       for(const lang of LOCALES)for(const part of PARTS){document.querySelector(`[data-trans="${lang}"][data-part="${part}"]`).value=j.translations?.[lang]?.[part]||''}
     }
     refreshTranslationPanels();$('editorDialog').showModal();setTimeout(()=>$('jobTitle').focus(),0);
@@ -719,13 +774,18 @@ html[dir=rtl] .cv-paper[dir=ltr]{direction:ltr}
     event.preventDefault();
     if(translationBusy)return;
     if(!$('jobForm').reportValidity())return;
+    const method=$('jobApplyMethod').value, destination=$('jobApplyValue').value.trim();
+    if(cloudMode && !validApplication(method,destination)){
+      toast('للنشر لازم تضيف رابط HTTPS صحيح أو إيميل صاحب العمل.');return;
+    }
+    if(method && !validApplication(method,destination)){toast('طريقة التقديم غير صحيحة.');return;}
     const minRaw=$('jobSalaryMin').value,maxRaw=$('jobSalaryMax').value;
     if((minRaw==='')!==(maxRaw==='')){toast('اكتب الحد الأدنى والأعلى للراتب، أو اتركهما فارغين.');return}
     const button=$('jobForm').querySelector('[type="submit"]');button.disabled=true;
     try{
       const translatedAutomatically=$('translateOnSave').checked?await autoTranslateEditor({quiet:true}):null;
       const id=$('editId').value,previous=(cloudMode?managedJobs:jobs).find(j=>j.id===id);
-      const j={id:id||generateId(),title:$('jobTitle').value.trim(),company:$('jobCompany').value.trim(),city:$('jobCity').value.trim(),field:$('jobField').value,type:$('jobType').value,experience:$('jobExperience').value,salaryMin:minRaw===''?null:Number(minRaw),salaryMax:maxRaw===''?null:Number(maxRaw),description:$('jobDescription').value.trim(),remote:$('jobRemote').checked,createdAt:previous?.createdAt||new Date().toISOString(),sourceLang:$('jobSourceLang').value,translations:editorTranslationValues()};
+      const j={id:id||generateId(),title:$('jobTitle').value.trim(),company:$('jobCompany').value.trim(),city:$('jobCity').value.trim(),field:$('jobField').value,type:$('jobType').value,experience:$('jobExperience').value,salaryMin:minRaw===''?null:Number(minRaw),salaryMax:maxRaw===''?null:Number(maxRaw),description:$('jobDescription').value.trim(),remote:$('jobRemote').checked,applyMethod:method||null,applyValue:method?destination:null,createdAt:previous?.createdAt||new Date().toISOString(),sourceLang:$('jobSourceLang').value,translations:editorTranslationValues()};
       if(!validJob(j)||!validTranslations(j)){toast('تحقق من بيانات الإعلان والترجمات والراتب.');return}
       if(cloudMode){await window.FursaV5.saveJob(j,previous,translatedAutomatically);return;}
       if(previous)jobs=jobs.map(x=>x.id===id?j:x);else jobs.unshift(j);
@@ -801,7 +861,7 @@ html[dir=rtl] .cv-paper[dir=ltr]{direction:ltr}
     $('openFiltersMobile').addEventListener('click',()=>{const open=$('filterPanel').classList.toggle('open');$('openFiltersMobile').setAttribute('aria-expanded',String(open));if(open)$('filterPanel').scrollIntoView({behavior:'smooth',block:'center'})});
     $('jobGrid').addEventListener('click',e=>{const heart=e.target.closest('[data-favorite]');const details=e.target.closest('[data-details]');const share=e.target.closest('[data-share]');if(heart)toggleFavorite(heart.dataset.favorite);else if(share)shareJob(share.dataset.share);else if(details)showDetails(details.dataset.details)});
     $('detailFavorite').addEventListener('click',()=>toggleFavorite(selectedJobId));$('detailShare').addEventListener('click',()=>shareJob(selectedJobId));
-    $('addJob').addEventListener('click',()=>openEditor());$('jobForm').addEventListener('submit',saveJob);$('jobSourceLang').addEventListener('change',refreshTranslationPanels);$('autoTranslateJob').addEventListener('click',()=>autoTranslateEditor());
+    $('addJob').addEventListener('click',()=>openEditor());$('jobForm').addEventListener('submit',saveJob);$('jobApplyMethod').addEventListener('change',()=>{$('jobApplyValue').value='';syncApplicationFields()});$('jobSourceLang').addEventListener('change',refreshTranslationPanels);$('autoTranslateJob').addEventListener('click',()=>autoTranslateEditor());
     $('adminQuery').addEventListener('input',renderAdmin);
     $('adminRows').addEventListener('click',e=>{const edit=e.target.closest('[data-edit]');const del=e.target.closest('[data-delete]');if(edit)openEditor(edit.dataset.edit);else if(del)deleteJob(del.dataset.delete)});
     $('exportJobs').addEventListener('click',downloadJobs);$('importJobs').addEventListener('change',importJobs);$('resetDemo').addEventListener('click',resetDemo);$('runTests').addEventListener('click',runTests);window.addEventListener('hashchange',openDeepLink);window.addEventListener('fursa-language-change',()=>{renderAll();if($('detailsDialog').open&&selectedJobId)showDetailsContentForLanguage();});
