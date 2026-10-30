@@ -28,6 +28,7 @@
     $('v5SignedBlock').hidden=!session;
     $('v5SignedText').textContent=session?`${session.user.email} · ${admin?'مدير الموقع':'لا توجد صلاحية للنشر لهذا الحساب'}`:'';
     $('v5AdminNote').hidden=!admin;
+    if($('billingPanel'))$('billingPanel').hidden=!admin;
     $('navAdmin').hidden=!admin;
     $('navAdmin').textContent='◈ لوحة مدير الموقع';
     $('addJob').disabled=!admin;
@@ -40,12 +41,12 @@
     return {id:row.id,title:row.title,company:row.company,city:row.city,field:row.field,type:row.type,experience:row.experience,
       salaryMin:row.salary_min,salaryMax:row.salary_max,remote:row.remote,description:row.description,
       sourceLang:row.source_lang||'ar',translations:row.translations||{},createdAt:row.created_at,
-      status:row.status,ownerId:row.owner_id,applyMethod:row.apply_method||null,applyValue:row.apply_value||null};
+      status:row.status,ownerId:row.owner_id,companyId:row.company_id,applyMethod:row.apply_method||null,applyValue:row.apply_value||null};
   }
   function rowPayload(job){
     return {title:job.title,company:job.company,city:job.city,field:job.field,type:job.type,experience:job.experience,
       salary_min:job.salaryMin,salary_max:job.salaryMax,remote:job.remote,description:job.description,
-      source_lang:job.sourceLang||'ar',translations:job.translations||{},apply_method:job.applyMethod,apply_value:job.applyValue,status:'published'};
+      source_lang:job.sourceLang||'ar',translations:job.translations||{},apply_method:job.applyMethod,apply_value:job.applyValue,company_id:job.companyId||null,status:'published'};
   }
   function throwIfError(result){if(result.error)throw result.error;return result.data}
   async function loadAll(){
@@ -59,6 +60,7 @@
     lastJobs=published.map(normalize);
     lastManaged=owned.map(normalize);
     window.FursaV4.setCloudJobs(lastJobs,lastManaged);
+    window.MishraliBilling?.refresh().catch(err=>say('مشكلة في سجل الشركات: '+simple(err.message),true));
   }
   async function refreshAll(){
     try{await loadAll();status('متصل بقاعدة البيانات. المدير الوحيد يستطيع إنشاء ونشر وإدارة الوظائف.');say('');}
@@ -88,7 +90,9 @@
     busy=true;
     try{
       if(!['url','email'].includes(job.applyMethod) || !job.applyValue){window.FursaV4.toast('أضف طريقة تقديم مؤكدة أولًا');return;}
+      if(!job.companyId){window.FursaV4.toast('سجّل الشركة واختارها قبل نشر الإعلان.');return;}
       const row=rowPayload(job);
+      if(previous)row.status=previous.status;
       // Only the unique admin may save and publish. SQL RLS also enforces this.
       let result;
       if(previous){ result=await db.from('jobs').update(row).eq('id',previous.id).select('id').single(); }
@@ -96,7 +100,8 @@
       throwIfError(result);
       window.FursaV4.closeEditor();
       await refreshAll();
-      window.FursaV4.toast(translationResult===false?'تم نشر الوظيفة، بعض الترجمات ناقصة.':'تم نشر الوظيفة لجميع الزوار ✓');
+      const fresh=lastManaged.find(x=>x.id===(previous?.id||result.data?.id));
+      window.FursaV4.toast(fresh?.status==='draft'?'تم حفظ الإعلان بانتظار ₪70. لن يظهر حتى تأكيد الدفع.':'تم نشر الإعلان. الأول لكل شركة مجاني ✓');
     }catch(err){window.FursaV4.toast('تعذّر الحفظ: '+simple(err.message));}
     finally{busy=false}
   }
@@ -167,6 +172,6 @@
       await recheck();
     }catch(err){status('فشل الاتصال، لا يمكن عرض وظائف حقيقية حاليًا: '+simple(err.message),true);say(simple(err.message),true)}
   }
-  window.FursaV5={mayManage,isAdmin,promptLogin,saveJob,deleteJob,refreshAll};
+  window.FursaV5={mayManage,isAdmin,promptLogin,saveJob,deleteJob,refreshAll,getClient:()=>db,getManagedJobs:()=>lastManaged};
   start();
 })();
