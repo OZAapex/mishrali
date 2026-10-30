@@ -1,5 +1,5 @@
 'use strict';
-/* FURSA V5.1 — OWNER-ONLY publishing; enforce database RLS. Demo remains local. */
+/* משרלי V5.1 — OWNER-ONLY publishing; enforce database RLS. Demo remains local. */
 (() => {
   const $ = id => document.getElementById(id);
   const cfg=window.FURSA_CONFIG||{};
@@ -23,7 +23,7 @@
       return;
     }
     $('v5Refresh').hidden=false;
-    button.textContent=admin?'◈ مدير FURSA':'◈ دخول المدير';
+    button.textContent=admin?'◈ مدير الموقع':'◈ دخول المدير';
     $('v5AuthForm').hidden=!!session;
     $('v5SignedBlock').hidden=!session;
     $('v5SignedText').textContent=session?`${session.user.email} · ${admin?'مدير الموقع':'لا توجد صلاحية للنشر لهذا الحساب'}`:'';
@@ -61,7 +61,7 @@
     window.FursaV4.setCloudJobs(lastJobs,lastManaged);
   }
   async function refreshAll(){
-    try{await loadAll();status('متصل بقاعدة البيانات. فقط مدير FURSA يستطيع إنشاء ونشر وإدارة الوظائف.');say('');}
+    try{await loadAll();status('متصل بقاعدة البيانات. المدير الوحيد يستطيع إنشاء ونشر وإدارة الوظائف.');say('');}
     catch(err){status('تعذّر تحميل الوظائف. تحقق من SQL والصلاحيات والاتصال.',true);say(simple(err.message),true);}
   }
   async function loadRole(){
@@ -78,7 +78,7 @@
   function isAdmin(){return !!(session && role==='admin')}
   function mayManage(){return isAdmin()}
   function promptLogin(){
-    if(!configured){window.FursaV4.toast('لا توجد قاعدة بيانات. افتح README لإعداد Supabase.');return;}
+    if(!configured){window.FursaV4.toast('لا توجد قاعدة بيانات متصلة. تحقق من إعدادات Supabase.');return;}
     if(session&&!isAdmin())say('هذا الحساب لا يملك صلاحيات المدير؛ تواصل مع مالك المشروع.',true);
     $('v5AuthDialog').showModal();
   }
@@ -123,7 +123,7 @@
       form.querySelector('[name="password"]').value='';
       await recheck();
       if(isAdmin()){$('v5AuthDialog').close();say('تم تسجيل دخول المدير ✓');}
-      else say('هذا الحساب ليس مدير FURSA، ولا يملك أي صلاحية لإضافة الوظائف.',true);
+      else say('هذا الحساب غير مخوّل بإدارة الوظائف.',true);
     }catch(err){say('تعذّر الدخول: '+simple(err.message),true)}
     finally{busy=false;$('v5AuthSubmit').disabled=false}
   }
@@ -143,17 +143,17 @@
       status('وضع الاتصال يحتاج صفحة HTTPS منشورة أو localhost. افتح README للتعليمات.',true);return;
     }
     window.FursaV4.setCloudMode();
-    $('v5ModeStrip').innerHTML='<b>FURSA LIVE</b><span class="strip-divider"></span> نشر الوظائف حصري لمدير الموقع · لا تقديم إلكتروني حاليًا';
+    $('v5ModeStrip').innerHTML='<b>משרלי LIVE</b><span class="strip-divider"></span> نشر الوظائف حصري لمدير الموقع · لا تقديم إلكتروني حاليًا';
     document.querySelector('.local-label').textContent='قاعدة مشتركة';
     document.querySelector('#jobs .section-header p').textContent='الوظائف المنشورة هنا تأتي من قاعدة البيانات المشتركة بعد مراجعة المدير. خدمات تقديم الطلبات ستتوفر لاحقًا.';
     document.querySelector('#statJobs')?.nextElementSibling?.replaceChildren(document.createTextNode('وظائف منشورة'));
-    document.querySelector('.footer-note').innerHTML='FURSA V5 · وظائف مشتركة<br>التقديم الإلكتروني غير متاح بعد';
-    document.querySelector('#adminView .admin-heading .kicker').textContent='✦ FURSA / مدير الموقع';
+    document.querySelector('.footer-note').innerHTML='משרלי V5 · وظائف مشتركة<br>التقديم الإلكتروني غير متاح بعد';
+    document.querySelector('#adminView .admin-heading .kicker').textContent='✦ משרלי / مدير الموقع';
     document.querySelector('#adminView .admin-heading p').textContent='أنت وحدك تقدر تضيف وتعدل وتحذف الوظائف المنشورة لكل الزوار.';
     document.querySelector('#adminView .admin-notice p').innerHTML='<strong>سياسة النشر:</strong> حساب المدير الوحيد يدير جميع الإعلانات، والصلاحيات محمية في قاعدة البيانات. لا تستقبل بيانات المتقدمين عبر هذه النسخة.';
     document.querySelector('#adminView .admin-bar p').textContent='بعد الحفظ تُنشر الوظيفة مباشرة وتظهر لكل الزوار عند تحديث الموقع.';
     document.querySelector('#adminView .admin-stats small').textContent='وظائف مدير الموقع';
-    document.querySelector('#editorDialog .micro-label').textContent='✦ FURSA / نشر حصري للمدير';
+    document.querySelector('#editorDialog .micro-label').textContent='✦ משרלי / نشر حصري للمدير';
     try{
       await new Promise((resolve,reject)=>{
         const script=document.createElement('script');script.src='https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2';script.onload=resolve;script.onerror=()=>reject(new Error('فشل تحميل مكتبة Supabase؛ تحقق من الاتصال'));document.head.append(script)
