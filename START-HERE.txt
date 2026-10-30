@@ -1,0 +1,36 @@
+משרלי · Mishrali — Contact and Privacy Update
+===========================================
+
+Step 1 — Add public email
+Open contact-settings.js using VS Code or Notepad.
+Change this line:
+    window.MISHRALI_PUBLIC_EMAIL = '';
+to:
+    window.MISHRALI_PUBLIC_EMAIL = 'YOUR_PUBLIC_CONTACT_EMAIL';
+Use your dedicated public email; NEVER a password, Supabase secret, or administrator sign-in email unless you explicitly want that address public.
+Save the file.
+
+Step 2 — Upload to GitHub
+Open your Mishrali GitHub repository, choose Add file → Upload files.
+Upload exactly these five files to the repository root, NOT the ZIP itself:
+- index.html
+- about.html
+- privacy.html
+- contact.html
+- contact-settings.js
+Confirm the replacements of existing files and Commit changes.
+
+DO NOT remove or overwrite config.js or v5-cloud.js, which connect the existing database and administrator login.
+Do not upload START-HERE.txt unless you want these instructions public.
+
+Step 3 — Verify after Pages deployment
+Open the home page and the three pages under:
+https://ozaapex.github.io/mishrali/
+https://ozaapex.github.io/mishrali/contact.html
+https://ozaapex.github.io/mishrali/privacy.html
+https://ozaapex.github.io/mishrali/about.html
+Check that the intended public email appears on Contact AND Privacy.
+Confirm public jobs still load and admin can sign in.
+
+IMPORTANT: Privacy page is a DRAFT; operator details, retention and legal review remain outstanding.
+The user requested GitHub Pages; verify current GitHub Pages usage limitations before commercial launch.
