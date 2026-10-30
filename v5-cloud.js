@@ -1,5 +1,5 @@
 'use strict';
-/* משרלי V5.1 — OWNER-ONLY publishing; enforce database RLS. Demo remains local. */
+/* משראדאר V5.1 — OWNER-ONLY publishing; enforce database RLS. Demo remains local. */
 (() => {
   const $ = id => document.getElementById(id);
   const cfg=window.FURSA_CONFIG||{};
@@ -149,19 +149,19 @@
       status('وضع الاتصال يحتاج صفحة HTTPS منشورة أو localhost. افتح README للتعليمات.',true);return;
     }
     window.FursaV4.setCloudMode();
-    $('v5ModeStrip').innerHTML='<b>משרלי LIVE</b><span class="strip-divider"></span> نشر الوظائف حصري لمدير الموقع · التقديم مباشرة إلى صاحب العمل';
+    $('v5ModeStrip').innerHTML='<b>משראדאר LIVE</b><span class="strip-divider"></span> نشر الوظائف حصري لمدير الموقع · التقديم مباشرة إلى صاحب العمل';
     document.querySelector('.local-label').textContent='قاعدة مشتركة';
     document.querySelector('#jobs .section-header p').textContent='الوظائف المنشورة هنا تأتي من قاعدة البيانات المشتركة بعد مراجعة المدير. يمكن التقديم من خلال الروابط أو عناوين البريد التي يحددها صاحب العمل.';
     document.querySelector('#editorDialog .form-note').textContent='لا يُنشر إعلان جديد بدون رابط تقديم آمن أو بريد صاحب عمل صحيح. لا تجمع المنصة بيانات المتقدمين.';
     document.querySelector('#jobs .list-footnote').textContent='توجّه الطلبات مباشرة إلى صاحب العمل. تحقق من صحة الإعلان قبل إرسال أي بيانات شخصية.';
     document.querySelector('#statJobs')?.nextElementSibling?.replaceChildren(document.createTextNode('وظائف منشورة'));
-    document.querySelector('.footer-note').innerHTML='משרלי V5 · وظائف مشتركة<br>التقديم مباشرة إلى أصحاب العمل';
-    document.querySelector('#adminView .admin-heading .kicker').textContent='✦ משרלי / مدير الموقع';
+    document.querySelector('.footer-note').innerHTML='משראדאר V5 · وظائف مشتركة<br>التقديم مباشرة إلى أصحاب العمل';
+    document.querySelector('#adminView .admin-heading .kicker').textContent='✦ משראדאר / مدير الموقع';
     document.querySelector('#adminView .admin-heading p').textContent='أنت وحدك تقدر تضيف وتعدل وتحذف الوظائف المنشورة لكل الزوار.';
     document.querySelector('#adminView .admin-notice p').innerHTML='<strong>سياسة النشر:</strong> حساب المدير الوحيد يدير جميع الإعلانات، والصلاحيات محمية في قاعدة البيانات. لا تجمع هذه النسخة سيرًا ذاتية أو طلبات توظيف.';
     document.querySelector('#adminView .admin-bar p').textContent='بعد الحفظ تُنشر الوظيفة مباشرة وتظهر لكل الزوار عند تحديث الموقع.';
     document.querySelector('#adminView .admin-stats small').textContent='وظائف مدير الموقع';
-    document.querySelector('#editorDialog .micro-label').textContent='✦ משרלי / نشر حصري للمدير';
+    document.querySelector('#editorDialog .micro-label').textContent='✦ משראדאר / نشر حصري للمدير';
     try{
       await new Promise((resolve,reject)=>{
         const script=document.createElement('script');script.src='https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2';script.onload=resolve;script.onerror=()=>reject(new Error('فشل تحميل مكتبة Supabase؛ تحقق من الاتصال'));document.head.append(script)
