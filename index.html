@@ -8,7 +8,7 @@
   <meta property="og:title" content="משרלי | Mishrali — فرص عمل">
   <meta property="og:description" content="وظائف بالعربي، עברית وEnglish — ابحث عن فرصتك المهنية على משרלי.">
   <meta name="application-name" content="משרלי | Mishrali">
-  <meta name="description" content="משרלי V5.1 — منصة وظائف بثلاث لغات مع وضع محلي وربط اختياري آمن بقاعدة بيانات Supabase.">
+  <meta name="description" content="משרלי — منصة وظائف بالعربية والعبرية والإنجليزية، مع بحث متقدم وصانع سيرة ذاتية مجاني.">
   <title>משרלי | Mishrali — وظائف وفرص عمل</title>
   <style>
 :root{--navy:#0b1730;--deep:#071120;--navy2:#11284a;--gold:#c9a24a;--gold-light:#e0c06f;--gold-soft:#f8edd0;--ink:#15243c;--muted:#758094;--line:#e5e8eb;--bg:#f7f8fa;--white:#fff;--shadow:0 12px 40px rgba(10,23,44,.07)}
@@ -40,6 +40,12 @@
 .hero-monogram span{right:auto;left:-12px;top:0}
 .cv-paper-logo{font-family:Tahoma,"Segoe UI",Arial,sans-serif}
 @media(max-width:640px){.brand-name{font-size:25px}}
+
+/* Mishrali launch: footer navigation */
+.mishrali-footer-links{display:flex;flex-direction:column;gap:7px;align-items:flex-start;min-width:175px}
+.mishrali-footer-links a{font-size:12px;font-weight:700;color:#50617a;text-decoration:none;line-height:1.6}
+.mishrali-footer-links a:hover,.mishrali-footer-links a:focus{color:#9a751e;text-decoration:underline}
+@media(max-width:700px){.mishrali-footer-links{flex-direction:row;flex-wrap:wrap;gap:8px 15px;width:100%}}
 </style>
   <style>
 /* משרלי V4 — navy and gold brand refinements */
@@ -264,7 +270,7 @@ html[dir=rtl] .cv-paper[dir=ltr]{direction:ltr}
     </section>
   </main>
 
-  <footer class="site-footer"><div class="container footer-content"><div class="footer-brand"><div class="brand brand-footer"><span class="brand-symbol">✦</span><span class="brand-name" lang="he" dir="rtl">משרלי<span>.</span></span></div><p>فرصتك أقرب مما بتتخيّل.</p></div><div class="footer-note">משרלי V5.1 · تصميم كحلي وذهبي<br>تجربة محلية غير مخصصة للتوظيف الفعلي</div><span>© <span id="year"></span> משרלי</span></div></footer>
+  <footer class="site-footer"><div class="container footer-content"><div class="footer-brand"><div class="brand brand-footer"><span class="brand-symbol">✦</span><span class="brand-name" lang="he" dir="rtl">משרלי<span>.</span></span></div><p>فرصتك أقرب مما بتتخيّل.</p></div><nav class="mishrali-footer-links" aria-label="معلومات الموقع"><a href="about.html" data-no-i18n>عن משרלי · אודות</a><a href="privacy.html" data-no-i18n>الخصوصية · פרטיות</a><a href="contact.html" data-no-i18n>التواصل · יצירת קשר</a></nav><div class="footer-note">משרלי · منصة وظائف متعددة اللغات<br>التقديم الإلكتروني للوظائف غير متاح حاليًا</div><span>© <span id="year"></span> משרלי</span></div></footer>
 
   <dialog id="detailsDialog" class="dialog details-dialog" aria-labelledby="detailTitle"><div class="dialog-head"><span class="micro-label">✦ تفاصيل الوظيفة</span><button type="button" class="icon-btn dialog-close" data-close="detailsDialog" aria-label="إغلاق"><svg class="icon"><use href="#i-close"/></svg></button></div><div id="detailContent"></div><div class="detail-footer"><button type="button" class="btn btn-outline-dark" id="detailFavorite"><svg class="icon"><use href="#i-heart"/></svg> احفظ للمفضلة</button><button type="button" class="btn btn-outline-dark" id="detailShare"><svg class="icon"><use href="#i-share"/></svg> مشاركة</button><button class="btn btn-disabled" type="button" disabled>التقديم غير متاح في النسخة التجريبية</button></div></dialog>
 
