@@ -43,7 +43,7 @@
    }).join(''):'<tr><td colspan="5">ما في شركات مسجّلة بعد.</td></tr>';
    $('feesRows').innerHTML=charges.length?charges.map(f=>{
     const c=companies.find(x=>x.id===f.company_id),j=jobs.find(x=>x.id===f.job_id);
-    const caption=f.payment_status==='free'?'مجاني':f.payment_status==='paid'?'مدفوع':'بانتظار الدفع';
+    const caption=({free:'مجاني',paid:'مدفوع',unpaid:'بانتظار الدفع',cancelled:'ملغي — الإعلان محذوف'})[f.payment_status]||'حالة غير معروفة';
     return `<tr><td>${esc(c?.name||'شركة سابقة')}</td><td>${esc(j?.title||'إعلان محذوف')}</td><td>${fmt(f.amount_ils)}</td><td>${caption}</td><td>${f.payment_status==='unpaid'&&j?`<button type="button" data-markpaid="${esc(j.id)}">تأكيد دفع ₪70 ونشر</button>`:'—'}</td></tr>`
    }).join(''):'<tr><td colspan="5">ما في رسوم مسجّلة بعد.</td></tr>';
    updateHint();
@@ -58,7 +58,7 @@
       ]);
       if(a.error)throw a.error;if(b.error)throw b.error;
       companies=a.data||[];charges=b.data||[];render();
-      setStatus('سجل الأسعار متصل بقاعدة البيانات. الحفظ والدفع محصوران بحساب المدير.');
+      setStatus('سجل الأسعار متصل بقاعدة البيانات. رسوم الإعلانات المحذوفة غير المدفوعة تُلغى تلقائيًا.');
    }catch(err){setStatus('تعذّر تحميل السجل: '+String(err.message||err).slice(0,160));throw err}
    finally{loading=false}
  }
